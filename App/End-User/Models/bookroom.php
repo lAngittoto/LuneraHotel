@@ -28,12 +28,12 @@ if (!$room || $room['status'] !== 'Available') {
     exit;
 }
 
-// ✅ Insert booking
-$stmt = $pdo->prepare("INSERT INTO bookings (user_email, room_id) VALUES (?, ?)");
+// ✅ Insert booking as "Booked"
+$stmt = $pdo->prepare("INSERT INTO bookings (user_email, room_id, status, booking_date) VALUES (?, ?, 'Booked', NOW())");
 $stmt->execute([$userEmail, $roomId]);
 
-// ✅ Update room status to Booked
-$stmt = $pdo->prepare("UPDATE rooms SET status='Booked' WHERE id = ?");
+// ✅ Update room status to "Booked"
+$stmt = $pdo->prepare("UPDATE rooms SET status = 'Booked' WHERE id = ?");
 $stmt->execute([$roomId]);
 
 $_SESSION['success'] = "Room booked successfully!";

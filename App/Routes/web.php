@@ -6,7 +6,7 @@ $page = $_GET['page'] ?? 'login';
 $authPages = ['login', 'authenticate', 'admin'];
 
 // Define which pages belong to End-User
-$endUserPages = ['home', 'rooms', 'mybookings', 'viewdetails'];
+$endUserPages = ['home', 'rooms', 'mybookings', 'viewdetails', 'bookroom']; // ✅ added bookroom
 
 // Decide which route to include
 if (in_array($page, $authPages)) {

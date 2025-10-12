@@ -9,10 +9,15 @@ switch ($page) {
     case 'mybookings':
         include __DIR__ . '/../End-User/Views/mybookings.php';
         break;
-
+        
     case 'viewdetails':
-        include __DIR__ . '/../End-User/Views/viewdetails.php';
+        include __DIR__ . '/../End-User/Controllers/viewdetailsController.php';
         break;
+
+    case 'bookroom':
+        include __DIR__ . '/../End-User/Models/bookroom.php';
+        break;
+
 
     default:
         http_response_code(404);

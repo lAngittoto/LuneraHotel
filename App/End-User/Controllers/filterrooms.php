@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once __DIR__ . '/../models/db.php';
+require_once __DIR__ . '/../Models/db.php';
 
 $status = $_GET['status'] ?? '';
 $type   = $_GET['type'] ?? '';
