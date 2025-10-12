@@ -1,0 +1,12 @@
+# Enable rewrite engine
+RewriteEngine On
+
+# Base directory (important: adjust if your project is inside LuneraHotel)
+RewriteBase /LuneraHotel/App/Public/
+
+# If the request is for an existing file or directory, do nothing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Otherwise, redirect all requests to index.php with a "page" parameter
+RewriteRule ^([^/]+)/?$ index.php?page=$1 [L,QSA]
