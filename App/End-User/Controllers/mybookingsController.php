@@ -1,8 +1,8 @@
 <?php
-session_start();
+
 require_once __DIR__ . "/../Models/db.php";
 
-// ✅ Check if user is logged in
+
 if (!isset($_SESSION['user']) || empty($_SESSION['user']['email'])) {
     header('Location: /LuneraHotel/App/Public');
     exit;
@@ -10,7 +10,7 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user']['email'])) {
 
 $userEmail = $_SESSION['user']['email'];
 
-// ✅ Fetch all bookings for this user, newest first
+
 $stmt = $pdo->prepare("
     SELECT r.*, b.booking_date, b.status AS booking_status
     FROM bookings b
@@ -21,6 +21,6 @@ $stmt = $pdo->prepare("
 $stmt->execute([$userEmail]);
 $bookedRooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// ✅ Load the view
+
 $title = "My Bookings";
 include __DIR__ . "/../Views/mybookings.php";
