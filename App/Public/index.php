@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 // default page if none provided
 $page = $_GET['page'] ?? 'login';
 

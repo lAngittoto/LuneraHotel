@@ -19,10 +19,11 @@ if (in_array($page, $authPages)) {
         case 'authenticate':
             include __DIR__ . '/../Auth/Controllers/authenticate.php';
             break;
-
+            
         case 'admin':
-            include __DIR__ . '/../Admin/Views/dashboard.php';
+            require_once __DIR__ . '/../Admin/Controllers/DashboardController.php';
             break;
+
     }
 } elseif (in_array($page, $endUserPages)) {
     // Include End-User router

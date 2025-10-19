@@ -19,11 +19,11 @@ if (!is_array($amenities)) {
 
 $statusClass = $statusClass ?? '';
 ?>
-<section class="w-full bg-[#f8f8f8] p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col md:flex-col lg:flex-row justify-around items-start gap-6 md:gap-8 lg:gap-12">
+<section class="w-full bg-[#f8f8f8] p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col md:flex-col lg:flex-row justify-around items-start gap-6 md:gap-8 lg:gap-12 select-none">
     <!-- Room Info -->
     <div class="flex flex-col w-full md:w-full lg:w-[40%] border border-[#dcdcdc] bg-[#ffffff] text-[#333333] rounded-lg shadow-sm gap-4">
         <img src="<?= htmlspecialchars($room['img']) ?>" alt="Room Image"
-             class="w-full h-64 sm:h-72 md:h-80 lg:h-96 object-cover rounded-t-lg">
+            class="w-full h-64 sm:h-72 md:h-80 lg:h-96 object-cover rounded-t-lg">
 
         <div class="p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col gap-4">
             <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-semibold text-[#000000]">
@@ -57,15 +57,19 @@ $statusClass = $statusClass ?? '';
     <!-- Booking Form -->
     <?php if ($room['status'] === 'Available'): ?>
         <div class="flex flex-col w-full md:w-full lg:w-[40%] bg-[#ffffff] p-5 sm:p-6 md:p-8 lg:p-10 border border-[#dcdcdc] gap-5 sm:gap-6 md:gap-8 lg:gap-10 mt-6 lg:mt-0 rounded-lg shadow-sm">
-           <form method="POST" action="/LuneraHotel/App/Public/bookroom" class="flex flex-col gap-4">
-    <input type="hidden" name="room_id" value="<?= htmlspecialchars($room['id']) ?>">
+            <form method="POST" action="/LuneraHotel/App/Public/bookroom" class="flex flex-col gap-4">
+                <input type="hidden" name="room_id" value="<?= htmlspecialchars($room['id']) ?>">
 
                 <div class="flex flex-col text-xs sm:text-sm md:text-base lg:text-lg gap-2">
                     <label for="date" class="mb-1">Date</label>
                     <div class="flex items-center gap-2">
                         <i class="fa-regular fa-calendar"></i>
-                        <input type="text" name="date" readonly disabled placeholder="Ex. 05-06-2025"
-                               class="outline-none bg-[#f8f8f8] py-2 px-3 border border-[#dcdcdc] w-full rounded-md">
+                        <?php
+                        date_default_timezone_set('Asia/Manila');
+                        $currentDate = date("F d, Y");
+                        $nextDate = date("F d, Y", strtotime("+2 days"));
+                        echo "$currentDate to $nextDate";
+                        ?>
                     </div>
                 </div>
 
@@ -74,25 +78,26 @@ $statusClass = $statusClass ?? '';
                         <label for="in" class="mb-1">Check In</label>
                         <div class="flex items-center gap-2">
                             <i class="fa-regular fa-clock"></i>
-                            <input type="text" name="in" readonly disabled placeholder="9:30"
-                                   class="outline-none bg-[#f8f8f8] py-2 px-3 border border-[#dcdcdc] w-full rounded-md">
+                            <div class="outline-none bg-[#f8f8f8] py-2 px-3 border border-[#dcdcdc] w-full rounded-md text-[#333333]">
+                                2:00 PM
+                            </div>
+                        </div>
+                        <div class="flex flex-col w-full lg:w-[48%] text-xs sm:text-sm md:text-base lg:text-lg gap-2">
+                            <label for="out" class="mb-1">Check Out</label>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-regular fa-clock"></i>
+                                <div class="outline-none bg-[#f8f8f8] py-2 px-3 border border-[#dcdcdc] w-full rounded-md text-[#333333]">
+                                    12:00 AM
+                                </div>
+
+                            </div>
                         </div>
                     </div>
 
-                    <div class="flex flex-col w-full lg:w-[48%] text-xs sm:text-sm md:text-base lg:text-lg gap-2">
-                        <label for="out" class="mb-1">Check Out</label>
-                        <div class="flex items-center gap-2">
-                            <i class="fa-regular fa-clock"></i>
-                            <input type="text" name="out" readonly disabled placeholder="9:30"
-                                   class="outline-none bg-[#f8f8f8] py-2 px-3 border border-[#dcdcdc] w-full rounded-md">
-                        </div>
-                    </div>
-                </div>
-
-                <button type="submit"
-                    class="bg-[#800000] text-xs sm:text-sm md:text-base lg:text-lg py-3 mt-5 text-[#ffffff] text-center rounded-2xl cursor-pointer">
-                    Confirm Booking
-                </button>
+                    <button type="submit"
+                        class="bg-[#800000] text-xs sm:text-sm md:text-base lg:text-lg py-3 mt-5 text-[#ffffff] text-center rounded-2xl cursor-pointer">
+                        Confirm Booking
+                    </button>
             </form>
         </div>
     <?php endif; ?>
