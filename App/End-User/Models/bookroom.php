@@ -1,53 +1,38 @@
 <?php
+// Models/bookroom.php
 
-require_once __DIR__ . "/../Models/db.php"; // DB connection
+function bookRoom($pdo, $email, $roomId)
+{
+    try {
+        // Start transaction (avoid double booking)
+        $pdo->beginTransaction();
 
-// ✅ Check user session
-if (!isset($_SESSION['user']) || empty($_SESSION['user']['email'])) {
-    header('Location: /LuneraHotel/App/Public');
-    exit;
-}
+        // Check if the room is still available (lock the row)
+        $stmt = $pdo->prepare("SELECT status FROM rooms WHERE id = ? FOR UPDATE");
+        $stmt->execute([$roomId]);
+        $room = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$userEmail = $_SESSION['user']['email'];
-$roomId = $_POST['room_id'] ?? null;
+        if (!$room || trim($room['status']) !== 'Available') {
+            throw new Exception("This room is not available for booking.");
+        }
 
-// ✅ Validate room_id
-if (!$roomId) {
-    $_SESSION['error'] = "Invalid request.";
-    header('Location: /LuneraHotel/App/Public/rooms');
-    exit;
-}
+        // Insert booking record
+        $stmt = $pdo->prepare("
+            INSERT INTO bookings (user_email, room_id, status, booking_date)
+            VALUES (?, ?, 'Booked', NOW())
+        ");
+        $stmt->execute([$email, $roomId]);
 
-try {
-    // ✅ Start transaction to avoid race conditions
-    $pdo->beginTransaction();
+        // Update room status
+        $stmt = $pdo->prepare("UPDATE rooms SET status = 'Booked' WHERE id = ?");
+        $stmt->execute([$roomId]);
 
-    // ✅ Check if room is still Available (lock row)
-    $stmt = $pdo->prepare("SELECT status FROM rooms WHERE id = ? FOR UPDATE");
-    $stmt->execute([$roomId]);
-    $room = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Commit transaction
+        $pdo->commit();
+        return true;
 
-    if (!$room || trim($room['status']) !== 'Available') {
-        throw new Exception("This room is not available for booking.");
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e; // pass the error back to the controller
     }
-
-    // ✅ Insert booking
-    $stmt = $pdo->prepare("INSERT INTO bookings (user_email, room_id, status, booking_date) VALUES (?, ?, 'Booked', NOW())");
-    $stmt->execute([$userEmail, $roomId]);
-
-    // ✅ Update room status to "Booked"
-    $stmt = $pdo->prepare("UPDATE rooms SET status = 'Booked' WHERE id = ?");
-    $stmt->execute([$roomId]);
-
-    $pdo->commit();
-
-    $_SESSION['success'] = "Room booked successfully!";
-} catch (Exception $e) {
-    $pdo->rollBack();
-    $_SESSION['error'] = $e->getMessage();
 }
-
-// ✅ Redirect to LuneraHotel My Bookings
-header('Location: /LuneraHotel/App/Public/mybookings');
-exit;
-?>

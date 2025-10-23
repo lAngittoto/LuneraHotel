@@ -12,7 +12,7 @@
     <link rel="icon" type="image/jpg" href="/LuneraHotel/App/Public/images/logo.jpg">
     <!--npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch-->
 </head>
-<body class=" bg-[#f8f8f8] font-mono">
+<body class=" bg-[#f8f8f8] font-mono overflow-x-hidden">
     <?= $content  ?>
 </body>
 

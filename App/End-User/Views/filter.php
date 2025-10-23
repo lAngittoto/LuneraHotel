@@ -6,7 +6,7 @@
 </section>
 
 <section class="w-screen justify-center items-center flex select-none">
-  <div class="w-[80%] border border-[#dcdcdc] bg-[#ffffff] rounded-4xl p-10">
+  <div class="w-[80%] border border-[#b1b1b1] shadow-2xl bg-[#ffffff] rounded-4xl p-10">
     <form id="filterForm">
       <div class="flex sm:flex-row justify-around items-start flex-col">
         <!-- Checkbox -->

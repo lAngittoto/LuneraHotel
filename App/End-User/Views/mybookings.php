@@ -1,102 +1,101 @@
 <?php ob_start(); ?>
-<?php require_once __DIR__ . "/header.php"; 
-require_once __DIR__."/../Helpers/colorcoding.php";
+<?php 
+require_once __DIR__ . "/header.php"; 
+require_once __DIR__ . "/../Helpers/colorcoding.php";
 ?>
 
-<section class="w-full bg-[#f8f8f8] p-10 flex flex-col items-center">
-    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 text-[#800000] text-center select-none">My Bookings</h1>
+<!-- Header Section -->
+<section class="w-full bg-[#f8f8f8] py-16 flex flex-col items-center">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-[#333333] text-center select-none">
+        My Bookings
+    </h1>
+    <p class="text-gray-600 text-base sm:text-lg md:text-xl text-center max-w-2xl">
+        Review and manage all your reserved rooms below.
+    </p>
 </section>
 
 <?php if (empty($bookedRooms)): ?>
-    <p class="text-xl sm:text-2xl text-gray-600 text-center">You have no bookings yet.</p>
+    <p class="text-2xl sm:text-3xl md:text-4xl text-gray-500 text-center my-20 select-none">
+        You have no bookings yet.
+    </p>
 <?php else: ?>
-    <div class="flex flex-col gap-8 p-6 sm:p-6 md:p-10 max-w-4xl mx-auto ">
-        <?php foreach ($bookedRooms as $room): ?>
-            <div class="border border-[#dcdcdc] bg-white p-6 sm:p-6 md:p-10 rounded-2xl shadow-lg flex flex-col gap-4 max-w-full mx-auto">
 
-                <!-- Room Image -->
-                <div class="w-full relative overflow-hidden rounded-xl mb-5" style="aspect-ratio: 16/9;">
-                    <img src="<?= htmlspecialchars($room['img']) ?>" alt="Room Image"
-                        class="absolute inset-0 w-full h-full object-cover">
+<!-- Booked Rooms Single Column Stack -->
+<section class="p-10 sm:p-14 md:p-16 w-full max-w-4xl mx-auto flex flex-col gap-12">
+    <?php foreach ($bookedRooms as $room): ?>
+        <?php $statusClass = getStatusClass($room['booking_status']); ?>
+
+        <div class="bg-white rounded-3xl border border-[#b1b1b1] shadow-2xl hover:shadow-2xl transition overflow-hidden flex flex-col">
+
+            <!-- Room Image -->
+            <div class="relative w-full overflow-hidden h-[420px] sm:h-[460px] md:h-[500px]">
+                <img src="<?= htmlspecialchars($room['img']) ?>" 
+                     alt="Room Image" 
+                     class="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+            </div>
+
+            <!-- Room Info -->
+            <div class="flex flex-col gap-4 p-8 text-[#333333] flex-grow">
+                <div class="flex flex-row justify-between items-start">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
+                        <?= htmlspecialchars($room['room_type']) ?>
+                    </h2>
+                    <h1 class="text-sm sm:text-base md:text-lg px-4 py-2 rounded-3xl <?= $statusClass ?>">
+                        <?= htmlspecialchars($room['booking_status']) ?>
+                    </h1>
                 </div>
 
-                <!-- Room Info -->
-                <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-bold text-gray-900">
-                    <?= htmlspecialchars($room['room_type']) ?>
-                </h2>
-
-                <p class="text-xs sm:text-sm md:text-base lg:text-base text-gray-700 mb-2">
-                    Room <?= htmlspecialchars($room['room_number']) ?>
-                </p>
-
-                <p class="flex items-center gap-2 text-xs sm:text-sm md:text-base lg:text-lg text-gray-700 mb-2">
-                    <i class="fa-regular fa-user text-[#800000]"></i>
-                    <?= htmlspecialchars($room['people']) ?> Guests
+                <p class="text-base sm:text-lg md:text-xl text-gray-700">
+                    Room <?= htmlspecialchars($room['room_number']) ?> — 
+                    <i class="fa-regular fa-user text-[#800000]"></i> <?= htmlspecialchars($room['people']) ?> Guests
                 </p>
 
                 <?php if (!empty($room['floor'])): ?>
-                    <div class="flex items-center gap-2 mb-4">
-                        <i class="fa-solid fa-building text-[#800000]"></i>
-                        <p class="text-xs sm:text-sm md:text-base lg:text-base text-gray-600">
-                            <?= htmlspecialchars($room['floor']) ?>
-                        </p>
-                    </div>
+                    <p class="text-base sm:text-lg md:text-xl text-gray-700">
+                        <i class="fa-solid fa-building text-[#800000] mr-1"></i>
+                        <?= htmlspecialchars($room['floor']) ?>
+                    </p>
                 <?php endif; ?>
 
-               <?php
-$statusClass = getStatusClass($room['booking_status']);
-?>
-
-<div class="flex items-center gap-2 mb-4">
-    <span class="text-xs sm:text-sm md:text-base lg:text-base font-semibold">Status:</span>
-    <?php
-    echo "<h1 class='lg:text-[1rem] lg:px-5 lg:py-2 md:text-[0.8rem] md:px-4 md:py-1 text-[0.7rem] px-3 py-1 rounded-4xl {$statusClass}'>" . 
-         htmlspecialchars($room['booking_status']) . 
-         "</h1>";
-    ?>
-</div>
-
-
-                <!-- Date -->
-                <div class="flex flex-col mb-4">
-                    <label class="mb-1 font-medium text-xs sm:text-sm md:text-base">Date</label>
-                    <?php
-                    date_default_timezone_set('Asia/Manila');
-                    $currentDate = date("F d, Y");
-                    $nextDate = date("F d, Y", strtotime("+2 days"));
-                    echo "$currentDate to $nextDate";
-                    ?>
-                </div>
-
-                <!-- Check In / Check Out -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <!-- Check In -->
+                <!-- Dates + Check In/Out -->
+                <div class="flex flex-col sm:flex-row justify-between mt-4 text-gray-800 text-base sm:text-lg gap-4 sm:gap-6">
                     <div class="flex flex-col">
-                        <label class="mb-1 font-medium text-xs sm:text-sm md:text-base">Check In</label>
-                        <div class="outline-none bg-[#f8f8f8] py-2 px-3 border border-[#dcdcdc] w-full rounded-md text-[#333333]">
+                        <span class="font-semibold block mb-1">Date</span>
+                        <?php
+                            date_default_timezone_set('Asia/Manila');
+                            $currentDate = date("F d, Y");
+                            $nextDate = date("F d, Y", strtotime("+2 days"));
+                            echo "<p>$currentDate — $nextDate</p>";
+                        ?>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <span class="font-semibold mb-1">Check In</span>
+                        <div class="bg-[#f8f8f8] border border-[#dcdcdc] py-3 px-4 rounded-md text-gray-700 text-center">
                             2:00 PM
                         </div>
                     </div>
 
-                    <!-- Check Out -->
                     <div class="flex flex-col">
-                        <label class="mb-1 font-medium text-xs sm:text-sm md:text-base">Check Out</label>
-                        <div class="outline-none bg-[#f8f8f8] py-2 px-3 border border-[#dcdcdc] w-full rounded-md text-[#333333]">
+                        <span class="font-semibold mb-1">Check Out</span>
+                        <div class="bg-[#f8f8f8] border border-[#dcdcdc] py-3 px-4 rounded-md text-gray-700 text-center">
                             12:00 AM
                         </div>
                     </div>
                 </div>
+            </div>
 
-
-                <!-- View Details Button -->
+            <!-- View Details Button -->
+            <div class="mt-auto">
                 <a href="index.php?page=viewdetails&room=<?= $room['id'] ?>"
-                    class="mt-2 block w-full text-center px-5 py-3 bg-[#800000] text-white rounded-xl shadow hover:bg-red-900 transition text-sm sm:text-base md:text-lg">
+                   class="block w-full text-center px-8 py-5 bg-[#800000] text-white font-semibold rounded-b-3xl hover:bg-red-900 transition text-base sm:text-lg md:text-xl">
                     View Details <i class="fa-regular fa-file-lines ml-2"></i>
                 </a>
-
             </div>
-        <?php endforeach; ?>
-    </div>
+        </div>
+
+    <?php endforeach; ?>
+</section>
 <?php endif; ?>
 
 <?php
