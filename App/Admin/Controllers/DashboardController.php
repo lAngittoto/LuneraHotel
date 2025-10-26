@@ -10,7 +10,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
 require_once __DIR__ . '/../Models/DashboardModel.php';
 
 // Get data from model
-list($totalRooms, $availableRooms) = getDashboardData();
+list($totalRooms, $availableRooms, $bookings, $undermaintenance) = getDashboardData();
 
 // Page title
 $title = 'Admin Dashboard';

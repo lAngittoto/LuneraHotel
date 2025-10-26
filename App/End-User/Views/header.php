@@ -11,10 +11,10 @@ ob_start();
     </h1>
 
     <!-- Navigation Links -->
-    <nav class="flex flex-col sm:flex-row gap-5 sm:gap-10 justify-center items-center text-white text-2xl font-light select-none">
-        <a href="/LuneraHotel/App/Public/rooms" class="hover:text-gray-300 transition-colors duration-200">Rooms</a>
-        <a href="/LuneraHotel/App/Public/mybookings" class="hover:text-gray-300 transition-colors duration-200">My Bookings</a>
-        <a href="/LuneraHotel/App/Auth/Controllers/logout.php" class="hover:text-gray-300 transition-colors duration-200">Log Out</a>
+    <nav class="flex flex-col sm:flex-row gap-5 sm:gap-10 justify-center items-center text-white  font-light select-none">
+        <a href="/LuneraHotel/App/Public/rooms"><span class=" text-[1.3rem] hover:text-gray-300 transition-colors duration-200">Rooms</span></a>
+        <a href="/LuneraHotel/App/Public/mybookings"><span class=" text-[1.3rem] hover:text-gray-300 transition-colors duration-200">My Bookings</span></a>
+        <a href="/LuneraHotel/App/Auth/Controllers/logout.php"><span class="hover:text-gray-300 transition-colors duration-200 text-[1.3rem]">Log Out</span></a>
     </nav>
 
 </header>

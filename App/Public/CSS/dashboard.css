@@ -37,6 +37,10 @@ header {
   gap: 20px;
   flex-wrap: wrap;
 }
+.card {
+  flex: 1 1 calc(50% - 20px);
+  min-width: 220px;
+}
 
 /* Card Style */
 .card {
@@ -49,7 +53,8 @@ header {
 }
 
 .card h3 {
-  font-size: 18px;
+  font:bold;
+  font-size: 20px;
   margin: 0;
   display: flex;
   align-items: center;

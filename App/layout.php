@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="/LuneraHotel/App/Public/CSS/login.css">
     <link rel="stylesheet" href="/LuneraHotel/App/Public/CSS/dashboard.css">
     <link rel="icon" type="image/jpg" href="/LuneraHotel/App/Public/images/logo.jpg">
-    <!--npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch-->
+    <!--npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch
+    cd C:\ngrok
+    ngrok http 80
+    -->
 </head>
 <body class=" bg-[#f8f8f8] font-mono overflow-x-hidden">
     <?= $content  ?>

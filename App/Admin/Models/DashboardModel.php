@@ -10,5 +10,11 @@ function getDashboardData() {
     $stmt = $pdo->query("SELECT COUNT(*) AS available FROM rooms WHERE status='Available'");
     $availableRooms = $stmt->fetch(PDO::FETCH_ASSOC)['available'];
 
-    return [$totalRooms, $availableRooms];
+    $stmt = $pdo->query("SELECT COUNT(*) AS undermaintenance from rooms where status='under maintenance'");
+    $undermaintenance = $stmt->fetch(PDO::FETCH_ASSOC)['undermaintenance'];
+
+    $stmt = $pdo->query("SELECT COUNT(*) AS booked from bookings ");
+    $bookings = $stmt->fetch(PDO::FETCH_ASSOC)['booked'];
+
+    return [$totalRooms, $availableRooms,$bookings, $undermaintenance];
 }
