@@ -32,7 +32,7 @@ class Rooms
 
         echo '<div class="flex flex-row justify-between items-center p-3">';
 
-        echo "<h1 class='lg:text-2xl sm:text-[1.2rem] md: text-[1.6rem]'>{$this->RoomType}</h1>";
+        echo "<h1 class='lg:text-2xl sm:text-[1.2rem] md: text-[1.6rem] font-bold'>{$this->RoomType}</h1>";
         $statusClass = getStatusClass($this->status);
         echo "<h1 class='lg:text-[1rem] lg:px-5 lg:py-2 md:text-[0.8rem] md:px-4 md:py-1 text-[0.7rem] px-3 py-1 rounded-4xl  text-white {$statusClass}'>{$this->status}</h1>";
 
@@ -42,7 +42,7 @@ class Rooms
 
         echo '<div class="flex flex-row justify-between p-3 mt-auto">';
         echo "<h1 class='lg:text-2xl sm:text-[1.2rem] md:text-[1.6rem] text-[#333333]'>Room: {$this->RoomNumber}</h1>";
-        echo "<h1 class='lg:text-2xl sm:text-[1.2rem] md:text-[1.6rem] text-[#333333]'><i class='fa-regular fa-user'></i> {$this->people} Person</h1>";
+        echo "<h1 class='lg:text-2xl sm:text-[1.2rem] md:text-[1.6rem] text-[#333333]'><i class='fa-regular fa-user'></i> Up to {$this->people} Person</h1>";
         echo "</div>";
 
         

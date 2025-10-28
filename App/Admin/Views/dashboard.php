@@ -1,8 +1,8 @@
 <?php ob_start(); ?>
 <section class="select-none">
-  <div class="bg-[#8b2d2d] not-visited:w-screen px-5 py-5 flex flex-row justify-between text-[#ffffff] font-mono items-center select">
+  <div class="bg-[#8b2d2d] not-visited:w-screen px-10 py-5 flex flex-row justify-between text-[#ffffff] font-mono items-center select">
     <h1 class="text-3xl">Lunera Hotel</h1>
-    <a href="/LuneraHotel/App/Auth/Controllers/logout.php" class=" text-2xl">Log out</a>
+    <a href="/LuneraHotel/App/Auth/Controllers/logout.php" class=" text-[1.3rem]">Log out</a>
   </div>
 
   <!-- Dashboard Content -->
@@ -15,28 +15,48 @@
       <div class="card">
         <h3>Total Rooms <i class="fa-solid fa-bed text-4xl"></i></h3>
         <p class="description">The total number of rooms in the hotel.</p>
-       <span class="number"><?= htmlspecialchars($totalRooms) ?></span>
+        <span class="number"><?= htmlspecialchars($totalRooms) ?></span>
       </div>
 
       <!-- Available Rooms -->
       <div class="card">
         <h3>Available Rooms <i class="fa-solid fa-bed text-green-700 text-4xl"></i></h3>
         <p class="description">Rooms currently available for booking.</p>
-      <span class="number"><?= htmlspecialchars($availableRooms) ?></span>
+        <span class="number"><?= htmlspecialchars($availableRooms) ?></span>
       </div>
 
       <!-- Booked -->
-       <div class="card">
-          <h3>Total Bookings <i class="fa-solid fa-book-open text-4xl text-orange-700"></i></h3>
-          <p class="description">All-time booking count.</p>
-          <span class="number"><?= htmlspecialchars($bookings)?></span>
-       </div>
-       <!-- Under Maintenance -->
-        <div class="card">
-          <h3>Maintenance<i class="fa-solid fa-screwdriver-wrench text-4xl text-red-700"></i></h3>
-          <p class="description">Rooms currently under maintenance.</p>
-          <span class="number"><?= htmlspecialchars($undermaintenance)?></span>
-        </div>
+      <div class="card">
+        <h3>Total Bookings <i class="fa-solid fa-book-open text-4xl text-orange-700"></i></h3>
+        <p class="description">All-time booking count.</p>
+        <span class="number"><?= htmlspecialchars($bookings) ?></span>
+      </div>
+      <!-- Under Maintenance -->
+      <div class="card">
+        <h3>Maintenance<i class="fa-solid fa-screwdriver-wrench text-4xl text-red-700"></i></h3>
+        <p class="description">Rooms currently under maintenance.</p>
+        <span class="number"><?= htmlspecialchars($undermaintenance) ?></span>
+      </div>
+    </div>
+    <section class="mt-10 ">
+    <div class=" flex flex-col gap-10 md:w-[50vw] w-full">
+      <div class="card">
+        <h3>Manage Rooms</h3>
+        <p class="description">View, edit or update the status of all rooms in the hotel.</p> <br>
+        <a href="/LuneraHotel/App/Public/managerooms" class=" text-[#ffffff] bg-[#800000] py-3 px-5 rounded-xl sm:text-[0.8rem] text-[0.7rem] ">Go to Room Management <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="card">
+        <h3>View All Bookings</h3>
+        <p class="description">See a comprehensive list of all historical and upcoming bookings.</p> <br>
+        <a href="/LuneraHotel/App/Public/allbookings" class=" text-[#ffffff] bg-[#800000] py-3 px-5 rounded-xl sm:text-[0.8rem] text-[0.7rem]">Go to Bookings <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    <div class="card">
+      <h3>Bookings Popularity Report</h3>
+      <p class="description">View a detailed report of the most popular rooms based on booking frequency.</p> <br>
+      <a href="/LuneraHotel/App/Public/popularity" class=" text-[#ffffff] bg-[#800000] py-3 px-5 rounded-xl sm:text-[0.8rem] text-[0.7rem]">View Full Report <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    </div>
+    </section>
     </div>
   </main>
 </section>
