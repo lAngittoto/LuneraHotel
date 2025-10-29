@@ -48,7 +48,7 @@ class Rooms
         
        
         echo '<div class="flex justify-center w-full">';
-        echo "<a href='index.php?page=viewdetails&room={$this->id}' class='w-full text-center px-5 py-3 bg-[#800000] text-white hover:bg-red-900 transition'>View Details <i class='fa-regular fa-file-lines'></i></a>";
+        echo "<a href='index.php?page=viewdetails&room={$this->id}' class='w-full text-center px-5 py-5 bg-[#800000] text-white hover:bg-red-900 transition'>View Details <i class='fa-regular fa-file-lines'></i></a>";
         echo "</div>";
 
         echo "</div>";

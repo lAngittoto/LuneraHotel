@@ -1,9 +1,9 @@
-<?php ob_start(); ?>
+<?php ob_start(); 
+require_once __DIR__.'/header.php';
+?>
+
 <section class="select-none">
-  <div class="bg-[#8b2d2d] not-visited:w-screen px-10 py-5 flex flex-row justify-between text-[#ffffff] font-mono items-center select">
-    <h1 class="text-3xl">Lunera Hotel</h1>
-    <a href="/LuneraHotel/App/Auth/Controllers/logout.php" class=" text-[1.3rem]">Log out</a>
-  </div>
+
 
   <!-- Dashboard Content -->
   <main class="dashboard">
@@ -39,23 +39,23 @@
       </div>
     </div>
     <section class="mt-10 ">
-    <div class=" flex flex-col gap-10 md:w-[50vw] w-full">
-      <div class="card">
-        <h3>Manage Rooms</h3>
-        <p class="description">View, edit or update the status of all rooms in the hotel.</p> <br>
-        <a href="/LuneraHotel/App/Public/managerooms" class=" text-[#ffffff] bg-[#800000] py-3 px-5 rounded-xl sm:text-[0.8rem] text-[0.7rem] ">Go to Room Management <i class="fa-solid fa-arrow-right"></i></a>
+      <div class=" flex flex-col gap-10 md:w-[50vw] w-full">
+        <div class="card">
+          <h3>Manage Rooms</h3>
+          <p class="description">View, edit or update the status of all rooms in the hotel.</p> <br>
+          <a href="/LuneraHotel/App/Public/managerooms" class=" text-[#ffffff] bg-[#800000] py-3 px-5 rounded-xl sm:text-[0.8rem] text-[0.7rem] ">Go to Room Management <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="card">
+          <h3>View All Bookings</h3>
+          <p class="description">See a comprehensive list of all historical and upcoming bookings.</p> <br>
+          <a href="/LuneraHotel/App/Public/allbookings" class=" text-[#ffffff] bg-[#800000] py-3 px-5 rounded-xl sm:text-[0.8rem] text-[0.7rem]">Go to Bookings <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="card">
+          <h3>Bookings Popularity Report</h3>
+          <p class="description">View a detailed report of the most popular rooms based on booking frequency.</p> <br>
+          <a href="/LuneraHotel/App/Public/popularity" class=" text-[#ffffff] bg-[#800000] py-3 px-5 rounded-xl sm:text-[0.8rem] text-[0.7rem]">View Full Report <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
       </div>
-      <div class="card">
-        <h3>View All Bookings</h3>
-        <p class="description">See a comprehensive list of all historical and upcoming bookings.</p> <br>
-        <a href="/LuneraHotel/App/Public/allbookings" class=" text-[#ffffff] bg-[#800000] py-3 px-5 rounded-xl sm:text-[0.8rem] text-[0.7rem]">Go to Bookings <i class="fa-solid fa-arrow-right"></i></a>
-      </div>
-    <div class="card">
-      <h3>Bookings Popularity Report</h3>
-      <p class="description">View a detailed report of the most popular rooms based on booking frequency.</p> <br>
-      <a href="/LuneraHotel/App/Public/popularity" class=" text-[#ffffff] bg-[#800000] py-3 px-5 rounded-xl sm:text-[0.8rem] text-[0.7rem]">View Full Report <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    </div>
     </section>
     </div>
   </main>

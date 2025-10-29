@@ -45,22 +45,26 @@ require_once __DIR__ . "/../Helpers/colorcoding.php";
                     </h1>
                 </div>
 
-                <p class="text-base sm:text-lg md:text-xl text-gray-700">
+                <!-- Room Details -->
+                <p class="text-lg sm:text-xl md:text-2xl text-gray-700">
+                    <i class="fa-solid fa-bed text-[#800000] mr-2"></i>
                     Room <?= htmlspecialchars($room['room_number']) ?> — 
-                    <i class="fa-regular fa-user text-[#800000]"></i> <?= htmlspecialchars($room['people']) ?> Guests
+                    <i class="fa-solid fa-user-group text-[#800000] ml-1"></i> <?= htmlspecialchars($room['people']) ?> Guests
                 </p>
 
                 <?php if (!empty($room['floor'])): ?>
-                    <p class="text-base sm:text-lg md:text-xl text-gray-700">
-                        <i class="fa-solid fa-building text-[#800000] mr-1"></i>
-                        <?= htmlspecialchars($room['floor']) ?>
+                    <p class="text-lg sm:text-xl md:text-2xl text-gray-700 flex items-center gap-2">
+                        <i class="fa-solid fa-building text-[#800000]"></i>
+                        Floor <?= htmlspecialchars($room['floor']) ?>
                     </p>
                 <?php endif; ?>
 
                 <!-- Dates + Check In/Out -->
-                <div class="flex flex-col sm:flex-row justify-between mt-4 text-gray-800 text-base sm:text-lg gap-4 sm:gap-6">
+                <div class="flex flex-col sm:flex-row justify-between mt-6 text-gray-800 text-lg sm:text-xl gap-4 sm:gap-6">
                     <div class="flex flex-col">
-                        <span class="font-semibold block mb-1">Date</span>
+                        <span class="font-semibold block mb-1">
+                            <i class="fa-regular fa-calendar text-[#800000] mr-1"></i>Date
+                        </span>
                         <?php
                             date_default_timezone_set('Asia/Manila');
                             $currentDate = date("F d, Y");
@@ -70,15 +74,19 @@ require_once __DIR__ . "/../Helpers/colorcoding.php";
                     </div>
 
                     <div class="flex flex-col">
-                        <span class="font-semibold mb-1">Check In</span>
-                        <div class="bg-[#f8f8f8] border border-[#dcdcdc] py-3 px-4 rounded-md text-gray-700 text-center">
+                        <span class="font-semibold mb-1">
+                            <i class="fa-solid fa-door-open text-[#800000] mr-1"></i>Check In
+                        </span>
+                        <div class="bg-[#f8f8f8] border border-[#dcdcdc] py-3 px-5 rounded-md text-gray-700 text-center text-lg">
                             2:00 PM
                         </div>
                     </div>
 
                     <div class="flex flex-col">
-                        <span class="font-semibold mb-1">Check Out</span>
-                        <div class="bg-[#f8f8f8] border border-[#dcdcdc] py-3 px-4 rounded-md text-gray-700 text-center">
+                        <span class="font-semibold mb-1">
+                            <i class="fa-solid fa-door-closed text-[#800000] mr-1"></i>Check Out
+                        </span>
+                        <div class="bg-[#f8f8f8] border border-[#dcdcdc] py-3 px-5 rounded-md text-gray-700 text-center text-lg">
                             12:00 AM
                         </div>
                     </div>
@@ -88,7 +96,7 @@ require_once __DIR__ . "/../Helpers/colorcoding.php";
             <!-- View Details Button -->
             <div class="mt-auto">
                 <a href="index.php?page=viewdetails&room=<?= $room['id'] ?>"
-                   class="block w-full text-center px-8 py-5 bg-[#800000] text-white font-semibold rounded-b-3xl hover:bg-red-900 transition text-base sm:text-lg md:text-xl">
+                   class="block w-full text-center px-8 py-5 text-[#333333] font-semibold rounded-b-3xl hover:bg-yellow-600 border-t border-[#b1b1b1] transition text-lg sm:text-xl md:text-2xl">
                     View Details <i class="fa-regular fa-file-lines ml-2"></i>
                 </a>
             </div>

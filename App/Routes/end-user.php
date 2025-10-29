@@ -15,7 +15,7 @@ switch ($page) {
         break;
 
     case 'bookroom':
-        include __DIR__ . '/../End-User/Models/bookroom.php';
+        include __DIR__ . '/../End-User/Controllers/bookroomController.php';
         break;
 
 
