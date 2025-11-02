@@ -41,17 +41,17 @@ require_once __DIR__.'/header.php';
     <section class="mt-10 ">
       <div class=" flex flex-col gap-10 md:w-[50vw] w-full">
         <div class="card">
-          <h3>Manage Rooms</h3>
+          <h3><i class="fa-solid fa-list-check text-[#800000]"></i>Manage Rooms</h3>
           <p class="description">View, edit or update the status of all rooms in the hotel.</p> <br>
           <a href="/LuneraHotel/App/Public/managerooms" class=" text-[#ffffff] bg-[#800000] py-3 px-5 rounded-xl sm:text-[0.8rem] text-[0.7rem] ">Go to Room Management <i class="fa-solid fa-arrow-right"></i></a>
         </div>
         <div class="card">
-          <h3>View All Bookings</h3>
+          <h3><i class="fa-solid fa-eye text-[#800000]"></i>View All Bookings</h3>
           <p class="description">See a comprehensive list of all historical and upcoming bookings.</p> <br>
           <a href="/LuneraHotel/App/Public/allbookings" class=" text-[#ffffff] bg-[#800000] py-3 px-5 rounded-xl sm:text-[0.8rem] text-[0.7rem]">Go to Bookings <i class="fa-solid fa-arrow-right"></i></a>
         </div>
         <div class="card">
-          <h3>Bookings Popularity Report</h3>
+          <h3><i class="fa-solid fa-chart-simple text-[#800000]"></i>Bookings Popularity Report</h3>
           <p class="description">View a detailed report of the most popular rooms based on booking frequency.</p> <br>
           <a href="/LuneraHotel/App/Public/popularity" class=" text-[#ffffff] bg-[#800000] py-3 px-5 rounded-xl sm:text-[0.8rem] text-[0.7rem]">View Full Report <i class="fa-solid fa-arrow-right"></i></a>
         </div>

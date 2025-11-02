@@ -32,7 +32,7 @@ $statusClass = $statusClass ?? '';
 
             <div class="flex flex-col md:flex-col lg:flex-row w-full justify-between items-start lg:items-center gap-3 text-xs sm:text-sm md:text-base lg:text-lg">
                 <span class="<?= htmlspecialchars($statusClass) ?> px-3 py-1 rounded-4xl"><?= htmlspecialchars($room['status']) ?></span>
-                <p>Room <?= htmlspecialchars($room['room_number']) ?></p>
+                <p><i class='fa-solid fa-door-closed text-[#800000]'></i> Room <?= htmlspecialchars($room['room_number']) ?></p>
                 <p><i class="fa-regular fa-user"></i> Up to <?= htmlspecialchars($room['people']) ?> People</p>
             </div>
 

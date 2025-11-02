@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/../Helpers/colorcoding.php";
+require_once __DIR__ . "/Helpers/colorcoding.php";
 
 class Rooms
 {
@@ -41,8 +41,8 @@ class Rooms
         echo "<p class='p-5 sm:text-[1.1rem] md:text-[1.2rem] lg:text-[1.3rem] text-[#333333]'>{$this->description}</p>";
 
         echo '<div class="flex flex-row justify-between p-3 mt-auto">';
-        echo "<h1 class='lg:text-2xl sm:text-[1.2rem] md:text-[1.6rem] text-[#333333]'>Room: {$this->RoomNumber}</h1>";
-        echo "<h1 class='lg:text-2xl sm:text-[1.2rem] md:text-[1.6rem] text-[#333333]'><i class='fa-regular fa-user'></i> Up to {$this->people} Person</h1>";
+        echo "<h1 class='lg:text-2xl sm:text-[1.2rem] md:text-[1.6rem] text-[#333333]'><i class='fa-solid fa-door-closed text-[#800000]'></i>Room: {$this->RoomNumber}</h1>";
+        echo "<h1 class='lg:text-2xl sm:text-[1.2rem] md:text-[1.6rem] text-[#333333]'><i class='fa-regular fa-user text-[#800000]']></i> Up to {$this->people} Person</h1>";
         echo "</div>";
 
         

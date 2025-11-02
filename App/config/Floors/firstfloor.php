@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__.'/../models/db.php';
-require_once __DIR__.'/../Controllers/roomdata.php';
+require_once __DIR__.'/../db.php';
+require_once __DIR__.'/../roomdata.php';
 
 // Fetch rooms for First Floor
 $stmt = $pdo->prepare("SELECT * FROM rooms WHERE floor = 'First Floor' ORDER BY room_number");

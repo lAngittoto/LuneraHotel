@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 <?php 
 require_once __DIR__ . "/header.php"; 
-require_once __DIR__ . "/../Helpers/colorcoding.php";
+require_once __DIR__ . "/../../config/Helpers/colorcoding.php";
 ?>
 
 <!-- Header Section -->

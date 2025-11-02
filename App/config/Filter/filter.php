@@ -50,5 +50,5 @@
 <section class="p-10 w-screen gap-10 items-stretch">
   <div id="rooms-container" class="grid grid-cols-3 gap-5"></div>
 </section>
+<script src="../Config/Filter/Js/filter.js"></script>
 
-<script src="/LuneraHotel/App/Public/Js/filter.js"></script>

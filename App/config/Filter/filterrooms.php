@@ -1,8 +1,8 @@
 <?php
 
 
-require_once __DIR__ . '/../Models/db.php';
-require_once __DIR__ . '/../Models/filterroomsmodel.php';
+require_once __DIR__ . '/../db.php';
+require_once __DIR__ . '/filterroomsmodel.php';
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 

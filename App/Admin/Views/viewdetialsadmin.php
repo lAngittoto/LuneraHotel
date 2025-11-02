@@ -25,9 +25,9 @@ $statusClass = $statusClass ?? '';
 <section class="w-full bg-[#f8f8f8] p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col md:flex-col lg:flex-row justify-around items-start gap-6 md:gap-8 lg:gap-12 select-none">
     <!-- Room Info -->
 
-    <div class="flex flex-col w-full md:w-full lg:w-[40%] border border-[#dcdcdc] bg-[#ffffff] text-[#333333] rounded-lg shadow-sm gap-4">
+    <div class="flex flex-col w-full md:w-full lg:w-[40%] border border-[#b8b8b8] bg-[#ffffff] text-[#333333] rounded-2xl shadow-2xl gap-4">
         <img src="<?= htmlspecialchars($room['img']) ?>" alt="Room Image"
-            class="w-full h-64 sm:h-72 md:h-80 lg:h-96 object-cover rounded-t-lg">
+            class="w-full h-64 sm:h-72 md:h-80 lg:h-96 object-cover rounded-t-2xl">
 
         <div class="p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col gap-4">
             <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-semibold text-[#000000]">
@@ -36,8 +36,8 @@ $statusClass = $statusClass ?? '';
 
             <div class="flex flex-col md:flex-col lg:flex-row w-full justify-between items-start lg:items-center gap-3 text-xs sm:text-sm md:text-base lg:text-lg">
                 <span class="<?= htmlspecialchars($statusClass) ?> px-3 py-1 rounded-4xl"><?= htmlspecialchars($room['status']) ?></span>
-                <p>Room <?= htmlspecialchars($room['room_number']) ?></p>
-                <p><i class="fa-regular fa-user"></i> Up to <?= htmlspecialchars($room['people']) ?> People</p>
+                <p><i class='fa-solid fa-door-closed text-[#800000]'></i> Room <?= htmlspecialchars($room['room_number']) ?></p>
+                <p><i class="fa-regular fa-user text-[#800000]"></i> Up to <?= htmlspecialchars($room['people']) ?> People</p>
             </div>
 
             <p class="text-xs sm:text-sm md:text-base lg:text-lg mb-3"><?= htmlspecialchars($room['description']) ?></p>

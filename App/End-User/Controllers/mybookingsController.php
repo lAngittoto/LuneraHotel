@@ -1,7 +1,7 @@
 <?php
 // Controllers/MyBookingsController.php
 
-require_once __DIR__ . "/../Models/db.php";
+require_once __DIR__ . "/../../config/db.php";
 require_once __DIR__ . "/../Models/mybookings.php";
 
 

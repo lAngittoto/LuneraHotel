@@ -1,10 +1,10 @@
 <?php
 // Controllers/ViewDetailsController.php
 
-require_once __DIR__ . "/../../End-User/Models/db.php";
+require_once __DIR__ . "/../../config/db.php";
 require_once __DIR__ . "/../../Admin/Models/viewdetailsadminmodel.php";
-require_once __DIR__ . "/../../End-User/Helpers/colorcoding.php";
-require_once __DIR__ . "/../../End-User/Helpers/amenityicon.php";
+require_once __DIR__ . "/../../config/Helpers/colorcoding.php";
+require_once __DIR__ . "/../../config/Helpers/amenityicon.php";
 
 // ✅ Check session (assuming session_start() is handled globally)
 if (!isset($_SESSION['user'])) {

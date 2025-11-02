@@ -4,4 +4,23 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     exit;
 }
 
+
+require_once __DIR__ . "/../../config/db.php";
+require_once __DIR__ . "/../Models/popularityModel.php";
+
+
+
+
+$userEmail = $_SESSION['user']['email'];
+
+// ✅ Fetch booked rooms using the model
+$bookedRooms = getRoomPopularity($pdo, $userEmail);
+
+// ✅ Page title (passed to view)
+$title = "All Bookings";
+
+// ✅ Load the view
+
+
+
 require_once __DIR__. '/../Views/popularitybooking.php';

@@ -1,11 +1,11 @@
 <?php ob_start(); 
 require_once __DIR__ . '/header.php'; 
-require_once __DIR__ . '/../../End-User/Helpers/colorcoding.php'; 
+require_once __DIR__ . '/../../config/Helpers/colorcoding.php'; 
 ?>
 
 <!-- Header -->
 <section class="mt-10 text-center text-gray-800">
-    <h1 class="text-5xl font-extrabold">All Bookings</h1>
+    <h1 class="text-5xl font-bold">All Bookings</h1>
     <p class="text-xl text-gray-600 mt-3">A comprehensive list of all reservations made in the hotel.</p>
 </section>
 

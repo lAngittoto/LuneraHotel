@@ -1,17 +1,25 @@
   <?php
-    ob_start();
-    ?>
+  ob_start();
+  ?>
 
-  <div class="bg-[#8b2d2d] not-visited:w-screen px-10 py-5 flex flex-row justify-between text-[#ffffff] font-mono items-center select">
-      <h1 class="text-3xl">Lunera Hotel</h1>
-      <div class=" flex flex-row gap-10 text-[1.3rem] items-center">
-          <a href="/LuneraHotel/App/Public/admin">Dashboard</a>
-          <a href="/LuneraHotel/App/Public/allrooms">Rooms</a>
-          <a href="/LuneraHotel/App/Auth/Controllers/logout.php">Log out</a>
-      </div>
+  <header class="bg-[#8b2d2d] w-screen p-7 sm:p-10 flex flex-col sm:flex-row justify-between items-center">
 
-  </div>
+    <!-- Logo & Title -->
+    <h1 class="flex items-center gap-4 text-white text-4xl sm:text-5xl md:text-6xl cursor-default select-none mb-5 sm:mb-0">
+      <img src="images/logo.jpg" alt="Lunera Hotel Logo" class="w-14 sm:w-16 md:w-20 rounded-full border-2 border-white">
+      Lunera Hotel
+    </h1>
+
+    <!-- Navigation Links -->
+    <nav class="flex flex-col sm:flex-row gap-5 sm:gap-10 justify-center items-center text-white  font-light select-none">
+      <a href="/LuneraHotel/App/Public/allrooms"><span class=" text-[1.3rem]">Rooms</span></a>
+      <a href="/LuneraHotel/App/Public/admin"><span class=" text-[1.3rem]">Dashboard</span></a>
+
+      <a href="/LuneraHotel/App/Auth/Controllers/logout.php"> <span class=" text-[1.3rem]">Log out</span> </a>
+    </nav>
+
+  </header>
   <?php
-    $content = ob_get_clean();
-    include __DIR__ . '/../../../App/layout.php';
-    ?>
+  $content = ob_get_clean();
+  include __DIR__ . '/../../../App/layout.php';
+  ?>
