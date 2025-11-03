@@ -12,8 +12,6 @@
     --color-red-700: oklch(50.5% 0.213 27.518);
     --color-red-900: oklch(39.6% 0.141 25.723);
     --color-orange-700: oklch(55.3% 0.195 38.402);
-    --color-amber-300: oklch(87.9% 0.169 91.605);
-    --color-amber-400: oklch(82.8% 0.189 84.429);
     --color-yellow-500: oklch(79.5% 0.184 86.047);
     --color-yellow-600: oklch(68.1% 0.162 75.834);
     --color-yellow-800: oklch(47.6% 0.114 61.907);
@@ -56,11 +54,9 @@
     --text-6xl: 3.75rem;
     --text-6xl--line-height: 1;
     --font-weight-light: 300;
-    --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
-    --font-weight-extrabold: 800;
     --leading-tight: 1.25;
     --leading-relaxed: 1.625;
     --radius-md: 0.375rem;
@@ -314,9 +310,6 @@
   .h-72 {
     height: calc(var(--spacing) * 72);
   }
-  .h-\[60vh\] {
-    height: 60vh;
-  }
   .h-\[420px\] {
     height: 420px;
   }
@@ -359,17 +352,11 @@
   .flex-grow {
     flex-grow: 1;
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
   .cursor-default {
     cursor: default;
   }
   .cursor-pointer {
     cursor: pointer;
-  }
-  .resize {
-    resize: both;
   }
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -479,15 +466,6 @@
     border-top-style: var(--tw-border-style);
     border-top-width: 1px;
   }
-  .border-\[\#8a8a8a\] {
-    border-color: #8a8a8a;
-  }
-  .border-\[\#33333\] {
-    border-color: #33333;
-  }
-  .border-\[\#333333\] {
-    border-color: #333333;
-  }
   .border-\[\#b1b1b1\] {
     border-color: #b1b1b1;
   }
@@ -514,12 +492,6 @@
   }
   .bg-\[\#ffffff\] {
     background-color: #ffffff;
-  }
-  .bg-amber-300 {
-    background-color: var(--color-amber-300);
-  }
-  .bg-amber-400 {
-    background-color: var(--color-amber-400);
   }
   .bg-blue-500 {
     background-color: var(--color-blue-500);
@@ -584,9 +556,6 @@
   .px-10 {
     padding-inline: calc(var(--spacing) * 10);
   }
-  .px-20 {
-    padding-inline: calc(var(--spacing) * 20);
-  }
   .py-1 {
     padding-block: calc(var(--spacing) * 1);
   }
@@ -601,9 +570,6 @@
   }
   .py-5 {
     padding-block: calc(var(--spacing) * 5);
-  }
-  .py-10 {
-    padding-block: calc(var(--spacing) * 10);
   }
   .py-16 {
     padding-block: calc(var(--spacing) * 16);
@@ -623,10 +589,6 @@
   .text-2xl {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
-  }
-  .text-3xl {
-    font-size: var(--text-3xl);
-    line-height: var(--tw-leading, var(--text-3xl--line-height));
   }
   .text-4xl {
     font-size: var(--text-4xl);
@@ -690,10 +652,6 @@
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
   }
-  .font-extrabold {
-    --tw-font-weight: var(--font-weight-extrabold);
-    font-weight: var(--font-weight-extrabold);
-  }
   .font-light {
     --tw-font-weight: var(--font-weight-light);
     font-weight: var(--font-weight-light);
@@ -701,10 +659,6 @@
   .font-medium {
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
-  }
-  .font-normal {
-    --tw-font-weight: var(--font-weight-normal);
-    font-weight: var(--font-weight-normal);
   }
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
@@ -716,14 +670,8 @@
   .text-\[\#000000\] {
     color: #000000;
   }
-  .text-\[\#8\] {
-    color: #8;
-  }
   .text-\[\#333\] {
     color: #333;
-  }
-  .text-\[\#80000\] {
-    color: #80000;
   }
   .text-\[\#333333\] {
     color: #333333;
@@ -731,20 +679,8 @@
   .text-\[\#800000\] {
     color: #800000;
   }
-  .text-\[\#8000000\] {
-    color: #8000000;
-  }
-  .text-\[\#80000000\] {
-    color: #80000000;
-  }
-  .text-\[\#\] {
-    color: #;
-  }
   .text-\[\#ffffff\] {
     color: #ffffff;
-  }
-  .text-\[1\.3re\] {
-    color: 1.3re;
   }
   .text-black {
     color: var(--color-black);
@@ -788,9 +724,6 @@
   .lowercase {
     text-transform: lowercase;
   }
-  .underline {
-    text-decoration-line: underline;
-  }
   .accent-green-400 {
     accent-color: var(--color-green-400);
   }
@@ -809,10 +742,6 @@
   .shadow-sm {
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
   }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
@@ -847,11 +776,6 @@
   .select-none {
     -webkit-user-select: none;
     user-select: none;
-  }
-  .not-visited\:w-screen {
-    &:not(*:visited) {
-      width: 100vw;
-    }
   }
   .hover\:scale-105 {
     &:hover {
@@ -957,11 +881,6 @@
   .sm\:grid-cols-2 {
     @media (width >= 40rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  .sm\:flex-col {
-    @media (width >= 40rem) {
-      flex-direction: column;
     }
   }
   .sm\:flex-row {
@@ -1338,6 +1257,11 @@
       font-size: 1.3rem;
     }
   }
+  .lg\:text-\[1\.4rem\] {
+    @media (width >= 64rem) {
+      font-size: 1.4rem;
+    }
+  }
   .lg\:text-\[1rem\] {
     @media (width >= 64rem) {
       font-size: 1rem;
@@ -1421,11 +1345,6 @@
   syntax: "*";
   inherits: false;
   initial-value: 0 0 #0000;
-}
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
 }
 @property --tw-blur {
   syntax: "*";
@@ -1519,7 +1438,6 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
-      --tw-outline-style: solid;
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;

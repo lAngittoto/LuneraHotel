@@ -1,6 +1,6 @@
 <?php
 // viewdetails.php
-$title = $title ?? "View Room Details";
+
 ob_start();
 require "header.php";
 

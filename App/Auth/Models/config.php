@@ -1,7 +1,7 @@
 <?php
 // config.php
 $host = 'localhost';      // Usually localhost
-$db   = 'authLunera_Hotel';   // Your database name
+$db   = 'roomslunera_hotel';   // Your database name
 $user = 'root';           // Your DB username
 $pass = 'P@ssw0rd';               // Your DB password
 $charset = 'utf8mb4';

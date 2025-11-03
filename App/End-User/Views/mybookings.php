@@ -95,10 +95,11 @@ require_once __DIR__ . "/../../config/Helpers/colorcoding.php";
 
             <!-- View Details Button -->
             <div class="mt-auto">
-                <a href="index.php?page=viewdetails&room=<?= $room['id'] ?>"
-                   class="block w-full text-center px-8 py-5 text-[#333333] font-semibold rounded-b-3xl hover:bg-yellow-600 border-t border-[#b1b1b1] transition text-lg sm:text-xl md:text-2xl">
-                    View Details <i class="fa-regular fa-file-lines ml-2"></i>
-                </a>
+              <a href="viewdetails?room=<?= $room['id'] ?>"
+   class="block w-full text-center px-8 py-5 text-[#333333] font-semibold rounded-b-3xl hover:bg-yellow-600 border-t border-[#b1b1b1] transition text-lg sm:text-xl md:text-2xl">
+    View Details <i class="fa-regular fa-file-lines ml-2"></i>
+</a>
+
             </div>
         </div>
 

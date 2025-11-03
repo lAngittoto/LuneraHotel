@@ -3,6 +3,7 @@
 $title = $title ?? "View Room Details";
 ob_start();
 require "header.php";
+require_once __DIR__.'/../../config/Helpers/correctgrammar.php';
 
 // Safety guard (shouldn't hit if controller is correct)
 if (!isset($room) || !is_array($room)) {
@@ -33,7 +34,11 @@ $statusClass = $statusClass ?? '';
             <div class="flex flex-col md:flex-col lg:flex-row w-full justify-between items-start lg:items-center gap-3 text-xs sm:text-sm md:text-base lg:text-lg">
                 <span class="<?= htmlspecialchars($statusClass) ?> px-3 py-1 rounded-4xl"><?= htmlspecialchars($room['status']) ?></span>
                 <p><i class='fa-solid fa-door-closed text-[#800000]'></i> Room <?= htmlspecialchars($room['room_number']) ?></p>
-                <p><i class="fa-regular fa-user"></i> Up to <?= htmlspecialchars($room['people']) ?> People</p>
+                <p>
+  <i class="fa-regular fa-user text-[#800000]"></i>
+  <?= htmlspecialchars(correctGrammar($room['people'])) ?>
+</p>
+
             </div>
 
             <p class="text-xs sm:text-sm md:text-base lg:text-lg mb-3"><?= htmlspecialchars($room['description']) ?></p>

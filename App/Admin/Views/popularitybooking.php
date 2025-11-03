@@ -73,10 +73,11 @@ $topBadges = [
                 </div>
 
                 <!-- View Details Button -->
-                <a href="index.php?page=viewdetailsadmin&id=<?= $room['id'] ?>"
-                   class="mt-6 block text-center bg-[#800000] text-white px-6 py-3 md:py-4 rounded-xl font-semibold hover:bg-[#a52a2a] transition">
-                    View Details <i class="fa-regular fa-file-lines ml-2"></i>
-                </a>
+                <a href="viewdetailsadmin?id=<?= $room['id'] ?>"
+   class="mt-6 block text-center bg-[#800000] text-white px-6 py-3 md:py-4 rounded-xl font-semibold hover:bg-[#a52a2a] transition">
+    View Details <i class="fa-regular fa-file-lines ml-2"></i>
+</a>
+
             </div>
         </div>
     <?php endforeach; ?>

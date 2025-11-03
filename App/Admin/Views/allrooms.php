@@ -2,7 +2,7 @@
 $title = "Rooms";
 ob_start();
 require_once 'header.php';
-require_once __DIR__.'/../../config/Filter/filter.php';
+
 
 if (!isset($_SESSION['user'])) {
        header('Location: /LuneraHotel/App/Public');
@@ -10,6 +10,7 @@ exit;
 
 }
 ?>
+<h1 class=" text-5xl font-bold p-10 text-[#333333]">List of all rooms</h1>
 
 <h1 class="text-4xl p-10">First Floor</h1>
 

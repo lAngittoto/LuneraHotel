@@ -15,7 +15,7 @@
       <a href="/LuneraHotel/App/Public/allrooms"><span class=" text-[1.3rem]">Rooms</span></a>
       <a href="/LuneraHotel/App/Public/admin"><span class=" text-[1.3rem]">Dashboard</span></a>
 
-      <a href="/LuneraHotel/App/Auth/Controllers/logout.php"> <span class=" text-[1.3rem]">Log out</span> </a>
+      <a href="/LuneraHotel/App/Auth/Controllers/logout.php"> <p class=" text-[1rem] px-5 py-3 bg-[#ffffff] text-[#800000] rounded-2xl shadow-2xl">Log out</p> </a>
     </nav>
 
   </header>

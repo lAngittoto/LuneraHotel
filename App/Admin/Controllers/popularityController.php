@@ -17,7 +17,7 @@ $userEmail = $_SESSION['user']['email'];
 $bookedRooms = getRoomPopularity($pdo, $userEmail);
 
 // ✅ Page title (passed to view)
-$title = "All Bookings";
+$title = "Popularity";
 
 // ✅ Load the view
 

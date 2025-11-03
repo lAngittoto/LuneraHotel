@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/Helpers/colorcoding.php";
+require_once __DIR__. "/Helpers/correctgrammar.php";
 
 class Rooms
 {
@@ -41,15 +42,27 @@ class Rooms
         echo "<p class='p-5 sm:text-[1.1rem] md:text-[1.2rem] lg:text-[1.3rem] text-[#333333]'>{$this->description}</p>";
 
         echo '<div class="flex flex-row justify-between p-3 mt-auto">';
-        echo "<h1 class='lg:text-2xl sm:text-[1.2rem] md:text-[1.6rem] text-[#333333]'><i class='fa-solid fa-door-closed text-[#800000]'></i>Room: {$this->RoomNumber}</h1>";
-        echo "<h1 class='lg:text-2xl sm:text-[1.2rem] md:text-[1.6rem] text-[#333333]'><i class='fa-regular fa-user text-[#800000]']></i> Up to {$this->people} Person</h1>";
+        echo "<p class='lg:text-[1.4rem] sm:text-[1.2rem] md:text-[1.6rem] text-[#333333]'><i class='fa-solid fa-door-closed text-[#800000]'></i>Room: {$this->RoomNumber}</p>";
+        echo "<p class='lg:text-[1.4rem] sm:text-[1.2rem] md:text-[1.6rem] text-[#333333]'>
+        <i class='fa-regular fa-user text-[#800000]'></i> " . correctGrammar($this->people) . "
+      </p>";
+
         echo "</div>";
 
         
        
-        echo '<div class="flex justify-center w-full">';
-        echo "<a href='index.php?page=viewdetails&room={$this->id}' class='w-full text-center px-5 py-5 bg-[#800000] text-white hover:bg-red-900 transition'>View Details <i class='fa-regular fa-file-lines'></i></a>";
-        echo "</div>";
+        if ($_SESSION['user']['role'] === 'admin') {
+    $viewLink = "/LuneraHotel/App/Public/viewdetailsadmin?id={$this->id}";
+} else {
+    $viewLink = "/LuneraHotel/App/Public/viewdetails?room={$this->id}";
+}
+
+// ✅ Display button
+echo '<div class="flex justify-center w-full">';
+echo "<a href='{$viewLink}' class='w-full text-center px-5 py-5 bg-[#800000] text-white hover:bg-red-900 transition'>
+        View Details <i class='fa-regular fa-file-lines'></i>
+      </a>";
+echo "</div>";
 
         echo "</div>";
     }

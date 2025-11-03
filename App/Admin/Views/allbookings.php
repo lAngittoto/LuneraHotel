@@ -98,10 +98,11 @@ require_once __DIR__ . '/../../config/Helpers/colorcoding.php';
                 </div>
 
                 <!-- View Details -->
-                <a href="index.php?page=viewdetailsadmin&id=<?= $room['id'] ?>"
-                   class="mt-6 block w-full text-center px-8 py-4 border border-gray-300 rounded-2xl text-[#333333] font-semibold hover:bg-yellow-600 hover:text-white transition text-lg">
-                    View Details <i class="fa-regular fa-file-lines ml-2"></i>
-                </a>
+          <a href="viewdetailsadmin?id=<?= $room['id'] ?>"
+   class="mt-6 block w-full text-center px-8 py-4 border border-gray-300 rounded-2xl text-[#333333] font-semibold hover:bg-yellow-600 hover:text-white transition text-lg">
+    View Details <i class="fa-regular fa-file-lines ml-2"></i>
+</a>
+
             </div>
         </div>
     <?php endforeach; ?>
