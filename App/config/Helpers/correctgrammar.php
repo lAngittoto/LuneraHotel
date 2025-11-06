@@ -7,3 +7,11 @@ function correctGrammar($count) {
          return "Up to {$count} people";
     }
 }
+
+function correctGuest($count) {
+    if($count ==  1) {
+        return "1 Guest";
+    }else{
+        return "{$count} Guests";
+    }
+}

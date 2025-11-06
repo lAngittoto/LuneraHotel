@@ -27,7 +27,7 @@ $statusClass = $statusClass ?? '';
             class="w-full h-64 sm:h-72 md:h-80 lg:h-96 object-cover rounded-t-lg">
 
         <div class="p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col gap-4">
-            <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-semibold text-[#000000]">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-semibold text-[#333333]">
                 <?= htmlspecialchars($room['room_type']) ?>
             </h1>
 
@@ -43,7 +43,7 @@ $statusClass = $statusClass ?? '';
 
             <p class="text-xs sm:text-sm md:text-base lg:text-lg mb-3"><?= htmlspecialchars($room['description']) ?></p>
 
-            <h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#000000] mb-3">Amenities</h2>
+            <h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#333333] mb-3">Amenities</h2>
             <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 lg:gap-5 text-xs sm:text-sm md:text-base lg:text-lg">
                 <?php if (count($amenities) === 0): ?>
                     <li>No amenities listed.</li>

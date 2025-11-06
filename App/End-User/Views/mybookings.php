@@ -2,6 +2,7 @@
 <?php 
 require_once __DIR__ . "/header.php"; 
 require_once __DIR__ . "/../../config/Helpers/colorcoding.php";
+require_once __DIR__."/../../config/Helpers/correctgrammar.php";
 ?>
 
 <!-- Header Section -->
@@ -49,7 +50,9 @@ require_once __DIR__ . "/../../config/Helpers/colorcoding.php";
                 <p class="text-lg sm:text-xl md:text-2xl text-gray-700">
                     <i class="fa-solid fa-bed text-[#800000] mr-2"></i>
                     Room <?= htmlspecialchars($room['room_number']) ?> — 
-                    <i class="fa-solid fa-user-group text-[#800000] ml-1"></i> <?= htmlspecialchars($room['people']) ?> Guests
+                      <i class="fa-regular fa-user text-[#800000]"></i>
+  <?= htmlspecialchars(correctGuest($room['people'])) ?>
+                
                 </p>
 
                 <?php if (!empty($room['floor'])): ?>

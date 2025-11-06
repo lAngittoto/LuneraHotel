@@ -1,6 +1,7 @@
 <?php ob_start(); 
 require_once __DIR__ . '/header.php'; 
 require_once __DIR__ . '/../../config/Helpers/colorcoding.php'; 
+require_once __DIR__.'/../../config/Helpers/correctgrammar.php';
 ?>
 
 <!-- Header -->
@@ -57,7 +58,8 @@ require_once __DIR__ . '/../../config/Helpers/colorcoding.php';
 
                     <div class="flex items-center gap-3">
                         <i class="fa-solid fa-user-group text-[#800000] text-lg"></i>
-                        <span><?= htmlspecialchars($room['people']) ?> Guests</span>
+                        <span> <i class="fa-regular fa-user text-[#800000]"></i>
+  <?= htmlspecialchars(correctGuest($room['people'])) ?></span>
                     </div>
                 </div>
 

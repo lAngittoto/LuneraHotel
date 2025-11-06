@@ -23,10 +23,7 @@ ob_start();
 
             <button type="submit">Sign in</button>
         </form>
-
-        <div class="signup-text">
-            <p>Don’t have an account? <a href="index.php?page=signup">Sign up</a></p>
-        </div>
+        
     </div>
 </section>
 
