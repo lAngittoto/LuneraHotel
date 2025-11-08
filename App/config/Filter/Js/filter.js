@@ -28,6 +28,9 @@ function renderRooms(rooms) {
     const div = document.createElement('div');
     div.className = "bg-[#ffffff] rounded-t-2xl border border-[#dcdcdc] flex flex-col sm:gap-3 select-none h-full shadow-md hover:shadow-lg transition duration-300";
 
+    // 👇 person/people logic
+    const peopleLabel = room.people == 1 ? "Person" : "People";
+
     div.innerHTML = `
       <img src="${room.img}" alt="Room Image" class="rounded-t-2xl w-full sm:h-[400px] object-cover">
       
@@ -43,7 +46,7 @@ function renderRooms(rooms) {
           Room: ${room.room_number}
         </h1>
         <h1 class="lg:text-2xl sm:text-[1.2rem] md:text-[1.6rem] text-[#333333]">
-          <i class="fa-regular fa-user text-[#800000]"></i> ${room.people} Up to Person
+          <i class="fa-regular fa-user text-[#800000]"></i> Up to ${room.people} ${peopleLabel}
         </h1>
       </div>
 
@@ -72,7 +75,6 @@ function fetchRooms() {
   fetch('../Config/Filter/filterrooms.php?' + params.toString())
     .then(res => res.json())
     .then(data => {
-      // ✅ Handle empty result
       if (!Array.isArray(data) || data.length === 0) {
         roomsContainer.className = "flex flex-col justify-center items-center text-center w-full ";
         roomsContainer.innerHTML = `
