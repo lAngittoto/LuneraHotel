@@ -3,7 +3,6 @@ require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../Models/updateRoomsModel.php';
 require_once __DIR__ . '/../../config/Helpers/amenityicon.php';
 
-
 if (!isset($_SESSION['user'])) {
     header("Location: /LuneraHotel/App/Public");
     exit;
@@ -19,15 +18,15 @@ $allAmenities = getAllAmenities($pdo);
 $roomTypes = getAllRoomTypes($pdo);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_room'])) {
-    $status = isset($_POST['status_maintenance']) ? 'Maintenance' : 'Available';
+    $status = isset($_POST['status_maintenance']) ? 'under maintenance' : 'Available';
 
     // Image upload
     $imgPath = null;
     if (!empty($_FILES['img']['name'])) {
-        $targetDir = __DIR__ . '/../../uploads/';
+        $targetDir = __DIR__ . '/../../Public/images/';
         $imgPath = $targetDir . basename($_FILES['img']['name']);
         move_uploaded_file($_FILES['img']['tmp_name'], $imgPath);
-        $imgPath = 'uploads/' . basename($_FILES['img']['name']); // relative path
+        $imgPath = 'images/' . basename($_FILES['img']['name']); // relative path
     }
 
     // Update room
@@ -40,6 +39,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_room'])) {
         'people' => $_POST['people'],
         'img' => $imgPath
     ]);
+
+    // If room is now Available, mark all Booked bookings as Completed
+    if ($status === 'Available') {
+        $stmt = $pdo->prepare("
+            UPDATE bookings
+            SET status = 'Completed'
+            WHERE room_id = ? AND status = 'Booked'
+        ");
+        $stmt->execute([$roomId]);
+    }
 
     // Update amenities
     $selectedAmenities = $_POST['amenities'] ?? [];

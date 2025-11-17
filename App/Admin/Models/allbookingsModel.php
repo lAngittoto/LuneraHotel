@@ -1,7 +1,7 @@
 <?php
-function getAllBookings($pdo)
+function getAllBookings($pdo, $userEmail = null)
 {
-    $stmt = $pdo->prepare("
+    $sql = "
         SELECT 
             r.*, 
             b.booking_date, 
@@ -9,8 +9,19 @@ function getAllBookings($pdo)
             b.user_email
         FROM bookings b
         JOIN rooms r ON b.room_id = r.id
+        WHERE b.status = 'Booked'   -- ipapakita lang ang aktibong bookings
         ORDER BY b.booking_date DESC
-    ");
-    $stmt->execute();
+    ";
+
+    if ($userEmail) {
+        $sql .= " AND b.user_email = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$userEmail]);
+    } else {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    }
+
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+?>

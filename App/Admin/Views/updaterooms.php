@@ -4,77 +4,97 @@ require_once __DIR__ . '/header.php';
 require_once __DIR__ . '/../../config/Helpers/amenityicon.php';
 ?>
 
-<div>
+<div class="p-10">
     <a href="/LuneraHotel/App/Public/managerooms">
-        <h1 class="p-5 flex">Back to All Rooms</h1>
+        <h1 class="p-2 w-[200px] bg-white shadow-2xl border rounded-2xl hover:bg-amber-600 hover:text-white border-[#b4adad] hover:scale-105 ">
+            <i class="fa-solid fa-arrow-left"></i> Back to All Rooms
+        </h1>
     </a>
+
     <div class="w-full flex flex-col justify-center items-center p-10">
 
         <?php if (!$room): ?>
             <p>Room information is not available.</p>
         <?php else: ?>
-            <?php if (isset($successMessage)) echo "<p class='text-green-600'>$successMessage</p>"; ?>
+            <?php if (isset($successMessage)) echo "<p class='text-green-600 text-2xl p-5'>$successMessage</p>"; ?>
 
-            <form method="POST" enctype="multipart/form-data" class="w-[50vw] max-h-min bg-white shadow-2xl border border-[#dddddd] p-10 rounded-2xl flex flex-col gap-5">
+            <form method="POST" enctype="multipart/form-data" class="w-full md:w-[60vw] bg-white shadow-2xl border border-[#dddddd] p-6 md:p-10 rounded-2xl flex flex-col gap-6 ">
 
-                <h1>Edit Room Details</h1>
-                <p>Update the information for <?= htmlspecialchars($room['room_type']) ?></p>
-
-                <!-- Room Number -->
-                 <div>
-                <label>Room Number</label>
-                <input type="text" name="room_number" value="<?= htmlspecialchars($room['room_number']) ?>">
-
-                <!-- Room Name (added back) -->
-                <label>Room Name</label>
-                <input type="text" name="room_name" value="<?= htmlspecialchars($room['room_type']) ?>">
-                 </div>
-                <!-- Room Type -->
-
-
-                <label>Room Type</label>
-                <select name="room_type" class="border border-[#dcdcdc] p-2 md:w-[200px] w-[150px]">
-                    <?php foreach ($roomTypes as $type): ?>
-                        <option value="<?= htmlspecialchars($type['type_name']) ?>"
-                            <?= strpos($room['room_type'], $type['type_name']) !== false ? 'selected' : '' ?>>
-                            <?= htmlspecialchars($type['type_name']) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-
-                <!-- Description -->
-                <label>Description</label>
-                <input type="text" name="description" value="<?= htmlspecialchars($room['description']) ?>">
-
-                <!-- Image -->
-                <label>Image</label>
-                <input type="file" name="img">
-
-                <!-- Status -->
-                <div class="flex gap-5 items-center">
-                    <label>Set as Under Maintenance</label>
-                    <input type="checkbox" name="status_maintenance" <?= $room['status'] === 'Maintenance' ? 'checked' : '' ?>>
-
-                    <label>Available for Booking</label>
-                    <input type="checkbox" name="status_available" <?= $room['status'] === 'Available' ? 'checked' : '' ?>>
+                <div>
+                    <h1 class="text-3xl font-semibold">Edit Room Details</h1>
+                    <p class="text-xl">Update the information for <?= htmlspecialchars($room['room_type']) ?></p>
                 </div>
 
-                <!-- Floor -->
-                 <div>
-                <label>Floor</label>
-                <input type="text" name="floor" value="<?= htmlspecialchars($room['floor']) ?>">
+                <!-- Room Number + Room Name -->
+                <div class="flex flex-col md:flex-row gap-4 w-full">
 
-                <!-- Capacity -->
-                <label>Capacity</label>
-                <input type="number" name="people" value="<?= htmlspecialchars($room['people']) ?>">
+                    <div class="flex flex-col w-full">
+                        <label class="font-semibold text-xl">Room Number</label>
+                        <input type="text" name="room_number" value="<?= htmlspecialchars($room['room_number']) ?>" class="outline-0 bg-[#ebebeb] p-3 rounded-xl border border-[#dcdcdc] ">
                     </div>
-                <!-- Amenities Grid -->
-                <label>Amenities</label>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+
+                    <div class="flex flex-col w-full">
+                        <label class="font-semibold text-xl">Room Name</label>
+                        <input type="text" name="room_type" value="<?= htmlspecialchars($room['room_type']) ?>" class="outline-0 bg-[#ebebeb] p-3 rounded-xl border border-[#dcdcdc] ">
+                    </div>
+                </div>
+
+                <!-- Room Type Dropdown -->
+                <div class="flex flex-col w-full">
+                    <label class="font-semibold text-xl">Room Type</label>
+                    <select name="type_name" class="border border-[#dcdcdc] p-3 rounded-xl bg-[#ebebeb]  w-full md:w-[250px]">
+                        <?php foreach ($roomTypes as $type): ?>
+                            <option value="<?= htmlspecialchars($type['type_name']) ?>" <?= strpos($room['room_type'], $type['type_name']) !== false ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($type['type_name']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <!-- Description -->
+                <div class="flex flex-col w-full">
+                    <label class="font-semibold text-xl">Description</label>
+                    <input type="text" name="description" value="<?= htmlspecialchars($room['description']) ?>" class="outline-0 bg-[#ebebeb] p-3 rounded-xl border border-[#dcdcdc] ">
+                </div>
+
+                <!-- Image Upload -->
+                <div class="flex flex-col w-full">
+                    <label class="font-semibold text-xl">Image</label>
+                    <input type="file" name="img" class="outline-0 bg-[#ebebeb] p-3 rounded-xl w-full md:w-[250px] border border-[#dcdcdc] ">
+                </div>
+
+                <!-- Status Checkboxes -->
+                <div class="flex flex-col md:flex-row gap-6 items-start md:items-center text-xl">
+                    <label class="flex items-center gap-3 font-semibold">
+                        <i class="fa-solid fa-screwdriver-wrench text-[#800000]"></i> Set as Under Maintenance
+                        <input type="checkbox" name="status_maintenance" <?= $room['status'] === 'Maintenance' ? 'checked' : '' ?> class="w-6 h-6">
+                    </label>
+
+                    <label class="flex items-center gap-3 font-semibold ">
+                        Available for Booking
+                        <input type="checkbox" name="status_available" <?= $room['status'] === 'Available' ? 'checked' : '' ?> class="w-6 h-6 accent-green-600">
+                    </label>
+                </div>
+
+                <!-- Floor + Capacity -->
+                <div class="flex flex-col md:flex-row gap-4 w-full">
+                    <div class="flex flex-col w-full">
+                        <label class="font-semibold text-xl">Floor</label>
+                        <input type="text" name="floor" value="<?= htmlspecialchars($room['floor']) ?>" class="border border-[#dcdcdc] p-3 rounded-xl bg-[#ebebeb] outline-0">
+                    </div>
+
+                    <div class="flex flex-col w-full">
+                        <label class="font-semibold text-xl">Capacity</label>
+                        <input type="number" name="people" value="<?= htmlspecialchars($room['people']) ?>" class="border border-[#dcdcdc] p-3 rounded-xl bg-[#ebebeb] outline-0">
+                    </div>
+                </div>
+
+                <!-- Amenities -->
+                <label class="font-semibold text-xl">Amenities</label>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 ">
                     <?php foreach ($allAmenities as $amenity): ?>
-                        <label class="flex items-center gap-2">
-                            <input type="checkbox" name="amenities[]" value="<?= htmlspecialchars($amenity) ?>"
-                                <?= in_array($amenity, $roomAmenities) ? 'checked' : '' ?>>
+                        <label class="flex items-center gap-3">
+                            <input type="checkbox" name="amenities[]" value="<?= htmlspecialchars($amenity) ?>" <?= in_array($amenity, $roomAmenities) ? 'checked' : '' ?> class="w-6 h-6">
                             <i class="<?= htmlspecialchars(getAmenityIcon($amenity)) ?> text-[#800000]"></i>
                             <?= htmlspecialchars($amenity) ?>
                         </label>
@@ -82,7 +102,7 @@ require_once __DIR__ . '/../../config/Helpers/amenityicon.php';
                 </div>
 
                 <div>
-                    <button type="submit" name="update_room">Save changes</button>
+                    <button type="submit" name="update_room" class="px-6 py-3 bg-[#800000] text-white rounded-2xl text-xl w-full md:w-[200px]">Save changes</button>
                 </div>
             </form>
         <?php endif; ?>
