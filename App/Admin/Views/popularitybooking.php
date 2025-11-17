@@ -36,7 +36,7 @@ $topBadges = [
             <!-- Room Details -->
             <div class="w-full md:w-3/5 p-6 md:p-8 flex flex-col justify-between text-gray-800">
 
-                <!-- Room Name + Status + Badge -->
+             
                 <div>
                     <div class="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-3">
                         <h2 class="text-2xl md:text-3xl font-bold text-center sm:text-left">

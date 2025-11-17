@@ -1,9 +1,9 @@
 <?php
 // config.php
-$host = 'localhost';      // Usually localhost
-$db   = 'roomslunera_hotel';   // Your database name
-$user = 'root';           // Your DB username
-$pass = 'P@ssw0rd';               // Your DB password
+$host = 'localhost';      //  localhost
+$db   = 'roomslunera_hotel';   //  database name
+$user = 'root';           // DB username
+$pass = 'P@ssw0rd';               //  DB password
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

@@ -13,13 +13,13 @@ require_once __DIR__ . "/../Models/allbookingsModel.php";
 
 $userEmail = $_SESSION['user']['email'];
 
-// ✅ Fetch booked rooms using the model
+// Fetch booked rooms using the model
 $bookedRooms = getAllBookings($pdo, $userEmail);
 
-// ✅ Page title (passed to view)
+
 $title = "All Bookings";
 
-// ✅ Load the view
+// Load the view
 
 
 

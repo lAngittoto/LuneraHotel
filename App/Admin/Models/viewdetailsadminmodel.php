@@ -1,5 +1,5 @@
 <?php
-// Models/viewdetails.php
+
 
 function getRoomById($pdo, $roomId)
 {

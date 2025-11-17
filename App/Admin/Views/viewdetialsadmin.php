@@ -1,10 +1,10 @@
 <?php
-// viewdetails.php
+
 
 ob_start();
 require "header.php";
 
-// Safety guard (shouldn't hit if controller is correct)
+
 if (!isset($room) || !is_array($room)) {
     echo "<p class='p-6 text-center text-red-600'>Room information is not available.</p>";
     $content = ob_get_clean();
@@ -12,7 +12,7 @@ if (!isset($room) || !is_array($room)) {
     exit;
 }
 
-// Ensure $amenities is an array to avoid foreach warnings
+
 if (!is_array($amenities)) {
     $amenities = [];
 }
@@ -20,7 +20,7 @@ if (!is_array($amenities)) {
 $statusClass = $statusClass ?? '';
 ?>
    <?php
-// viewdetails.php
+
 
 // Determine last page
 $lastPage = $_SERVER['HTTP_REFERER'] ?? '/LuneraHotel/App/Public/allbookings';

@@ -1,7 +1,7 @@
-<?php ob_start(); 
-require_once __DIR__ . '/header.php'; 
-require_once __DIR__ . '/../../config/Helpers/colorcoding.php'; 
-require_once __DIR__.'/../../config/Helpers/correctgrammar.php';
+<?php ob_start();
+require_once __DIR__ . '/header.php';
+require_once __DIR__ . '/../../config/Helpers/colorcoding.php';
+require_once __DIR__ . '/../../config/Helpers/correctgrammar.php';
 ?>
 
 <!-- Header -->
@@ -20,8 +20,8 @@ require_once __DIR__.'/../../config/Helpers/correctgrammar.php';
             <!-- Room Image -->
             <div class="w-full md:w-2/5 h-72 md:h-auto">
                 <img src="<?= htmlspecialchars($room['img']) ?>"
-                     alt="Room Image"
-                     class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    alt="Room Image"
+                    class="w-full h-full object-cover hover:scale-105 transition duration-500">
             </div>
 
             <!-- Room Details -->
@@ -59,7 +59,7 @@ require_once __DIR__.'/../../config/Helpers/correctgrammar.php';
                     <div class="flex items-center gap-3">
                         <i class="fa-solid fa-user-group text-[#800000] text-lg"></i>
                         <span> <i class="fa-regular fa-user text-[#800000]"></i>
-  <?= htmlspecialchars(correctGuest($room['people'])) ?></span>
+                            <?= htmlspecialchars(correctGuest($room['people'])) ?></span>
                     </div>
                 </div>
 
@@ -72,11 +72,11 @@ require_once __DIR__.'/../../config/Helpers/correctgrammar.php';
                         <div>
                             <p class="font-semibold text-gray-800 text-base">Check In</p>
                             <p class="text-gray-700 text-[1.1rem] mt-1">
-                                <i class="fa-solid fa-calendar-day text-[#800000] mr-1"></i> 
+                                <i class="fa-solid fa-calendar-day text-[#800000] mr-1"></i>
                                 <?= htmlspecialchars($room['check_in_date'] ?? 'Oct 29, 2025') ?>
                             </p>
                             <p class="text-gray-700 text-[1.1rem]">
-                                <i class="fa-solid fa-clock text-[#800000] mr-1"></i> 
+                                <i class="fa-solid fa-clock text-[#800000] mr-1"></i>
                                 <?= htmlspecialchars($room['check_in_time'] ?? '2:00 PM') ?>
                             </p>
                         </div>
@@ -88,11 +88,11 @@ require_once __DIR__.'/../../config/Helpers/correctgrammar.php';
                         <div>
                             <p class="font-semibold text-gray-800 text-base">Check Out</p>
                             <p class="text-gray-700 text-[1.1rem] mt-1">
-                                <i class="fa-solid fa-calendar-day text-[#800000] mr-1"></i> 
+                                <i class="fa-solid fa-calendar-day text-[#800000] mr-1"></i>
                                 <?= htmlspecialchars($room['check_out_date'] ?? 'Oct 30, 2025') ?>
                             </p>
                             <p class="text-gray-700 text-[1.1rem]">
-                                <i class="fa-solid fa-clock text-[#800000] mr-1"></i> 
+                                <i class="fa-solid fa-clock text-[#800000] mr-1"></i>
                                 <?= htmlspecialchars($room['check_out_time'] ?? '12:00 PM') ?>
                             </p>
                         </div>
@@ -100,17 +100,17 @@ require_once __DIR__.'/../../config/Helpers/correctgrammar.php';
                 </div>
 
                 <!-- View Details -->
-          <a href="viewdetailsadmin?id=<?= $room['id'] ?>"
-   class="mt-6 block w-full text-center px-8 py-4 border border-gray-300 rounded-2xl text-[#333333] font-semibold hover:bg-yellow-600 hover:text-white transition text-lg">
-    View Details <i class="fa-regular fa-file-lines ml-2"></i>
-</a>
+                <a href="viewdetailsadmin?id=<?= $room['id'] ?>"
+                    class="mt-6 block w-full text-center px-8 py-4 border border-gray-300 rounded-2xl text-[#333333] font-semibold hover:bg-yellow-600 hover:text-white transition text-lg">
+                    View Details <i class="fa-regular fa-file-lines ml-2"></i>
+                </a>
 
             </div>
         </div>
     <?php endforeach; ?>
 </section>
 
-<?php 
-$content = ob_get_clean(); 
-include __DIR__ . '/../../../App/layout.php'; 
+<?php
+$content = ob_get_clean();
+include __DIR__ . '/../../../App/layout.php';
 ?>

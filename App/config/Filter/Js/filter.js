@@ -19,7 +19,7 @@ function getStatusClass(status) {
   }
 }
 
-// 🧱 Render rooms
+//  Render rooms
 function renderRooms(rooms) {
   roomsContainer.className = "p-10 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch";
   roomsContainer.innerHTML = "";
@@ -28,7 +28,7 @@ function renderRooms(rooms) {
     const div = document.createElement('div');
     div.className = "bg-[#ffffff] rounded-t-2xl border border-[#dcdcdc] flex flex-col sm:gap-3 select-none h-full shadow-md hover:shadow-lg transition duration-300";
 
-    // 👇 person/people logic
+    //  person/people logic
     const peopleLabel = room.people == 1 ? "Person" : "People";
 
     div.innerHTML = `
@@ -60,7 +60,7 @@ function renderRooms(rooms) {
   });
 }
 
-// 🧩 Fetch rooms mula sa PHP
+//  Fetch rooms mula sa PHP
 function fetchRooms() {
   if (roomTypeSelect.value === "" && floorSelect.value === "" && !checkAvailable.checked) {
     roomsContainer.innerHTML = "";
@@ -100,7 +100,7 @@ function fetchRooms() {
     });
 }
 
-// 🧠 Event listeners
+//  Event listeners
 checkAvailable.addEventListener('change', fetchRooms);
 roomTypeSelect.addEventListener('change', fetchRooms);
 floorSelect.addEventListener('change', fetchRooms);
@@ -112,5 +112,5 @@ resetBtn.addEventListener('click', () => {
   setTimeout(fetchRooms, 100);
 });
 
-// 🕹 Initial fetch
+
 fetchRooms();

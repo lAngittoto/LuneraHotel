@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../config/db.php'; // adjust path
+require_once __DIR__ . '/../../config/db.php'; 
 
 function getDashboardData() {
     global $pdo;

@@ -13,13 +13,13 @@ require_once __DIR__ . "/../Models/popularityModel.php";
 
 $userEmail = $_SESSION['user']['email'];
 
-// ✅ Fetch booked rooms using the model
+//  Fetch booked rooms using the model
 $bookedRooms = getRoomPopularity($pdo, $userEmail);
 
-// ✅ Page title (passed to view)
+//  Page title (passed to view)
 $title = "Popularity";
 
-// ✅ Load the view
+//  Load the view
 
 
 

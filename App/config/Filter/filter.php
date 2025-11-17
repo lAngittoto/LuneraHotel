@@ -51,4 +51,3 @@
   <div id="rooms-container" class="grid grid-cols-3 gap-5"></div>
 </section>
 <script src="../Config/Filter/Js/filter.js"></script>
-

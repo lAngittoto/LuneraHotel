@@ -1,5 +1,5 @@
-<?php ob_start(); 
-require_once __DIR__.'/header.php';
+<?php ob_start();
+require_once __DIR__ . '/header.php';
 ?>
 
 <section class="select-none">

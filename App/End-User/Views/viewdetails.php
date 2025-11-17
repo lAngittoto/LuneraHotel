@@ -3,7 +3,7 @@
 $title = $title ?? "View Room Details";
 ob_start();
 require "header.php";
-require_once __DIR__.'/../../config/Helpers/correctgrammar.php';
+require_once __DIR__ . '/../../config/Helpers/correctgrammar.php';
 
 // Safety guard (shouldn't hit if controller is correct)
 if (!isset($room) || !is_array($room)) {
@@ -35,9 +35,9 @@ $statusClass = $statusClass ?? '';
                 <span class="<?= htmlspecialchars($statusClass) ?> px-3 py-1 rounded-4xl"><?= htmlspecialchars($room['status']) ?></span>
                 <p><i class='fa-solid fa-door-closed text-[#800000]'></i> Room <?= htmlspecialchars($room['room_number']) ?></p>
                 <p>
-  <i class="fa-regular fa-user text-[#800000]"></i>
-  <?= htmlspecialchars(correctGrammar($room['people'])) ?>
-</p>
+                    <i class="fa-regular fa-user text-[#800000]"></i>
+                    <?= htmlspecialchars(correctGrammar($room['people'])) ?>
+                </p>
 
             </div>
 
@@ -60,55 +60,55 @@ $statusClass = $statusClass ?? '';
     </div>
 
     <!-- Booking Form -->
-<!-- Booking Form -->
-<?php if ($room['status'] === 'Available'): ?>
-    <div class="flex flex-col w-full md:w-full lg:w-[40%] bg-white p-5 sm:p-6 md:p-8 lg:p-10 border border-[#dcdcdc] gap-5 sm:gap-6 md:gap-8 lg:gap-10 mt-6 lg:mt-0 rounded-lg shadow-sm">
-        <form method="POST" action="/LuneraHotel/App/Public/bookroom" class="flex flex-col gap-6">
-            <input type="hidden" name="room_id" value="<?= htmlspecialchars($room['id']) ?>">
+    <!-- Booking Form -->
+    <?php if ($room['status'] === 'Available'): ?>
+        <div class="flex flex-col w-full md:w-full lg:w-[40%] bg-white p-5 sm:p-6 md:p-8 lg:p-10 border border-[#dcdcdc] gap-5 sm:gap-6 md:gap-8 lg:gap-10 mt-6 lg:mt-0 rounded-lg shadow-sm">
+            <form method="POST" action="/LuneraHotel/App/Public/bookroom" class="flex flex-col gap-6">
+                <input type="hidden" name="room_id" value="<?= htmlspecialchars($room['id']) ?>">
 
-            <!-- Date Display -->
-            <div class="flex flex-col text-sm md:text-base gap-2">
-                <label class="font-medium text-[#333]">Date</label>
-                <div class="flex items-center gap-2 bg-[#f8f8f8] py-2 px-3 border border-[#dcdcdc] rounded-md text-[#333]">
-                    <i class="fa-regular fa-calendar text-[#800000]"></i>
-                    <?php
-                    date_default_timezone_set('Asia/Manila');
-                    $currentDate = date("F d, Y");
-                    $nextDate = date("F d, Y", strtotime("+2 days"));
-                    echo "$currentDate to $nextDate";
-                    ?>
-                </div>
-            </div>
-
-            <!-- Check In / Out -->
-            <div class="flex flex-col lg:flex-row justify-between gap-4">
-                <!-- Check In -->
-                <div class="flex flex-col w-full lg:w-[48%] text-sm md:text-base gap-2">
-                    <label class="font-medium text-[#333]">Check In</label>
+                <!-- Date Display -->
+                <div class="flex flex-col text-sm md:text-base gap-2">
+                    <label class="font-medium text-[#333]">Date</label>
                     <div class="flex items-center gap-2 bg-[#f8f8f8] py-2 px-3 border border-[#dcdcdc] rounded-md text-[#333]">
-                        <i class="fa-regular fa-clock text-[#800000]"></i>
-                        <span>2:00 PM</span>
+                        <i class="fa-regular fa-calendar text-[#800000]"></i>
+                        <?php
+                        date_default_timezone_set('Asia/Manila');
+                        $currentDate = date("F d, Y");
+                        $nextDate = date("F d, Y", strtotime("+2 days"));
+                        echo "$currentDate to $nextDate";
+                        ?>
                     </div>
                 </div>
 
-                <!-- Check Out -->
-                <div class="flex flex-col w-full lg:w-[48%] text-sm md:text-base gap-2">
-                    <label class="font-medium text-[#333]">Check Out</label>
-                    <div class="flex items-center gap-2 bg-[#f8f8f8] py-2 px-3 border border-[#dcdcdc] rounded-md text-[#333]">
-                        <i class="fa-regular fa-clock text-[#800000]"></i>
-                        <span>12:00 AM</span>
+                <!-- Check In / Out -->
+                <div class="flex flex-col lg:flex-row justify-between gap-4">
+                    <!-- Check In -->
+                    <div class="flex flex-col w-full lg:w-[48%] text-sm md:text-base gap-2">
+                        <label class="font-medium text-[#333]">Check In</label>
+                        <div class="flex items-center gap-2 bg-[#f8f8f8] py-2 px-3 border border-[#dcdcdc] rounded-md text-[#333]">
+                            <i class="fa-regular fa-clock text-[#800000]"></i>
+                            <span>2:00 PM</span>
+                        </div>
+                    </div>
+
+                    <!-- Check Out -->
+                    <div class="flex flex-col w-full lg:w-[48%] text-sm md:text-base gap-2">
+                        <label class="font-medium text-[#333]">Check Out</label>
+                        <div class="flex items-center gap-2 bg-[#f8f8f8] py-2 px-3 border border-[#dcdcdc] rounded-md text-[#333]">
+                            <i class="fa-regular fa-clock text-[#800000]"></i>
+                            <span>12:00 AM</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Confirm Booking Button -->
-            <button type="submit"
-                class="bg-[#800000] text-white text-sm md:text-base py-3 px-5 rounded-2xl font-medium hover:bg-[#a00000] transition cursor-pointer">
-                Confirm Booking
-            </button>
-        </form>
-    </div>
-<?php endif; ?>
+                <!-- Confirm Booking Button -->
+                <button type="submit"
+                    class="bg-[#800000] text-white text-sm md:text-base py-3 px-5 rounded-2xl font-medium hover:bg-[#a00000] transition cursor-pointer">
+                    Confirm Booking
+                </button>
+            </form>
+        </div>
+    <?php endif; ?>
 
 </section>
 

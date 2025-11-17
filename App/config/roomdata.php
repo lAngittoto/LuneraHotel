@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . "/Helpers/colorcoding.php";
-require_once __DIR__. "/Helpers/correctgrammar.php";
+require_once __DIR__ . "/Helpers/correctgrammar.php";
 
 class Rooms
 {
@@ -11,7 +11,7 @@ class Rooms
     public $description;
     public $RoomNumber;
     public $people;
-    public $floor; 
+    public $floor;
 
     public function __construct($id, $img, $RoomType, $status, $description, $RoomNumber, $people, $floor)
     {
@@ -22,10 +22,10 @@ class Rooms
         $this->description = $description;
         $this->RoomNumber = $RoomNumber;
         $this->people = $people;
-        $this->floor = $floor; 
+        $this->floor = $floor;
     }
 
-    public function displayRoom() 
+    public function displayRoom()
     {
         echo '<div class="bg-[#ffffff] rounded-t-2xl border border-[#b1b1b1] flex flex-col sm:gap-3 select-none h-full  shadow-2xl">';
 
@@ -49,23 +49,21 @@ class Rooms
 
         echo "</div>";
 
-        
-       
-        if ($_SESSION['user']['role'] === 'admin') {
-    $viewLink = "/LuneraHotel/App/Public/viewdetailsadmin?id={$this->id}";
-} else {
-    $viewLink = "/LuneraHotel/App/Public/viewdetails?room={$this->id}";
-}
 
-// ✅ Display button
-echo '<div class="flex justify-center w-full">';
-echo "<a href='{$viewLink}' class='w-full text-center px-5 py-5 bg-[#800000] text-white hover:bg-red-900 transition'>
+
+        if ($_SESSION['user']['role'] === 'admin') {
+            $viewLink = "/LuneraHotel/App/Public/viewdetailsadmin?id={$this->id}";
+        } else {
+            $viewLink = "/LuneraHotel/App/Public/viewdetails?room={$this->id}";
+        }
+
+
+        echo '<div class="flex justify-center w-full">';
+        echo "<a href='{$viewLink}' class='w-full text-center px-5 py-5 bg-[#800000] text-white hover:bg-red-900 transition'>
         View Details <i class='fa-regular fa-file-lines'></i>
       </a>";
-echo "</div>";
+        echo "</div>";
 
         echo "</div>";
     }
 }
-?>
-

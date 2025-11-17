@@ -34,11 +34,11 @@ require_once __DIR__ . '/../../config/Helpers/colorcoding.php';
         <?php $statusClass = getStatusClass($room['status']); ?>
 
         <div class="bg-[#ffffff] border border-[#ebebeb] shadow-2xl md:text-[1.2rem] text-[1rem] grid lg:grid-cols-7 grid-cols-2 md:grid-cols-3 gap-5 p-5 mt-5 items-center">
-          <p class=" text-[#800000] font-semibold"><?= htmlspecialchars($room['room_number']) ?></p>
+          <p class=" text-[#333333] font-semibold"><?= htmlspecialchars($room['room_number']) ?></p>
           <p><?= htmlspecialchars($room['room_type']) ?></p>
-          <p class=" text-[#800000] font-semibold"><?= htmlspecialchars($room['type_name']) ?></p>
+          <p class=" text-[#333333] font-semibold"><?= htmlspecialchars($room['type_name']) ?></p>
           <p><?= htmlspecialchars($room['floor']) ?></p>
-          <p class=" text-[#800000] font-semibold"><?= htmlspecialchars($room['people']) ?></p>
+          <p class=" text-[#333333] font-semibold"><?= htmlspecialchars($room['people']) ?></p>
           
           <span class="<?= htmlspecialchars($statusClass) ?> px-5 py-3 rounded-4xl text-[0.9rem] text-white text-center">
             <?= htmlspecialchars($room['status']) ?>

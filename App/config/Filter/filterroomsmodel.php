@@ -1,5 +1,5 @@
 <?php
-// Models/filterroomsmodel.php
+
 
 function getFilteredRooms($pdo, $status = '', $type = '', $floor = '')
 {
