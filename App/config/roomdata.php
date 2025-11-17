@@ -35,7 +35,7 @@ class Rooms
 
         echo "<h1 class='lg:text-2xl sm:text-[1.2rem] md: text-[1.6rem] font-bold'>{$this->RoomType}</h1>";
         $statusClass = getStatusClass($this->status);
-        echo "<h1 class='lg:text-[1rem] lg:px-5 lg:py-2 md:text-[0.8rem] md:px-4 md:py-1 text-[0.7rem] px-3 py-1 rounded-4xl  text-white {$statusClass}'>{$this->status}</h1>";
+        echo "<p class='lg:text-[1.1rem] lg:px-5 lg:py-2 md:text-[0.8rem] md:px-4 md:py-1 text-[1rem] px-3 py-1 rounded-4xl  text-white text-center {$statusClass}'>{$this->status}</p>";
 
         echo "</div>";
 

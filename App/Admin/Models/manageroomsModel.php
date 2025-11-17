@@ -3,6 +3,7 @@ function getRoomsSummary($pdo)
 {
     $stmt = $pdo->prepare("
         SELECT 
+            r.id,
             r.room_number,
             r.room_type,
             rt.type_name,

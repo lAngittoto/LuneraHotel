@@ -21,7 +21,11 @@ switch ($page) {
     case 'viewdetailsadmin':
         include __DIR__ . '/../Admin/Controllers/viewdetailsadminController.php';
         break;
-   
+
+    case 'updaterooms':
+        include __DIR__ . '/../Admin/Controllers/updateRoomsController.php';
+        break;
+
 
     default:
         http_response_code(404);

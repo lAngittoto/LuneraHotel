@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../config/Helpers/colorcoding.php';
 
   <div>
     <!-- Table Header -->
-    <div class="bg-[#ffffff] border border-[#999999] shadow-2xl md:text-[1.2rem] text-[1rem] grid lg:grid-cols-7 grid-cols-2 gap-4 p-8 mt-10 font-semibold ">
+    <div class="bg-[#ffffff] border border-[#cccccc] shadow-2xl md:text-[1.2rem] text-[1rem] grid lg:grid-cols-7 grid-cols-2 gap-4 p-8 mt-10 font-semibold ">
       <h1>Room Number</h1>
       <h1>Room Name</h1>
       <h1>Room Type</h1>
@@ -45,8 +45,10 @@ require_once __DIR__ . '/../../config/Helpers/colorcoding.php';
           </span>
 
           <div class="flex flex-row justify-end space-x-5 pr-5">
-            <i class="fa-regular fa-pen-to-square cursor-pointer hover:text-green-700 transition-transform duration-200 transform hover:scale-150"></i>
-            <i class="fa-solid fa-trash cursor-pointer hover:text-red-700 transition-transform duration-200 transform hover:scale-150"></i>
+           <a href="updaterooms?id=<?= $room['id'] ?>" > <i class="fa-regular fa-pen-to-square cursor-pointer hover:text-green-700 transition-transform duration-200 transform hover:scale-150"></i></a>
+            
+           
+           <p><i class="fa-solid fa-trash cursor-pointer hover:text-red-700 transition-transform duration-200 transform hover:scale-150"></i></p>
           </div>
         </div>
       <?php endforeach; ?>
