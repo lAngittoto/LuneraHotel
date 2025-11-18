@@ -116,7 +116,7 @@ require_once __DIR__ . '/../../config/Helpers/amenityicon.php';
                 </div>
 
                 <div>
-                    <button type="submit" name="update_room" class="px-6 py-3 bg-[#800000] text-white rounded-2xl text-xl w-full md:w-[200px]">Save changes</button>
+                    <button type="submit" name="update_room" class="px-6 py-3 bg-[#800000] text-white rounded-2xl text-xl w-full md:w-[200px] cursor-pointer">Save changes</button>
                 </div>
             </form>
         <?php endif; ?>

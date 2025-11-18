@@ -31,12 +31,13 @@
         <!-- Floor -->
         <div class="flex flex-col gap-5">
           <label for="floorSelect" class="sm:text-2xl text-[1.2rem]">Floor</label>
-          <select id="floorSelect" class="border border-[#dcdcdc] rounded p-2 md:w-[200px] w-[150px]">
-            <option value="">Select None</option>
-            <option value="First Floor">First Floor</option>
-            <option value="Second Floor">Second Floor</option>
-            <option value="Third Floor">Third Floor</option>
-          </select>
+  <select id="floorSelect" class="border border-[#dcdcdc] rounded p-2 md:w-[200px] w-[150px]">
+    <option value="">Select None</option>
+    <?php foreach($floors as $floor): ?>
+        <option value="<?= htmlspecialchars($floor) ?>"><?= htmlspecialchars($floor) ?></option>
+    <?php endforeach; ?>
+</select>
+
           <button type="reset" id="resetBtn" class="md:w-[200px] w-[150px] border border-[#dcdcdc] rounded p-2 mt-10 cursor-pointer">
             Reset Filters
           </button>

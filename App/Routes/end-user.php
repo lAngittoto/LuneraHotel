@@ -3,7 +3,7 @@ $page = $_GET['page'] ?? 'rooms'; // default sa rooms
 
 switch ($page) {
     case 'rooms':
-        include __DIR__ . '/../End-User/Views/rooms.php';
+        include __DIR__ . '/../End-User/Controllers/roomsController.php';
         break;
 
     case 'mybookings':

@@ -25,6 +25,10 @@ switch ($page) {
     case 'updaterooms':
         include __DIR__ . '/../Admin/Controllers/updateRoomsController.php';
         break;
+    
+    case 'createrooms':
+        include __DIR__ . '/../Admin/Controllers/createRoomsController.php';
+        break;
 
 
     default:

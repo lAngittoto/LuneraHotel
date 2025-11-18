@@ -10,9 +10,9 @@ require_once __DIR__ . '/../../config/Helpers/colorcoding.php';
   <div class="flex flex-row justify-between mt-5 items-center">
     <p class="md:text-[1.2rem] text-[#333333]">View, Create, Edit, and manage all hotel rooms.</p>
     <a href="">
-      <p class=" md:text-[1.2rem]  text-[#ffffff] bg-[#800000] py-3 px-4 rounded-2xl shadow-2xl">
+      <a href="/LuneraHotel/App/Public/createrooms" class="text-[#ffffff] bg-[#800000] py-3 px-4 rounded-2xl shadow-2xl">
         <i class="fa-solid fa-circle-plus"></i> Create New Rooms
-</p>
+</a>
     </a>
   </div>
 

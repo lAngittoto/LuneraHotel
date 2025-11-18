@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../config/db.php';
-require_once __DIR__ . '/../Models/allroomsModel.php';
+require_once __DIR__ . '/../Models/roomsModel.php';
 require_once __DIR__ . '/../../config/roomdata.php';
 
 if (!isset($_SESSION['user'])) {
@@ -18,4 +18,4 @@ foreach($floors as $floor){
 }
 
 // I-pass sa view
-include __DIR__ . '/../Views/allrooms.php';
+include __DIR__ . '/../Views/rooms.php';

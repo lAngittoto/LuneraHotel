@@ -58,7 +58,13 @@ $status = $_POST['status'] ?? 'Booked';
     $room = getRoomById($pdo, $roomId);
     $roomAmenities = getRoomAmenities($pdo, $roomId);
     $successMessage = "Room updated successfully!";
+
+    
+    
+
+    
 }
+
 
 // Load view
 include __DIR__ . '/../Views/updaterooms.php';

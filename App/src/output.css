@@ -230,8 +230,17 @@
   .relative {
     position: relative;
   }
+  .sticky {
+    position: sticky;
+  }
   .inset-0 {
     inset: calc(var(--spacing) * 0);
+  }
+  .top-0 {
+    top: calc(var(--spacing) * 0);
+  }
+  .z-50 {
+    z-index: 50;
   }
   .mx-auto {
     margin-inline: auto;
@@ -323,9 +332,6 @@
   .h-full {
     height: 100%;
   }
-  .max-h-min {
-    max-height: min-content;
-  }
   .w-6 {
     width: calc(var(--spacing) * 6);
   }
@@ -335,26 +341,11 @@
   .w-14 {
     width: calc(var(--spacing) * 14);
   }
-  .w-\[18px\] {
-    width: 18px;
-  }
-  .w-\[30px\] {
-    width: 30px;
-  }
-  .w-\[50vw\] {
-    width: 50vw;
-  }
   .w-\[80\%\] {
     width: 80%;
   }
-  .w-\[100px\] {
-    width: 100px;
-  }
   .w-\[150px\] {
     width: 150px;
-  }
-  .w-\[180px\] {
-    width: 180px;
   }
   .w-\[200px\] {
     width: 200px;
@@ -386,12 +377,6 @@
   .border-collapse {
     border-collapse: collapse;
   }
-  .scale-110 {
-    --tw-scale-x: 110%;
-    --tw-scale-y: 110%;
-    --tw-scale-z: 110%;
-    scale: var(--tw-scale-x) var(--tw-scale-y);
-  }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
   }
@@ -412,6 +397,9 @@
   }
   .grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
   .flex-col {
     flex-direction: column;
@@ -514,10 +502,6 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
-  .border-1 {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
-  }
   .border-2 {
     border-style: var(--tw-border-style);
     border-width: 2px;
@@ -525,9 +509,6 @@
   .border-t {
     border-top-style: var(--tw-border-style);
     border-top-width: 1px;
-  }
-  .border-\[\#333333\] {
-    border-color: #333333;
   }
   .border-\[\#b1b1b1\] {
     border-color: #b1b1b1;
@@ -540,9 +521,6 @@
   }
   .border-\[\#cccccc\] {
     border-color: #cccccc;
-  }
-  .border-\[\#d8d4d4\] {
-    border-color: #d8d4d4;
   }
   .border-\[\#dcdcdc\] {
     border-color: #dcdcdc;
@@ -562,23 +540,8 @@
   .bg-\[\#8b2d2d\] {
     background-color: #8b2d2d;
   }
-  .bg-\[\#80000\] {
-    background-color: #80000;
-  }
   .bg-\[\#800000\] {
     background-color: #800000;
-  }
-  .bg-\[\#\] {
-    background-color: #;
-  }
-  .bg-\[\#c9c4c4\] {
-    background-color: #c9c4c4;
-  }
-  .bg-\[\#e2e0e0\] {
-    background-color: #e2e0e0;
-  }
-  .bg-\[\#e9e9e9\] {
-    background-color: #e9e9e9;
   }
   .bg-\[\#ebebeb\] {
     background-color: #ebebeb;
@@ -586,14 +549,8 @@
   .bg-\[\#f8f8f8\] {
     background-color: #f8f8f8;
   }
-  .bg-\[\#fffff\] {
-    background-color: #fffff;
-  }
   .bg-\[\#ffffff\] {
     background-color: #ffffff;
-  }
-  .bg-amber-500 {
-    background-color: var(--color-amber-500);
   }
   .bg-blue-500 {
     background-color: var(--color-blue-500);
@@ -839,12 +796,6 @@
   .accent-green-400 {
     accent-color: var(--color-green-400);
   }
-  .accent-green-600 {
-    accent-color: var(--color-green-600);
-  }
-  .accent-red-600 {
-    accent-color: var(--color-red-600);
-  }
   .shadow-2xl {
     --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -887,10 +838,6 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
-  .duration-100 {
-    --tw-duration: 100ms;
-    transition-duration: 100ms;
-  }
   .duration-200 {
     --tw-duration: 200ms;
     transition-duration: 200ms;
@@ -907,42 +854,12 @@
     -webkit-user-select: none;
     user-select: none;
   }
-  .hover\:scale-10 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-scale-x: 10%;
-        --tw-scale-y: 10%;
-        --tw-scale-z: 10%;
-        scale: var(--tw-scale-x) var(--tw-scale-y);
-      }
-    }
-  }
-  .hover\:scale-100 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-scale-x: 100%;
-        --tw-scale-y: 100%;
-        --tw-scale-z: 100%;
-        scale: var(--tw-scale-x) var(--tw-scale-y);
-      }
-    }
-  }
   .hover\:scale-105 {
     &:hover {
       @media (hover: hover) {
         --tw-scale-x: 105%;
         --tw-scale-y: 105%;
         --tw-scale-z: 105%;
-        scale: var(--tw-scale-x) var(--tw-scale-y);
-      }
-    }
-  }
-  .hover\:scale-110 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-scale-x: 110%;
-        --tw-scale-y: 110%;
-        --tw-scale-z: 110%;
         scale: var(--tw-scale-x) var(--tw-scale-y);
       }
     }
@@ -975,13 +892,6 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-amber-600);
-      }
-    }
-  }
-  .hover\:bg-amber-700 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-amber-700);
       }
     }
   }
@@ -1223,19 +1133,9 @@
       width: 50vw;
     }
   }
-  .md\:w-\[55vw\] {
-    @media (width >= 48rem) {
-      width: 55vw;
-    }
-  }
   .md\:w-\[60vw\] {
     @media (width >= 48rem) {
       width: 60vw;
-    }
-  }
-  .md\:w-\[70vw\] {
-    @media (width >= 48rem) {
-      width: 70vw;
     }
   }
   .md\:w-\[200px\] {
@@ -1516,21 +1416,6 @@
     }
   }
 }
-@property --tw-scale-x {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1;
-}
-@property --tw-scale-y {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1;
-}
-@property --tw-scale-z {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1;
-}
 @property --tw-rotate-x {
   syntax: "*";
   inherits: false;
@@ -1696,12 +1581,24 @@
   syntax: "*";
   inherits: false;
 }
+@property --tw-scale-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
-      --tw-scale-x: 1;
-      --tw-scale-y: 1;
-      --tw-scale-z: 1;
       --tw-rotate-x: initial;
       --tw-rotate-y: initial;
       --tw-rotate-z: initial;
@@ -1740,6 +1637,9 @@
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
       --tw-duration: initial;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-scale-z: 1;
     }
   }
 }
