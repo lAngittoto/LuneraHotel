@@ -1,6 +1,7 @@
 <?php ob_start(); 
 require_once __DIR__ . '/header.php'; 
-require_once __DIR__ . '/../../config/Helpers/colorcoding.php'; 
+require_once __DIR__ . '/../../config/Helpers/colorcoding.php';
+require_once __DIR__ . '/../../config/Helpers/correctgrammar.php'; 
 ?>
 
 <?php
@@ -68,7 +69,7 @@ $topBadges = [
 
                     <div class="flex items-center gap-2 md:gap-3">
                         <i class="fa-solid fa-user-group text-[#800000] text-lg"></i>
-                        <span><?= htmlspecialchars($room['people'] ?? 0) ?> Guests</span>
+                          <?= htmlspecialchars(correctGuest($room['people'])) ?>
                     </div>
                 </div>
 

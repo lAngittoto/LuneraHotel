@@ -64,17 +64,31 @@ require_once __DIR__ . '/../../config/Helpers/amenityicon.php';
                 </div>
 
                 <!-- Status Checkboxes -->
-                <div class="flex flex-col md:flex-row gap-6 items-start md:items-center text-xl">
-                    <label class="flex items-center gap-3 font-semibold">
-                        <i class="fa-solid fa-screwdriver-wrench text-[#800000]"></i> Set as Under Maintenance
-                        <input type="checkbox" name="status_maintenance" <?= $room['status'] === 'Maintenance' ? 'checked' : '' ?> class="w-6 h-6">
-                    </label>
+                <!-- Status Radio Buttons -->
+<div class="flex flex-col md:flex-row gap-6 items-start md:items-center text-xl">
+    <label class="flex items-center gap-3 font-semibold">
+        <i class="fa-solid fa-screwdriver-wrench text-[#800000]"></i> Under Maintenance
+        <input type="radio" name="status" value="Under Maintenance"
+               <?= $room['status'] === 'Under Maintenance' ? 'checked' : '' ?> 
+               class="w-6 h-6">
+    </label>
 
-                    <label class="flex items-center gap-3 font-semibold ">
-                        Available for Booking
-                        <input type="checkbox" name="status_available" <?= $room['status'] === 'Available' ? 'checked' : '' ?> class="w-6 h-6 accent-green-600">
-                    </label>
-                </div>
+    <label class="flex items-center gap-3 font-semibold">
+        Available
+        <input type="radio" name="status" value="Available"
+               <?= $room['status'] === 'Available' ? 'checked' : '' ?> 
+               class="w-6 h-6">
+    </label>
+
+    <label class="flex items-center gap-3 font-semibold">
+        Booked
+        <input type="radio" name="status" value="Booked"
+               <?= $room['status'] === 'Booked' ? 'checked' : '' ?> 
+               class="w-6 h-6">
+    </label>
+</div>
+
+
 
                 <!-- Floor + Capacity -->
                 <div class="flex flex-col md:flex-row gap-4 w-full">

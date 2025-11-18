@@ -5,7 +5,7 @@
 
 <section class="mt-10 text-center text-gray-800">
     <h1 class="text-5xl font-bold">All Bookings</h1>
-    <p class="text-xl text-gray-600 mt-3">A comprehensive list of all active reservations made in the hotel.</p>
+    <p class="text-xl text-gray-600 mt-3">A comprehensive list of all reservations, including completed history.</p>
 </section>
 
 <section class="p-8 flex flex-col items-center gap-10">

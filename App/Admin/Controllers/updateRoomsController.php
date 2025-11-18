@@ -18,7 +18,7 @@ $allAmenities = getAllAmenities($pdo);
 $roomTypes = getAllRoomTypes($pdo);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_room'])) {
-    $status = isset($_POST['status_maintenance']) ? 'under maintenance' : 'Available';
+$status = $_POST['status'] ?? 'Booked';
 
     // Image upload
     $imgPath = null;

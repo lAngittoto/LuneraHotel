@@ -9,7 +9,7 @@ function getAllBookings($pdo, $userEmail = null)
             b.user_email
         FROM bookings b
         JOIN rooms r ON b.room_id = r.id
-        WHERE b.status = 'Booked'   -- ipapakita lang ang aktibong bookings
+        WHERE 1=1
         ORDER BY b.booking_date DESC
     ";
 
@@ -23,5 +23,7 @@ function getAllBookings($pdo, $userEmail = null)
     }
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 }
-?>
+

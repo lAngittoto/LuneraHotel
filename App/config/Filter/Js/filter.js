@@ -41,6 +41,10 @@ function renderRooms(rooms) {
 
       <p class="p-5 sm:text-[1.1rem] md:text-[1.2rem] lg:text-[1.3rem] text-[#333333]">${room.description}</p>
 
+<p class="text-lg sm:text-xl md:text-2xl text-gray-700 flex items-center gap-2 p-3">
+                            <i class="fa-solid fa-building text-[#800000]"></i>
+                            Floor: ${room.floor}
+                        </p>
       <div class="flex flex-row justify-between p-3 mt-auto">
         <h1 class="lg:text-2xl sm:text-[1.2rem] md:text-[1.6rem] text-[#333333]"><i class='fa-solid fa-door-closed text-[#800000]'></i>
           Room: ${room.room_number}

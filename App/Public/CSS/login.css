@@ -79,8 +79,15 @@ header nav a.login-btn:hover {
   border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 14px;
+  outline: none; /* alisin default browser outline */
+  transition: border 0.2s, box-shadow 0.2s; /* smooth transition */
+  
 }
-
+.login-box input[type="email"]:focus,
+.login-box input[type="password"]:focus {
+  border: 1px solid #8b2d2d; /* border color nagiging maroon */
+  box-shadow: 0 0 5px rgba(139, 45, 45, 0.5); /* soft maroon glow */
+}
 /* Sign in button */
 .login-box button {
   width: 100%;
