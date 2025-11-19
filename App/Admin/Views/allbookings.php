@@ -65,38 +65,52 @@
 
                     <!-- Check In / Out -->
                     <div class="mt-6 border-t border-gray-300 pt-5 bg-gray-50 rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-center gap-4">
-                        <!-- Check In -->
-                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3">
-                            <i class="fa-regular fa-calendar-check text-[#800000] text-2xl"></i>
-                            <div>
-                                <p class="font-semibold text-gray-800 text-base">Check In</p>
-                                <p class="text-gray-700 text-[1.1rem] mt-1">
-                                    <i class="fa-solid fa-calendar-day text-[#800000] mr-1"></i>
-                                    <?= htmlspecialchars($room['check_in_date'] ?? 'Oct 29, 2025') ?>
-                                </p>
-                                <p class="text-gray-700 text-[1.1rem]">
-                                    <i class="fa-solid fa-clock text-[#800000] mr-1"></i>
-                                    <?= htmlspecialchars($room['check_in_time'] ?? '2:00 PM') ?>
-                                </p>
-                            </div>
-                        </div>
+    <!-- Check In -->
+     <?php
+date_default_timezone_set('Asia/Manila');
 
-                        <!-- Check Out -->
-                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3">
-                            <i class="fa-regular fa-calendar-xmark text-[#800000] text-2xl"></i>
-                            <div>
-                                <p class="font-semibold text-gray-800 text-base">Check Out</p>
-                                <p class="text-gray-700 text-[1.1rem] mt-1">
-                                    <i class="fa-solid fa-calendar-day text-[#800000] mr-1"></i>
-                                    <?= htmlspecialchars($room['check_out_date'] ?? 'Oct 30, 2025') ?>
-                                </p>
-                                <p class="text-gray-700 text-[1.1rem]">
-                                    <i class="fa-solid fa-clock text-[#800000] mr-1"></i>
-                                    <?= htmlspecialchars($room['check_out_time'] ?? '12:00 PM') ?>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+$rawDate = $room['booking_date'] ?? null;
+
+if ($rawDate && strtotime($rawDate) !== false) {
+    $checkInDate  = date("F d, Y", strtotime($rawDate));
+    $checkOutDate = date("F d, Y", strtotime($rawDate . " +2 days"));
+} else {
+    $checkInDate  = '—';
+    $checkOutDate = '—';
+}
+?>
+
+    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3">
+        <i class="fa-regular fa-calendar-check text-[#800000] text-2xl"></i>
+        <div>
+            <p class="font-semibold text-gray-800 text-base">Check In</p>
+            <p class="text-gray-700 text-[1.1rem] mt-1">
+                <i class="fa-solid fa-calendar-day text-[#800000] mr-1"></i>
+                <?= htmlspecialchars($checkInDate) ?>
+            </p>
+            <p class="text-gray-700 text-[1.1rem]">
+                <i class="fa-solid fa-clock text-[#800000] mr-1"></i>
+                <?= htmlspecialchars($room['check_in_time'] ?? '2:00 PM') ?>
+            </p>
+        </div>
+    </div>
+
+    <!-- Check Out -->
+    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3">
+        <i class="fa-regular fa-calendar-xmark text-[#800000] text-2xl"></i>
+        <div>
+            <p class="font-semibold text-gray-800 text-base">Check Out</p>
+            <p class="text-gray-700 text-[1.1rem] mt-1">
+                <i class="fa-solid fa-calendar-day text-[#800000] mr-1"></i>
+                <?= htmlspecialchars($checkOutDate) ?>
+            </p>
+            <p class="text-gray-700 text-[1.1rem]">
+                <i class="fa-solid fa-clock text-[#800000] mr-1"></i>
+                <?= htmlspecialchars($room['check_out_time'] ?? '12:00 PM') ?>
+            </p>
+        </div>
+    </div>
+</div>
 
                     <!-- View Details Button -->
                     <a href="viewdetailsadmin?id=<?= $room['id'] ?>" 

@@ -43,13 +43,27 @@ require_once __DIR__ . '/../../config/Helpers/colorcoding.php';
           <span class="<?= htmlspecialchars($statusClass) ?> px-5 py-3 rounded-4xl text-[0.9rem] text-white text-center">
             <?= htmlspecialchars($room['status']) ?>
           </span>
+<div class="flex flex-col sm:flex-row sm:justify-end sm:space-x-5 pr-5 space-y-3 sm:space-y-0">
 
-          <div class="flex flex-row justify-end space-x-5 pr-5">
-           <a href="updaterooms?id=<?= $room['id'] ?>" > <i class="fa-regular fa-pen-to-square cursor-pointer hover:text-green-700 transition-transform duration-200 transform hover:scale-150"></i></a>
-            
-           
-           <p><i class="fa-solid fa-trash cursor-pointer hover:text-red-700 transition-transform duration-200 transform hover:scale-150"></i></p>
-          </div>
+    <!-- Update -->
+    <a href="updaterooms?id=<?= $room['id'] ?>"
+       class="cursor-pointer text-blue-600 hover:text-blue-800 
+              transition duration-200 hover:scale-110
+              text-lg sm:text-base font-medium">
+        Update
+    </a>
+
+    <!-- Deactivate -->
+    <a href="#"
+       class="cursor-pointer text-red-600 hover:text-red-800
+              transition duration-200 hover:scale-110
+              text-lg sm:text-base font-medium">
+        Deactivate
+    </a>
+
+</div>
+
+
         </div>
       <?php endforeach; ?>
     </div>

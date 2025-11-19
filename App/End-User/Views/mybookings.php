@@ -68,12 +68,21 @@ require_once __DIR__ . "/../../config/Helpers/correctgrammar.php";
                             <span class="font-semibold block mb-1">
                                 <i class="fa-regular fa-calendar text-[#800000] mr-1"></i>Date
                             </span>
-                            <?php
-                            date_default_timezone_set('Asia/Manila');
-                            $currentDate = date("F d, Y");
-                            $nextDate = date("F d, Y", strtotime("+2 days"));
-                            echo "<p>$currentDate — $nextDate</p>";
-                            ?>
+               <?php
+date_default_timezone_set('Asia/Manila');
+
+// Kunin yung raw booking_date galing sa database
+$rawDate = $room['booking_date'];  // depende sa loop mo, usually $room or $booking
+
+// I-convert to date lang (walang time)
+$currentDate = date("F d, Y", strtotime($rawDate));
+
+// Add two days
+$nextDate = date("F d, Y", strtotime($rawDate . " +2 days"));
+
+echo "<p>$currentDate — $nextDate</p>";
+?>
+
                         </div>
 
                         <div class="flex flex-col">

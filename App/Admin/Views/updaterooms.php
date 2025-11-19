@@ -74,14 +74,14 @@ require_once __DIR__ . '/../../config/Helpers/amenityicon.php';
     </label>
 
     <label class="flex items-center gap-3 font-semibold">
-        Available
+       <i class="fa-solid fa-bed text-green-800"></i> Available 
         <input type="radio" name="status" value="Available"
                <?= $room['status'] === 'Available' ? 'checked' : '' ?> 
                class="w-6 h-6">
     </label>
 
     <label class="flex items-center gap-3 font-semibold">
-        Booked
+        <i class="fa-solid fa-book text-blue-800"></i> Booked
         <input type="radio" name="status" value="Booked"
                <?= $room['status'] === 'Booked' ? 'checked' : '' ?> 
                class="w-6 h-6">
