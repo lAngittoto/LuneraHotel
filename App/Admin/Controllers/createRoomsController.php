@@ -34,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_room'])) {
         'status' => $status,
         'floor' => $_POST['floor'],
         'people' => $_POST['people'],
-        'img' => $imgPath
+        'img' => $imgPath,
+         'type_name'   => $_POST['type_name'] // ✅ important!
     ]);
 
     // Add amenities

@@ -40,16 +40,14 @@ require_once __DIR__ . '/../../config/Helpers/amenityicon.php';
                 </div>
 
                 <!-- Room Type Dropdown -->
-                <div class="flex flex-col w-full">
-                    <label class="font-semibold text-xl">Room Type</label>
-                    <select name="type_name" class="border border-[#dcdcdc] p-3 rounded-xl bg-[#ebebeb]  w-full md:w-[250px]">
-                        <?php foreach ($roomTypes as $type): ?>
-                            <option value="<?= htmlspecialchars($type['type_name']) ?>" <?= strpos($room['room_type'], $type['type_name']) !== false ? 'selected' : '' ?>>
-                                <?= htmlspecialchars($type['type_name']) ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
+    <select name="type_name" class="border border-[#dcdcdc] p-3 rounded-xl bg-[#ebebeb] w-full md:w-[250px]">
+    <?php foreach ($roomTypes as $type): ?>
+        <option value="<?= htmlspecialchars($type['type_name']) ?>" 
+            <?= ($room['type_name'] ?? '') === $type['type_name'] ? 'selected' : '' ?>>
+            <?= htmlspecialchars($type['type_name']) ?>
+        </option>
+    <?php endforeach; ?>
+</select>
 
                 <!-- Description -->
                 <div class="flex flex-col w-full">

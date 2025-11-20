@@ -1,24 +1,27 @@
 <?php
 
+// Fetch all room categories/types
 function getAllRoomTypes($pdo) {
     $stmt = $pdo->query("SELECT DISTINCT type_name FROM room_type ORDER BY type_name ASC");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+// Fetch all amenities
 function getAllAmenities($pdo) {
     $stmt = $pdo->query("SELECT DISTINCT amenity FROM amenities");
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
 }
 
+// Create a new room
 function createRoom($pdo, $data) {
-    // Insert room
+    // 1️⃣ Insert into rooms table
     $stmt = $pdo->prepare("
         INSERT INTO rooms (room_number, room_type, description, status, floor, people, img)
         VALUES (?, ?, ?, ?, ?, ?, ?)
     ");
     $stmt->execute([
         $data['room_number'],
-        $data['room_type'],
+        $data['room_type'],      // descriptive name
         $data['description'],
         $data['status'],
         $data['floor'],
@@ -27,9 +30,18 @@ function createRoom($pdo, $data) {
     ]);
 
     // Get last inserted room id
-    return $pdo->lastInsertId();
+    $roomId = $pdo->lastInsertId();
+
+    // 2️⃣ Insert type_name into room_type table
+    if (!empty($data['type_name'])) {
+        $stmt = $pdo->prepare("INSERT INTO room_type (id, type_name) VALUES (?, ?)");
+        $stmt->execute([$roomId, $data['type_name']]);
+    }
+
+    return $roomId;
 }
 
+// Add amenities for a room
 function addRoomAmenities($pdo, $roomId, $amenities) {
     $stmt = $pdo->prepare("INSERT INTO amenities (room_id, amenity) VALUES (?, ?)");
     foreach ($amenities as $amenity) {
@@ -37,5 +49,17 @@ function addRoomAmenities($pdo, $roomId, $amenities) {
             $stmt->execute([$roomId, $amenity]);
         }
     }
+}
+
+// Optional: fetch a single room with type_name (for update view)
+function getRoomById($pdo, $roomId) {
+    $stmt = $pdo->prepare("
+        SELECT r.*, rt.type_name
+        FROM rooms r
+        LEFT JOIN room_type rt ON r.id = rt.id
+        WHERE r.id = ?
+    ");
+    $stmt->execute([$roomId]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 ?>

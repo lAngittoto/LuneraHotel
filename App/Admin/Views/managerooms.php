@@ -1,7 +1,12 @@
-<?php 
-ob_start(); 
+<?php
+ob_start();
 require_once __DIR__ . '/header.php';
 require_once __DIR__ . '/../../config/Helpers/colorcoding.php';
+if (isset($_SESSION['success_message'])) {
+  echo "<div class='bg-green-100 text-green-800 p-3 rounded mb-4 text-center text-4xl'>"
+    . htmlspecialchars($_SESSION['success_message']) . "</div>";
+  unset($_SESSION['success_message']);
+}
 ?>
 
 <div class="p-10">
@@ -12,7 +17,7 @@ require_once __DIR__ . '/../../config/Helpers/colorcoding.php';
     <a href="">
       <a href="/LuneraHotel/App/Public/createrooms" class="text-[#ffffff] bg-[#800000] py-3 px-4 rounded-2xl shadow-2xl">
         <i class="fa-solid fa-circle-plus"></i> Create New Rooms
-</a>
+      </a>
     </a>
   </div>
 
@@ -39,29 +44,53 @@ require_once __DIR__ . '/../../config/Helpers/colorcoding.php';
           <p class=" text-[#333333] font-semibold"><?= htmlspecialchars($room['type_name']) ?></p>
           <p><?= htmlspecialchars($room['floor']) ?></p>
           <p class=" text-[#333333] font-semibold"><?= htmlspecialchars($room['people']) ?></p>
-          
+
           <span class="<?= htmlspecialchars($statusClass) ?> px-5 py-3 rounded-4xl text-[0.9rem] text-white text-center">
             <?= htmlspecialchars($room['status']) ?>
           </span>
-<div class="flex flex-col sm:flex-row sm:justify-end sm:space-x-5 pr-5 space-y-3 sm:space-y-0">
+         <div class="flex flex-col sm:flex-row sm:justify-end sm:space-x-3 space-y-2 sm:space-y-0 w-full">
 
     <!-- Update -->
-    <a href="updaterooms?id=<?= $room['id'] ?>"
-       class="cursor-pointer text-blue-600 hover:text-blue-800 
-              transition duration-200 hover:scale-110
-              text-lg sm:text-base font-medium">
-        Update
-    </a>
+    <?php if ($room['status'] !== 'Deactivated'): ?>
+        <a href="updaterooms?id=<?= $room['id'] ?>"
+           class="w-full sm:w-auto text-center text-white bg-blue-600 hover:bg-blue-700
+                  transition duration-200 transform hover:scale-105
+                  px-4 py-2 text-sm sm:text-base font-medium rounded-lg sm:inline-block">
+            Update
+        </a>
+    <?php else: ?>
+        <span class="w-full sm:w-auto text-center text-white bg-gray-400 cursor-not-allowed select-none
+                     px-4 py-2 text-sm sm:text-base font-medium rounded-lg sm:inline-block">
+            Update
+        </span>
+    <?php endif; ?>
 
     <!-- Deactivate -->
-    <a href="#"
-       class="cursor-pointer text-red-600 hover:text-red-800
-              transition duration-200 hover:scale-110
-              text-lg sm:text-base font-medium">
-        Deactivate
-    </a>
+    <?php if ($room['status'] !== 'Deactivated'): ?>
+        <form method="POST" action="updaterooms?id=<?= $room['id'] ?>" class="w-full sm:w-auto">
+            <button type="submit" name="deactivate_room"
+                    class="w-full sm:w-auto text-center text-white bg-red-600 hover:bg-red-700
+                           transition duration-200 transform hover:scale-105
+                           px-4 py-2 text-sm sm:text-base font-medium rounded-lg">
+                Deactivate
+            </button>
+        </form>
+    <?php endif; ?>
+
+    <!-- Reactivate -->
+    <?php if ($room['status'] === 'Deactivated'): ?>
+        <form method="POST" action="updaterooms?id=<?= $room['id'] ?>" class="w-full sm:w-auto">
+            <button type="submit" name="reactivate_room"
+                    class="w-full sm:w-auto text-center text-white bg-green-600 hover:bg-green-700
+                           transition duration-200 transform hover:scale-105
+                           px-4 py-2 text-sm sm:text-base font-medium rounded-lg">
+                Reactivate
+            </button>
+        </form>
+    <?php endif; ?>
 
 </div>
+
 
 
         </div>

@@ -8,14 +8,14 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 
-// Kunin lahat ng floors
+// Get all floors
 $floors = getAllFloors($pdo);
 
-// Kunin rooms per floor
+// Get rooms per floor (exclude deactivated)
 $roomsByFloor = [];
 foreach($floors as $floor){
-    $roomsByFloor[$floor] = getRoomsByFloor($pdo, $floor);
+    $roomsByFloor[$floor] = getRoomsByFloor($pdo, $floor); // getRoomsByFloor filters out Deactivated rooms
 }
 
-// I-pass sa view
+// Pass to view
 include __DIR__ . '/../Views/rooms.php';

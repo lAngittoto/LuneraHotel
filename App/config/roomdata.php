@@ -27,6 +27,7 @@ class Rooms
 
     public function displayRoom()
     {
+  
         echo '<div class="bg-[#ffffff] rounded-t-2xl border border-[#b1b1b1] flex flex-col sm:gap-3 select-none h-full  shadow-2xl">';
 
         echo "<img src='{$this->img}' alt='Room Image' class='rounded-t-2xl w-full sm:h-[400px] object-cover'>";

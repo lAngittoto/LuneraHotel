@@ -26,7 +26,13 @@ END
 
 function getRoomsByFloor($pdo, $floor)
 {
-    $stmt = $pdo->prepare("SELECT * FROM rooms WHERE floor = ? ORDER BY room_number");
+    $stmt = $pdo->prepare("
+        SELECT * 
+        FROM rooms 
+        WHERE floor = ? 
+        AND status != 'Deactivated'
+        ORDER BY room_number
+    ");
     $stmt->execute([$floor]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }

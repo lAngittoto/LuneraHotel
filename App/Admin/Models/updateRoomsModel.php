@@ -1,17 +1,15 @@
 <?php
 
-function getRoomById($pdo, $roomId) {
-    $stmt = $pdo->prepare("SELECT * FROM rooms WHERE id = ?");
-    $stmt->execute([$roomId]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
 
 function getAllRoomTypes($pdo) {
     $stmt = $pdo->query("SELECT DISTINCT type_name FROM room_type ORDER BY type_name ASC");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $room = getRoomById($pdo, $roomId);
+
 }
 
 function updateRoom($pdo, $roomId, $data) {
+    // 1️⃣ Update descriptive room name in rooms table
     $stmt = $pdo->prepare("
         UPDATE rooms SET 
             room_number = ?, 
@@ -23,9 +21,9 @@ function updateRoom($pdo, $roomId, $data) {
             img = COALESCE(?, img)
         WHERE id = ?
     ");
-    return $stmt->execute([
+    $stmt->execute([
         $data['room_number'],
-        $data['room_type'],
+        $data['room_type'],   // descriptive name
         $data['description'],
         $data['status'],
         $data['floor'],
@@ -33,7 +31,15 @@ function updateRoom($pdo, $roomId, $data) {
         $data['img'] ?? null,
         $roomId
     ]);
+
+    // 2️⃣ Update category in room_type table
+    $stmt = $pdo->prepare("DELETE FROM room_type WHERE id = ?");
+    $stmt->execute([$roomId]);
+
+    $stmt = $pdo->prepare("INSERT INTO room_type (id, type_name) VALUES (?, ?)");
+    $stmt->execute([$roomId, $data['type_name']]); // dropdown category
 }
+
 
 
 function getRoomAmenities($pdo, $roomId) {

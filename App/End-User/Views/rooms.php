@@ -13,24 +13,26 @@ exit;
 
 
 <?php foreach($roomsByFloor as $floor => $rooms): ?>
-    <h1 class='text-4xl p-10'><?= $floor ?></h1>
-    <section class='p-10 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch'>
-        <?php foreach($rooms as $roomData): ?>
-            <?php 
-                $r = new Rooms(
-                    $roomData['id'],
-                    $roomData['img'],
-                    $roomData['room_type'],
-                    $roomData['status'],
-                    $roomData['description'],
-                    $roomData['room_number'],
-                    $roomData['people'],
-                    $roomData['floor']
-                );
-                $r->displayRoom();
-            ?>
-        <?php endforeach; ?>
-    </section>
+    <?php if (!empty($rooms)): ?>
+        <h1 class='text-4xl p-10'><?= $floor ?></h1>
+        <section class='p-10 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch'>
+            <?php foreach($rooms as $roomData): ?>
+                <?php 
+                    $r = new Rooms(
+                        $roomData['id'],
+                        $roomData['img'],
+                        $roomData['room_type'],
+                        $roomData['status'],
+                        $roomData['description'],
+                        $roomData['room_number'],
+                        $roomData['people'],
+                        $roomData['floor']
+                    );
+                    $r->displayRoom();
+                ?>
+            <?php endforeach; ?>
+        </section>
+    <?php endif; ?>
 <?php endforeach; ?>
 
 
