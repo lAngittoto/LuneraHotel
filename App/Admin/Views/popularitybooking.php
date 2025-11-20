@@ -1,7 +1,7 @@
-<?php ob_start(); 
-require_once __DIR__ . '/header.php'; 
+<?php ob_start();
+require_once __DIR__ . '/header.php';
 require_once __DIR__ . '/../../config/Helpers/colorcoding.php';
-require_once __DIR__ . '/../../config/Helpers/correctgrammar.php'; 
+require_once __DIR__ . '/../../config/Helpers/correctgrammar.php';
 ?>
 
 <?php
@@ -27,17 +27,16 @@ $topBadges = [
 
             <!-- Room Image -->
             <div class="w-full md:w-2/5 h-72 md:h-80">
-                <img 
-                    src="<?= htmlspecialchars($room['img']) ?>" 
-                    alt="Room Image" 
-                    class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                >
+                <img
+                    src="<?= htmlspecialchars($room['img']) ?>"
+                    alt="Room Image"
+                    class="w-full h-full object-cover hover:scale-105 transition duration-500">
             </div>
 
             <!-- Room Details -->
             <div class="w-full md:w-3/5 p-6 md:p-8 flex flex-col justify-between text-gray-800">
 
-             
+
                 <div>
                     <div class="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-3">
                         <h2 class="text-2xl md:text-3xl font-bold text-center sm:text-left">
@@ -48,7 +47,8 @@ $topBadges = [
                         </h2>
 
                         <span class="px-4 py-2 rounded-2xl text-sm md:text-base <?= $statusClass ?> w-fit whitespace-nowrap">
-                            <?= htmlspecialchars($room['total_bookings'] ?? 0) ?> bookings
+                            <?= htmlspecialchars($room['total_bookings'] ?? 0) . " " . popularity($room['total_bookings'] ?? 0) ?>
+
                         </span>
                     </div>
 
@@ -69,22 +69,22 @@ $topBadges = [
 
                     <div class="flex items-center gap-2 md:gap-3">
                         <i class="fa-solid fa-user-group text-[#800000] text-lg"></i>
-                          <?= htmlspecialchars(correctGuest($room['people'])) ?>
+                        <?= htmlspecialchars(correctGuest($room['people'])) ?>
                     </div>
                 </div>
 
                 <!-- View Details Button -->
                 <a href="viewdetailsadmin?id=<?= $room['id'] ?>"
-   class="mt-6 block text-center bg-[#800000] text-white px-6 py-3 md:py-4 rounded-xl font-semibold hover:bg-[#a52a2a] transition">
-    View Details <i class="fa-regular fa-file-lines ml-2"></i>
-</a>
+                    class="mt-6 block text-center bg-[#800000] text-white px-6 py-3 md:py-4 rounded-xl font-semibold hover:bg-[#a52a2a] transition">
+                    View Details <i class="fa-regular fa-file-lines ml-2"></i>
+                </a>
 
             </div>
         </div>
     <?php endforeach; ?>
 </section>
 
-<?php 
-$content = ob_get_clean(); 
-include __DIR__ . '/../../../App/layout.php'; 
+<?php
+$content = ob_get_clean();
+include __DIR__ . '/../../../App/layout.php';
 ?>

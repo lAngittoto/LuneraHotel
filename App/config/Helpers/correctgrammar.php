@@ -15,3 +15,11 @@ function correctGuest($count) {
         return "{$count} Guests";
     }
 }
+
+function popularity($count) {
+    if ($count <= 1) {
+        return "Booking";
+    } else {
+        return "Bookings";
+    }
+}

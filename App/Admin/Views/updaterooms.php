@@ -40,14 +40,14 @@ require_once __DIR__ . '/../../config/Helpers/amenityicon.php';
                 </div>
 
                 <!-- Room Type Dropdown -->
-    <select name="type_name" class="border border-[#dcdcdc] p-3 rounded-xl bg-[#ebebeb] w-full md:w-[250px]">
-    <?php foreach ($roomTypes as $type): ?>
-        <option value="<?= htmlspecialchars($type['type_name']) ?>" 
-            <?= ($room['type_name'] ?? '') === $type['type_name'] ? 'selected' : '' ?>>
-            <?= htmlspecialchars($type['type_name']) ?>
-        </option>
-    <?php endforeach; ?>
-</select>
+                <select name="type_name" class="border border-[#dcdcdc] p-3 rounded-xl bg-[#ebebeb] w-full md:w-[250px]">
+                    <?php foreach ($roomTypes as $type): ?>
+                        <option value="<?= htmlspecialchars($type['type_name']) ?>"
+                            <?= ($room['type_name'] ?? '') === $type['type_name'] ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($type['type_name']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
 
                 <!-- Description -->
                 <div class="flex flex-col w-full">
@@ -63,28 +63,28 @@ require_once __DIR__ . '/../../config/Helpers/amenityicon.php';
 
                 <!-- Status Checkboxes -->
                 <!-- Status Radio Buttons -->
-<div class="flex flex-col md:flex-row gap-6 items-start md:items-center text-xl">
-    <label class="flex items-center gap-3 font-semibold">
-        <i class="fa-solid fa-screwdriver-wrench text-[#800000]"></i> Under Maintenance
-        <input type="radio" name="status" value="Under Maintenance"
-               <?= $room['status'] === 'Under Maintenance' ? 'checked' : '' ?> 
-               class="w-6 h-6">
-    </label>
+                <div class="flex flex-col md:flex-row gap-6 items-start md:items-center text-xl">
+                    <label class="flex items-center gap-3 font-semibold">
+                        <i class="fa-solid fa-screwdriver-wrench text-[#800000] "></i> Under Maintenance
+                        <input type="radio" name="status" value="Under Maintenance"
+                            <?= $room['status'] === 'Under Maintenance' ? 'checked' : '' ?>
+                            class="w-6 h-6">
+                    </label>
 
-    <label class="flex items-center gap-3 font-semibold">
-       <i class="fa-solid fa-bed text-green-800"></i> Available 
-        <input type="radio" name="status" value="Available"
-               <?= $room['status'] === 'Available' ? 'checked' : '' ?> 
-               class="w-6 h-6">
-    </label>
+                    <label class="flex items-center gap-3 font-semibold">
+                        <i class="fa-solid fa-bed text-green-800"></i> Available
+                        <input type="radio" name="status" value="Available"
+                            <?= $room['status'] === 'Available' ? 'checked' : '' ?>
+                            class="w-6 h-6">
+                    </label>
 
-    <label class="flex items-center gap-3 font-semibold">
-        <i class="fa-solid fa-book text-blue-800"></i> Booked
-        <input type="radio" name="status" value="Booked"
-               <?= $room['status'] === 'Booked' ? 'checked' : '' ?> 
-               class="w-6 h-6">
-    </label>
-</div>
+                    <label class="flex items-center gap-3 font-semibold">
+                        <i class="fa-solid fa-book text-blue-800"></i> Booked
+                        <input type="radio" name="status" value="Booked"
+                            <?= $room['status'] === 'Booked' ? 'checked' : '' ?>
+                            class="w-6 h-6">
+                    </label>
+                </div>
 
 
 

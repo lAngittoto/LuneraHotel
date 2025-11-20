@@ -18,9 +18,9 @@
             <div class="flex flex-col md:flex-row bg-white border border-gray-300 rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition w-full max-w-5xl">
                 <!-- Room Image -->
                 <div class="w-full md:w-2/5 h-72 md:h-auto">
-                    <img src="<?= htmlspecialchars($room['img'] ?? 'default.jpg') ?>" 
-                         alt="Room Image" 
-                         class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    <img src="<?= htmlspecialchars($room['img'] ?? 'default.jpg') ?>"
+                        alt="Room Image"
+                        class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
 
                 <!-- Room Details -->
@@ -65,56 +65,56 @@
 
                     <!-- Check In / Out -->
                     <div class="mt-6 border-t border-gray-300 pt-5 bg-gray-50 rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-center gap-4">
-    <!-- Check In -->
-     <?php
-date_default_timezone_set('Asia/Manila');
+                        <!-- Check In -->
+                        <?php
+                        date_default_timezone_set('Asia/Manila');
 
-$rawDate = $room['booking_date'] ?? null;
+                        $rawDate = $room['booking_date'] ?? null;
 
-if ($rawDate && strtotime($rawDate) !== false) {
-    $checkInDate  = date("F d, Y", strtotime($rawDate));
-    $checkOutDate = date("F d, Y", strtotime($rawDate . " +2 days"));
-} else {
-    $checkInDate  = '—';
-    $checkOutDate = '—';
-}
-?>
+                        if ($rawDate && strtotime($rawDate) !== false) {
+                            $checkInDate  = date("F d, Y", strtotime($rawDate));
+                            $checkOutDate = date("F d, Y", strtotime($rawDate . " +2 days"));
+                        } else {
+                            $checkInDate  = '—';
+                            $checkOutDate = '—';
+                        }
+                        ?>
 
-    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3">
-        <i class="fa-regular fa-calendar-check text-[#800000] text-2xl"></i>
-        <div>
-            <p class="font-semibold text-gray-800 text-base">Check In</p>
-            <p class="text-gray-700 text-[1.1rem] mt-1">
-                <i class="fa-solid fa-calendar-day text-[#800000] mr-1"></i>
-                <?= htmlspecialchars($checkInDate) ?>
-            </p>
-            <p class="text-gray-700 text-[1.1rem]">
-                <i class="fa-solid fa-clock text-[#800000] mr-1"></i>
-                <?= htmlspecialchars($room['check_in_time'] ?? '2:00 PM') ?>
-            </p>
-        </div>
-    </div>
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3">
+                            <i class="fa-regular fa-calendar-check text-[#800000] text-2xl"></i>
+                            <div>
+                                <p class="font-semibold text-gray-800 text-base">Check In</p>
+                                <p class="text-gray-700 text-[1.1rem] mt-1">
+                                    <i class="fa-solid fa-calendar-day text-[#800000] mr-1"></i>
+                                    <?= htmlspecialchars($checkInDate) ?>
+                                </p>
+                                <p class="text-gray-700 text-[1.1rem]">
+                                    <i class="fa-solid fa-clock text-[#800000] mr-1"></i>
+                                    <?= htmlspecialchars($room['check_in_time'] ?? '2:00 PM') ?>
+                                </p>
+                            </div>
+                        </div>
 
-    <!-- Check Out -->
-    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3">
-        <i class="fa-regular fa-calendar-xmark text-[#800000] text-2xl"></i>
-        <div>
-            <p class="font-semibold text-gray-800 text-base">Check Out</p>
-            <p class="text-gray-700 text-[1.1rem] mt-1">
-                <i class="fa-solid fa-calendar-day text-[#800000] mr-1"></i>
-                <?= htmlspecialchars($checkOutDate) ?>
-            </p>
-            <p class="text-gray-700 text-[1.1rem]">
-                <i class="fa-solid fa-clock text-[#800000] mr-1"></i>
-                <?= htmlspecialchars($room['check_out_time'] ?? '12:00 PM') ?>
-            </p>
-        </div>
-    </div>
-</div>
+                        <!-- Check Out -->
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3">
+                            <i class="fa-regular fa-calendar-xmark text-[#800000] text-2xl"></i>
+                            <div>
+                                <p class="font-semibold text-gray-800 text-base">Check Out</p>
+                                <p class="text-gray-700 text-[1.1rem] mt-1">
+                                    <i class="fa-solid fa-calendar-day text-[#800000] mr-1"></i>
+                                    <?= htmlspecialchars($checkOutDate) ?>
+                                </p>
+                                <p class="text-gray-700 text-[1.1rem]">
+                                    <i class="fa-solid fa-clock text-[#800000] mr-1"></i>
+                                    <?= htmlspecialchars($room['check_out_time'] ?? '12:00 PM') ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- View Details Button -->
-                    <a href="viewdetailsadmin?id=<?= $room['id'] ?>" 
-                       class="mt-6 block w-full text-center px-8 py-4 border border-gray-300 rounded-2xl text-[#333333] font-semibold hover:bg-yellow-600 hover:text-white transition text-lg">
+                    <a href="viewdetailsadmin?id=<?= $room['id'] ?>"
+                        class="mt-6 block w-full text-center px-8 py-4 border border-gray-300 rounded-2xl text-[#333333] font-semibold hover:bg-yellow-600 hover:text-white transition text-lg">
                         View Details <i class="fa-regular fa-file-lines ml-2"></i>
                     </a>
                 </div>
@@ -126,4 +126,10 @@ if ($rawDate && strtotime($rawDate) !== false) {
 <?php
 $content = ob_get_clean();
 include __DIR__ . '/../../../App/layout.php';
+
+
+
+
+
+
 ?>

@@ -9,7 +9,7 @@ function getAllRoomTypes($pdo) {
 }
 
 function updateRoom($pdo, $roomId, $data) {
-    // 1️⃣ Update descriptive room name in rooms table
+
     $stmt = $pdo->prepare("
         UPDATE rooms SET 
             room_number = ?, 
@@ -23,7 +23,7 @@ function updateRoom($pdo, $roomId, $data) {
     ");
     $stmt->execute([
         $data['room_number'],
-        $data['room_type'],   // descriptive name
+        $data['room_type'],   
         $data['description'],
         $data['status'],
         $data['floor'],
@@ -32,7 +32,7 @@ function updateRoom($pdo, $roomId, $data) {
         $roomId
     ]);
 
-    // 2️⃣ Update category in room_type table
+
     $stmt = $pdo->prepare("DELETE FROM room_type WHERE id = ?");
     $stmt->execute([$roomId]);
 

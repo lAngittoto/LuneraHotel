@@ -21,7 +21,7 @@ function createRoom($pdo, $data) {
     ");
     $stmt->execute([
         $data['room_number'],
-        $data['room_type'],      // descriptive name
+        $data['room_type'],      
         $data['description'],
         $data['status'],
         $data['floor'],
@@ -32,7 +32,7 @@ function createRoom($pdo, $data) {
     // Get last inserted room id
     $roomId = $pdo->lastInsertId();
 
-    // 2️⃣ Insert type_name into room_type table
+    //  Insert type_name into room_type table
     if (!empty($data['type_name'])) {
         $stmt = $pdo->prepare("INSERT INTO room_type (id, type_name) VALUES (?, ?)");
         $stmt->execute([$roomId, $data['type_name']]);
@@ -51,7 +51,7 @@ function addRoomAmenities($pdo, $roomId, $amenities) {
     }
 }
 
-// Optional: fetch a single room with type_name (for update view)
+
 function getRoomById($pdo, $roomId) {
     $stmt = $pdo->prepare("
         SELECT r.*, rt.type_name

@@ -31,18 +31,18 @@
         <!-- Floor -->
         <div class="flex flex-col gap-5">
           <label for="floorSelect" class="sm:text-2xl text-[1.2rem]">Floor</label>
-<select id="floorSelect" class="border border-[#dcdcdc] rounded p-2 md:w-[200px] w-[150px]">
-    <option value="">Select None</option>
-    <?php foreach($floors as $floorValue): ?>
-        <?php 
-            $activeRooms = getRoomsByFloor($pdo, $floorValue);
-            if (empty($activeRooms)) continue; // skip floors with no active rooms
-        ?>
-        <option value="<?= htmlspecialchars($floorValue) ?>">
-            <?= htmlspecialchars($floorValue) ?>
-        </option>
-    <?php endforeach; ?>
-</select>
+          <select id="floorSelect" class="border border-[#dcdcdc] rounded p-2 md:w-[200px] w-[150px]">
+            <option value="">Select None</option>
+            <?php foreach ($floors as $floorValue): ?>
+              <?php
+              $activeRooms = getRoomsByFloor($pdo, $floorValue);
+              if (empty($activeRooms)) continue; // skip floors with no active rooms
+              ?>
+              <option value="<?= htmlspecialchars($floorValue) ?>">
+                <?= htmlspecialchars($floorValue) ?>
+              </option>
+            <?php endforeach; ?>
+          </select>
 
 
           <button type="reset" id="resetBtn" class="md:w-[200px] w-[150px] border border-[#dcdcdc] rounded p-2 mt-10 cursor-pointer">

@@ -19,7 +19,7 @@ if (!is_array($amenities)) {
 
 $statusClass = $statusClass ?? '';
 ?>
-   <?php
+<?php
 
 
 // Determine last page

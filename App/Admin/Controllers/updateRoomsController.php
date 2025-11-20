@@ -41,9 +41,9 @@ if (isset($_POST['reactivate_room'])) {
 
 
 
-// -----------------
+
 // UPDATE ROOM LOGIC
-// -----------------
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_room'])) {
 
     $status = $_POST['status'] ?? 'Booked';

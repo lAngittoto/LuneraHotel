@@ -14,7 +14,7 @@ $allAmenities = getAllAmenities($pdo);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_room'])) {
 
-   $status = 'Under Maintenance'; // o 'Available', depende sa gusto mo
+   $status = 'Under Maintenance'; // o 'Available', depende sa gusto 
 
 
     // Image upload
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_room'])) {
         'floor' => $_POST['floor'],
         'people' => $_POST['people'],
         'img' => $imgPath,
-         'type_name'   => $_POST['type_name'] // ✅ important!
+         'type_name'   => $_POST['type_name'] 
     ]);
 
     // Add amenities
