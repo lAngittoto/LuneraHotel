@@ -15,11 +15,6 @@ require_once __DIR__ . "/../../config/Helpers/correctgrammar.php";
     </p>
 </section>
 
-<?php if (empty($bookedRooms)): ?>
-    <p class="text-2xl sm:text-3xl md:text-4xl text-gray-500 text-center my-20 select-none">
-        You have no bookings yet.
-    </p>
-<?php else: ?>
 
     <!-- Booked Rooms Single Column Stack -->
     <section class="p-10 sm:p-14 md:p-16 w-full max-w-4xl mx-auto flex flex-col gap-12">
@@ -117,7 +112,7 @@ require_once __DIR__ . "/../../config/Helpers/correctgrammar.php";
 
         <?php endforeach; ?>
     </section>
-<?php endif; ?>
+
 
 <?php
 $content = ob_get_clean();

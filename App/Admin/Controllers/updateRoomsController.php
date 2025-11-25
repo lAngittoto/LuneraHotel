@@ -43,13 +43,13 @@ if (isset($_POST['reactivate_room'])) {
 
 
 // UPDATE ROOM LOGIC
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_room'])) {
 
-    $status = $_POST['status'] ?? 'Booked';
+    // Use current status if not set
+    $status = $_POST['status'] ?? $room['status'];
 
     // Image upload
-    $imgPath = null;
+    $imgPath = $room['img']; // default to existing
     if (!empty($_FILES['img']['name'])) {
         $targetDir = __DIR__ . '/../../Public/images/';
         $imgPath = $targetDir . basename($_FILES['img']['name']);
@@ -60,13 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_room'])) {
     // Update room
     updateRoom($pdo, $roomId, [
         'room_number' => $_POST['room_number'],
-        'room_type' => $_POST['room_type'],
+        'room_type'   => $_POST['room_type'],
         'type_name'   => $_POST['type_name'],
         'description' => $_POST['description'],
-        'status' => $status,
-        'floor' => $_POST['floor'],
-        'people' => $_POST['people'],
-        'img' => $imgPath
+        'status'      => $status,
+        'floor'       => $_POST['floor'],
+        'people'      => $_POST['people'],
+        'img'         => $imgPath
     ]);
 
     // Auto-complete bookings if room is now available
@@ -83,12 +83,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_room'])) {
     $selectedAmenities = $_POST['amenities'] ?? [];
     updateAmenities($pdo, $roomId, $selectedAmenities);
 
-
+    // Reload updated room
     $room = getRoomById($pdo, $roomId);
     $roomAmenities = getRoomAmenities($pdo, $roomId);
     $successMessage = "Room updated successfully!";
-
 }
+
 
 function getRoomById($pdo, $roomId) {
     $stmt = $pdo->prepare("

@@ -64,4 +64,9 @@ function updateAmenities($pdo, $roomId, $amenities) {
         }
     }
 }
+function roomHasActiveBooking($pdo, $roomId) {
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM bookings WHERE room_id = ? AND status='Booked'");
+    $stmt->execute([$roomId]);
+    return $stmt->fetchColumn() > 0;
+}
 ?>

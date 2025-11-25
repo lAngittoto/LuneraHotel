@@ -4,7 +4,7 @@ require_once __DIR__ . '/header.php';
 require_once __DIR__ . '/../../config/Helpers/colorcoding.php';
 
 if (isset($_SESSION['success_message'])) {
-  echo "<div class='bg-green-100 text-green-800 p-3 rounded mb-4 text-center text-4xl'>"
+  echo "<div class=' text-green-800 p-3 rounded mb-4 text-center text-4xl'>"
     . htmlspecialchars($_SESSION['success_message']) . "</div>";
   unset($_SESSION['success_message']);
 }

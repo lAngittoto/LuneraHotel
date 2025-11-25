@@ -10,20 +10,28 @@ function getAllBookings($pdo, $userEmail = null)
         FROM bookings b
         JOIN rooms r ON b.room_id = r.id
         WHERE 1=1
-        ORDER BY b.booking_date DESC
     ";
 
     if ($userEmail) {
         $sql .= " AND b.user_email = ?";
-        $stmt = $pdo->prepare($sql);
+    }
+
+    // ORDER BY: active bookings first, then completed, then by date DESC
+    $sql .= " ORDER BY 
+                CASE 
+                    WHEN b.status = 'Completed' THEN 1
+                    ELSE 0
+                END,
+                b.booking_date DESC
+            ";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($userEmail) {
         $stmt->execute([$userEmail]);
     } else {
-        $stmt = $pdo->prepare($sql);
         $stmt->execute();
     }
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
 }
-
