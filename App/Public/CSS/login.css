@@ -1,0 +1,124 @@
+/* General page styling */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Navbar */
+header {
+  background-color: #8b2d2d; /* Dark red */
+  color: white;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+header nav a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+header nav a.login-btn {
+  background-color: white;
+  color: #8b2d2d;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+header nav a.login-btn:hover {
+  background-color: #e8e8e8;
+}
+
+/* Login box container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px); /* subtract navbar height */
+}
+
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  text-align: left;
+}
+
+.login-box h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.login-box p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Input fields */
+.login-box input[type="email"],
+.login-box input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none; /* alisin default browser outline */
+  transition: border 0.2s, box-shadow 0.2s; /* smooth transition */
+  
+}
+.login-box input[type="email"]:focus,
+.login-box input[type="password"]:focus {
+  border: 1px solid #8b2d2d; /* border color nagiging maroon */
+  box-shadow: 0 0 5px rgba(139, 45, 45, 0.5); /* soft maroon glow */
+}
+/* Sign in button */
+.login-box button {
+  width: 100%;
+  background-color: #8b2d2d;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.login-box button:hover {
+  background-color: #732424;
+}
+
+/* Sign up link */
+.login-box .signup-text {
+  margin-top: 15px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.login-box .signup-text a {
+  color: #8b2d2d;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-box .signup-text a:hover {
+  text-decoration: underline;
+}
