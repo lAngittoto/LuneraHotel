@@ -40,7 +40,7 @@ require_once __DIR__ . '/header.php';
 
       <!-- Dirty -->
       <div class="card">
-        <h3>Dirty<i class=" text-4xl fa-solid fa-broom text-orange-700"></i></h3>
+        <h3>Requires cleaning<i class=" text-4xl fa-solid fa-broom text-orange-700"></i></h3>
         <p class="description">Rooms currently need to clean.</p>
         <span class="number"><?= htmlspecialchars($dirty) ?></span>
       </div>

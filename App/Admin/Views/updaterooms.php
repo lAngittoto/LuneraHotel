@@ -62,40 +62,39 @@ require_once __DIR__ . '/../../config/Helpers/amenityicon.php';
 
                 <!-- Status Radio Buttons -->
                 <div class="flex flex-col md:flex-row gap-6 items-start md:items-center text-xl">
+                    <?php 
+                        $isDirty = $room['status'] === 'Dirty'; 
+                        $isAvailable = $room['status'] === 'Available';
+                    ?>
 
                     <label class="flex items-center gap-3 font-semibold">
                         <i class="fa-solid fa-screwdriver-wrench text-[#800000] "></i> Under Maintenance
                         <input type="radio" name="status" value="Under Maintenance"
-                            <?= $room['status'] === 'Under Maintenance' ? 'checked' : '' ?>
+                            <?= $room['status'] === 'Under Maintenance' && !$isDirty && !$isAvailable ? 'checked' : '' ?>
+                            <?= $isDirty ? 'disabled' : '' ?>
                             class="w-6 h-6">
                     </label>
 
                     <label class="flex items-center gap-3 font-semibold">
                         <i class="fa-solid fa-bed text-green-800"></i> Available
                         <input type="radio" name="status" value="Available"
-                            <?= $room['status'] === 'Available' ? 'checked' : '' ?>
+                            <?= $room['status'] === 'Available' && !$isDirty ? 'checked' : '' ?>
+                            <?= $isDirty ? 'disabled' : '' ?>
                             class="w-6 h-6">
                     </label>
 
                     <label class="flex items-center gap-3 font-semibold">
                         <i class="fa-solid fa-book text-blue-800"></i> Booked
                         <input type="radio" name="status" value="Booked"
-                            <?= $room['status'] === 'Booked' ? 'checked' : '' ?>
-                            <?= in_array($room['status'], ['Dirty','In Progress','Under Maintenance','Available']) ? 'disabled' : '' ?>
+                            <?= $room['status'] === 'Booked' && !$isDirty && !$isAvailable ? 'checked' : '' ?>
+                            <?= $isDirty || $isAvailable ? 'disabled' : '' ?>
                             class="w-6 h-6">
                     </label>
 
                     <label class="flex items-center gap-3 font-semibold">
-                        <i class="fa-solid fa-broom text-orange-600"></i> Dirty
+                        <i class="fa-solid fa-broom text-orange-600"></i> Needs Cleaning
                         <input type="radio" name="status" value="Dirty"
-                            <?= $room['status'] === 'Dirty' ? 'checked' : '' ?>
-                            class="w-6 h-6">
-                    </label>
-
-                    <label class="flex items-center gap-3 font-semibold">
-                        <i class="fa-solid fa-spinner text-indigo-600"></i> In Progress
-                        <input type="radio" name="status" value="In Progress"
-                            <?= $room['status'] === 'In Progress' ? 'checked' : '' ?>
+                            <?= $isDirty ? 'checked disabled' : '' ?>
                             class="w-6 h-6">
                     </label>
                 </div>

@@ -2,7 +2,7 @@
 $host = "localhost";   
 $user = "root";        
 $pass = "P@ssw0rd";           
-$dbname = "roomsintegrate";    
+$dbname = "roomslunera_hotel";    
 $dbname_web = "webdb";
 
 try {

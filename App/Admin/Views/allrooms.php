@@ -14,7 +14,7 @@ if (!isset($_SESSION['user'])) {
         <?= convertFloor($floor) ?>
     </h1>
 
-    <section class="p-10 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch">
+    <section class="p-10 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10 items-stretch">
         <?php foreach ($rooms as $roomData): ?>
             <?php 
                 $r = new Rooms(

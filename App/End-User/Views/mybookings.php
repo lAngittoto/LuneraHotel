@@ -104,6 +104,9 @@ require_once __DIR__ . "/../../config/Helpers/correctgrammar.php";
                         </div>
                     </div>
                 </div>
+                <div>
+                    <a href="">Report Issue</a>
+                </div>
 
                 <!-- View Details Button -->
                 <div class="mt-auto">

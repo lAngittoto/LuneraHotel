@@ -19,70 +19,76 @@ $topBadges = [
 </section>
 
 <!-- Rooms List -->
-<section class="p-6 md:p-10 flex flex-col items-center gap-10 w-full">
-    <?php foreach ($bookedRooms as $index => $room): ?>
-        <?php $statusClass = getStatusClass($room['status'] ?? 'Available'); ?>
+<!-- Rooms List - Compact 4 Column -->
+<section class="p-4 md:p-8 w-full">
+    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
 
-        <div class="flex flex-col md:flex-row bg-white border border-gray-300 rounded-2xl shadow-md hover:shadow-xl transition w-full max-w-6xl overflow-hidden">
+        <?php foreach ($bookedRooms as $index => $room): ?>
+            <?php $statusClass = getStatusClass($room['status'] ?? 'Available'); ?>
 
-            <!-- Room Image -->
-            <div class="w-full md:w-2/5 h-72 md:h-80">
-                <img
-                    src="<?= htmlspecialchars($room['img']) ?>"
-                    alt="Room Image"
-                    class="w-full h-full object-cover hover:scale-105 transition duration-500">
-            </div>
+            <div class="bg-white border border-gray-300 rounded-xl shadow hover:shadow-lg transition overflow-hidden flex flex-col">
 
-            <!-- Room Details -->
-            <div class="w-full md:w-3/5 p-6 md:p-8 flex flex-col justify-between text-gray-800">
+                <!-- Image (smaller) -->
+                <div class="w-full h-36 md:h-40">
+                    <img src="<?= htmlspecialchars($room['img']) ?>"
+                         class="w-full h-full object-cover">
+                </div>
 
+                <!-- Content -->
+                <div class="p-4 flex flex-col flex-grow justify-between">
 
-                <div>
-                    <div class="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-3">
-                        <h2 class="text-2xl md:text-3xl font-bold text-center sm:text-left">
+                    <!-- Title + Badge -->
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800 leading-tight">
                             <?= htmlspecialchars($room['room_type']) ?>
                             <?php if ($index < 3): ?>
-                                <span class="ml-2"><?= $topBadges[$index + 1] ?></span>
+                                <span class="ml-1 text-xs"><?= $topBadges[$index + 1] ?></span>
                             <?php endif; ?>
                         </h2>
 
-                        <span class="px-4 py-2 rounded-2xl text-sm md:text-base <?= $statusClass ?> w-fit whitespace-nowrap">
-                            <?= htmlspecialchars($room['total_bookings'] ?? 0) . " " . popularity($room['total_bookings'] ?? 0) ?>
-
+                        <span class="mt-1 inline-block px-2 py-1 text-xs rounded-lg <?= $statusClass ?>">
+                            <?= htmlspecialchars($room['total_bookings'] ?? 0) ?>
+                            <?= popularity($room['total_bookings'] ?? 0) ?>
                         </span>
+
+                        <!-- Short Description -->
+                        <p class="text-gray-600 text-xs mt-2 line-clamp-3">
+                            <?= htmlspecialchars($room['description']) ?>
+                        </p>
                     </div>
 
-                    <!-- Description -->
-                    <p class="text-gray-600 mt-4 text-sm md:text-base leading-relaxed text-justify">
-                        <?= htmlspecialchars($room['description']) ?>
-                    </p>
-                </div>
+                    <!-- Info (smaller icons/text) -->
+                    <div class="mt-3 space-y-1 text-gray-700 text-xs">
 
-                <!-- Room Info -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 text-gray-700 text-sm md:text-base">
-<?php if (!empty($room['floor'])): ?>
-    <div class="flex items-center gap-2 md:gap-3">
-        <i class="fa-solid fa-building text-[#800000] text-lg"></i>
-        <span>Floor <?= htmlspecialchars(convertFloor($room['floor'])) ?></span>
-    </div>
-<?php endif; ?>
+                        <?php if (!empty($room['floor'])): ?>
+                            <div class="flex items-center gap-1">
+                                <i class="fa-solid fa-building text-[#800000] text-sm"></i>
+                                <span>Floor <?= htmlspecialchars(convertFloor($room['floor'])) ?></span>
+                            </div>
+                        <?php endif; ?>
 
-                    <div class="flex items-center gap-2 md:gap-3">
-                        <i class="fa-solid fa-user-group text-[#800000] text-lg"></i>
-                        <?= htmlspecialchars(correctGuest($room['people'])) ?>
+                        <div class="flex items-center gap-1">
+                            <i class="fa-solid fa-user-group text-[#800000] text-sm"></i>
+                            <?= htmlspecialchars(correctGuest($room['people'])) ?>
+                        </div>
+
                     </div>
-                </div>
 
-                <!-- View Details Button -->
-                <a href="viewdetailsadmin?id=<?= $room['id'] ?>"
-                    class="mt-6 block text-center bg-[#800000] text-white px-6 py-3 md:py-4 rounded-xl font-semibold hover:bg-[#a52a2a] transition">
-                    View Details <i class="fa-regular fa-file-lines ml-2"></i>
-                </a>
+                    <!-- Button (smaller) -->
+                    <a href="viewdetailsadmin?id=<?= $room['id'] ?>"
+                       class="mt-3 text-center bg-[#800000] text-white text-sm px-3 py-2 rounded-lg hover:bg-[#a52a2a] transition">
+                        View Details
+                    </a>
+
+                </div>
 
             </div>
-        </div>
-    <?php endforeach; ?>
+
+        <?php endforeach; ?>
+
+    </div>
 </section>
+
 
 <?php
 $content = ob_get_clean();

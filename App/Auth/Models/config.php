@@ -1,7 +1,7 @@
 <?php
 // config.php
 $host = 'localhost';      //  localhost
-$db   = 'roomsintegrate';   //  database name
+$db   = 'roomslunera_hotel';   //  database name
 $user = 'root';           // DB username
 $pass = 'P@ssw0rd';               //  DB password
 $charset = 'utf8mb4';
