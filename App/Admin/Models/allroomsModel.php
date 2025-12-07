@@ -15,7 +15,6 @@ function convertFloor($floor) {
         10 => "Tenth Floor"
     ];
 
-
     return $names[$floor] ?? "Floor $floor";
 }
 
@@ -25,26 +24,29 @@ function getAllFloors($pdo) {
     $stmt->execute();
     $floors = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-    // filter out empty or null floors
     return array_filter($floors, fn($f) => $f !== '' && $f !== null);
 }
 
-// Get rooms by floor (exclude deactivated)
-// Modified to handle dirty status based on user role
+// Get rooms by floor (INCLUDE deactivated)
 function getRoomsByFloor($pdo, $floor, $isAdmin = false) {
-    $stmt = $pdo->prepare("SELECT * FROM rooms WHERE floor = ? AND status != 'Deactivated' ORDER BY room_number ASC");
+
+    $stmt = $pdo->prepare("SELECT * FROM rooms WHERE floor = ? ORDER BY room_number ASC");
     $stmt->execute([$floor]);
     $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-    // If not admin, convert "dirty" status to "Unavailable"
-    if (!$isAdmin) {
-        foreach ($rooms as &$room) {
-            if (strtolower($room['status']) === 'dirty') {
-                $room['status'] = 'Unavailable';
-            }
+    foreach ($rooms as &$room) {
+
+        // replace Deactivated → Out of Order
+        if (strtolower($room['status']) === 'deactivated') {
+            $room['status'] = 'Out of Order';
         }
-        unset($room); // break reference
+
+        // DO NOT TOUCH — cleaning flow intact
+        if (!$isAdmin && strtolower($room['status']) === 'dirty') {
+            $room['status'] = 'Unavailable';
+        }
     }
+    unset($room);
 
     return $rooms;
 }

@@ -7,7 +7,7 @@ $authPages = ['login', 'authenticate', 'admin'];
 
 // Define which pages belong to End-User
 $endUserPages = ['rooms', 'mybookings', 'viewdetails', 'bookroom'];
-$adminPages = ['managerooms','allbookings','popularity','allrooms' ,'viewdetailsadmin','updaterooms','createrooms']; //  added bookroom
+$adminPages = ['managerooms','allbookings','popularity','allrooms' ,'viewdetailsadmin','updaterooms','createrooms','notification']; //  added bookroom
 
 // Decide which route to include
 if (in_array($page, $authPages)) {

@@ -30,6 +30,12 @@ switch ($page) {
         include __DIR__ . '/../Admin/Controllers/createRoomsController.php';
         break;
 
+           
+    case 'notification':
+        include __DIR__ . '/../Admin/Controllers/notifController.php';
+        break;
+
+
 
     default:
         http_response_code(404);
