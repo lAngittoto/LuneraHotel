@@ -1,0 +1,13 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /LuneraHotel/App/Public/
+
+# ✅ Redirect root URL to login (lowercase, dahil sa web.php case)
+RewriteRule ^$ login [L,R=301]
+
+# If the requested file or directory doesn't exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# ✅ Send everything else to index.php?page=<name>
+RewriteRule ^([A-Za-z0-9_-]+)/?$ index.php?page=$1 [L,QSA]
