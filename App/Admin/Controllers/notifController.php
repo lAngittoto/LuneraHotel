@@ -1,22 +1,17 @@
 <?php
-// File: App/Admin/Controllers/notifController.php
-session_start();
-require_once __DIR__ . '/../../config/db.php';
-
 header('Content-Type: application/json');
+require_once __DIR__ . '/../../config/db.php'; // LuneraHotel DB
 
-// Only admin can fetch notifications
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    echo json_encode([]);
-    exit;
-}
+$stmt = $pdo->query("
+    SELECT 
+        n.id,
+        r.room_number,
+        n.description,
+        n.status,
+        n.completed_at
+    FROM notifications n
+    JOIN rooms r ON n.room_id = r.id
+    ORDER BY n.completed_at DESC
+");
 
-try {
-    $stmt = $pdo->prepare("SELECT * FROM notifications ORDER BY created_at DESC LIMIT 20");
-    $stmt->execute();
-    $notifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    echo json_encode($notifications);
-} catch (Exception $e) {
-    echo json_encode([]);
-}
+echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

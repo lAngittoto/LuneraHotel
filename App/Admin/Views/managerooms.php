@@ -242,25 +242,12 @@ function submitCleaningTask(event) {
     });
 }
 
-// Auto popup for Pending rooms without task
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll('.room-row').forEach(row => {
-        const status = row.dataset.roomStatus;
-        const roomId = row.dataset.roomId;
-        const roomNumber = row.dataset.roomNumber;
-        const hasTask = row.querySelector('button[title*="Cleaning task"]') !== null;
-
-        if ((status === 'dirty' || status === 'pending') && !hasTask) {
-            openCleaningPopup(roomId, roomNumber);
-        }
-    });
-});
-
 document.getElementById('cleaningPopup')?.addEventListener('click', function(e) {
     if (e.target === this) {
         closeCleaningPopup();
     }
 });
+
 </script>
 
 <?php

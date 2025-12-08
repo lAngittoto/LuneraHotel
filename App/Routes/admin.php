@@ -31,10 +31,7 @@ switch ($page) {
         break;
 
            
-    case 'notification':
-        include __DIR__ . '/../Admin/Controllers/notifController.php';
-        break;
-
+ 
 
 
     default:
