@@ -23,7 +23,6 @@ if (isset($_SESSION['success_message'])) {
     </div>
 
     <div>
-        <!-- TABLE HEADER -->
         <div class="bg-[#ffffff] border border-[#cccccc] shadow-2xl
                         md:text-[1.2rem] text-[1rem]
                         grid grid-cols-3 md:grid-cols-7 gap-4 p-8 mt-10 font-semibold">
@@ -36,7 +35,6 @@ if (isset($_SESSION['success_message'])) {
             <h1 class="text-center">Actions</h1>
         </div>
 
-        <!-- TABLE ROWS -->
         <div>
             <?php foreach ($rooms as $room): ?>
                 <?php 
@@ -44,8 +42,6 @@ if (isset($_SESSION['success_message'])) {
                     $statusLower = strtolower($room['status']);
                     $isInProgress = $statusLower === 'in progress';
                     $isPending = $statusLower === 'pending' || $statusLower === 'dirty';
-
-                    // Minimal fix lang: display "Out of Order" for Deactivated
                     $displayStatus = $room['status'] === 'Deactivated' ? 'Out of Order' : ($isPending ? 'Pending' : $room['status']);
                     $backgroundColor = $isInProgress ? '#4f46e5' : ($isPending ? '#f59e0b' : ($room['status'] === 'Deactivated' ? '#9ca3af' : ''));
                 ?>
@@ -57,28 +53,22 @@ if (isset($_SESSION['success_message'])) {
                      data-room-number="<?= htmlspecialchars($room['room_number'], ENT_QUOTES) ?>"
                      data-room-status="<?= strtolower($room['status']) ?>">
 
-                    <!-- Room Number -->
                     <p class="text-[#333333] font-semibold">
                         <?= htmlspecialchars($room['room_number']) ?>
                     </p>
 
-                    <!-- Room Name -->
                     <p class="hidden md:block"><?= htmlspecialchars($room['room_type']) ?></p>
 
-                    <!-- Room Type -->
                     <p class="text-[#333333] font-semibold hidden md:block">
                         <?= htmlspecialchars($room['type_name']) ?>
                     </p>
 
-                    <!-- Floor -->
                     <p class="hidden md:block"><?= htmlspecialchars($room['floor']) ?></p>
 
-                    <!-- Capacity -->
                     <p class="text-[#333333] font-semibold hidden md:block">
                         <?= htmlspecialchars($room['people']) ?>
                     </p>
 
-                    <!-- STATUS & CLEANING BUTTON -->
                     <div class="flex flex-col gap-2 items-center">
                         <span class="<?= htmlspecialchars($statusClass) ?> px-4 py-2 rounded-xl text-white text-center block w-full"
                               style="background: <?= $backgroundColor ?>; color: #fff;">
@@ -105,10 +95,7 @@ if (isset($_SESSION['success_message'])) {
                         <?php endif; ?>
                     </div>
 
-                    <!-- ACTION BUTTONS -->
                     <div class="flex flex-col sm:flex-col lg:flex-row justify-center items-center gap-2">
-
-                        <!-- UPDATE -->
                         <?php if ($room['status'] !== 'Deactivated'): ?>
                             <a href="updaterooms?id=<?= $room['id'] ?>"
                                 class="text-center text-white bg-blue-600 hover:bg-blue-700
@@ -123,7 +110,6 @@ if (isset($_SESSION['success_message'])) {
                             </span>
                         <?php endif; ?>
 
-                        <!-- DEACTIVATE -->
                         <?php if ($room['status'] !== 'Deactivated'): ?>
                             <form method="POST" action="updaterooms?id=<?= $room['id'] ?>" class="w-full lg:w-auto">
                                 <button type="submit" name="deactivate_room"
@@ -135,7 +121,6 @@ if (isset($_SESSION['success_message'])) {
                             </form>
                         <?php endif; ?>
 
-                        <!-- REACTIVATE -->
                         <?php if ($room['status'] === 'Deactivated'): ?>
                             <form method="POST" action="updaterooms?id=<?= $room['id'] ?>" class="w-full lg:w-auto">
                                 <button type="submit" name="reactivate_room"
@@ -155,7 +140,6 @@ if (isset($_SESSION['success_message'])) {
     </div>
 </div>
 
-<!-- Cleaning Task Popup Modal -->
 <div id="cleaningPopup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]">
     <div class="bg-white rounded-2xl shadow-2xl w-[90%] max-w-md relative">
         <button onclick="closeCleaningPopup()"
@@ -241,20 +225,6 @@ function submitCleaningTask(event) {
         messageDiv.textContent = 'Error: ' + error.message;
     });
 }
-
-// Auto popup for Pending rooms without task
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll('.room-row').forEach(row => {
-        const status = row.dataset.roomStatus;
-        const roomId = row.dataset.roomId;
-        const roomNumber = row.dataset.roomNumber;
-        const hasTask = row.querySelector('button[title*="Cleaning task"]') !== null;
-
-        if ((status === 'dirty' || status === 'pending') && !hasTask) {
-            openCleaningPopup(roomId, roomNumber);
-        }
-    });
-});
 
 document.getElementById('cleaningPopup')?.addEventListener('click', function(e) {
     if (e.target === this) {

@@ -1,5 +1,4 @@
 <?php
-// File: App/Admin/Controllers/notifController.php
 session_start();
 require_once __DIR__ . '/../../config/db.php';
 
@@ -12,11 +11,13 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
 }
 
 try {
-    $stmt = $pdo->prepare("SELECT * FROM notifications ORDER BY created_at DESC LIMIT 20");
+    // Use completed_at instead of created_at
+    $stmt = $pdo->prepare("SELECT * FROM notifications ORDER BY completed_at DESC LIMIT 20");
     $stmt->execute();
     $notifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     echo json_encode($notifications);
 } catch (Exception $e) {
+    error_log("Notification fetch error: " . $e->getMessage());
     echo json_encode([]);
 }
