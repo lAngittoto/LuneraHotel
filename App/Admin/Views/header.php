@@ -16,6 +16,7 @@
       </button>
 
       <div id="notifDropdown" class="hidden absolute right-0 mt-2 w-96 bg-white text-black rounded-xl shadow-xl max-h-96 overflow-y-auto border border-gray-200">
+        <button id="markDoneBtn" class="w-full bg-green-600 text-white py-2 rounded-t-xl hover:bg-green-700 transition">Mark as Done</button>
         <h3 class="text-sm font-semibold text-gray-700 p-4 border-b border-gray-200">Notifications</h3>
         <div id="notifList" class="space-y-2 p-4"></div>
         <div id="notifEmpty" class="text-sm text-gray-500 text-center py-4 hidden">No notifications available.</div>
@@ -35,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const notifList = document.getElementById('notifList');
     const notifCount = document.getElementById('notifCount');
     const notifEmpty = document.getElementById('notifEmpty');
+    const markDoneBtn = document.getElementById('markDoneBtn');
+
+    let notifications = [];
 
     notifIcon.addEventListener('click', () => {
         notifDropdown.classList.toggle('hidden');
@@ -45,32 +49,58 @@ document.addEventListener('DOMContentLoaded', () => {
             const res = await fetch('/LuneraHotel/App/Admin/Controllers/notifController.php');
             const data = await res.json();
 
-            notifList.innerHTML = '';
+            notifications = data.notifications;
 
-            if (!data || data.length === 0) {
+            // Render history
+            notifList.innerHTML = '';
+            if (notifications.length === 0) {
                 notifEmpty.classList.remove('hidden');
-                notifCount.classList.add('hidden');
-                return;
             } else {
                 notifEmpty.classList.add('hidden');
-                notifCount.textContent = data.length;
-                notifCount.classList.remove('hidden');
+                notifications.forEach(n => {
+                    const li = document.createElement('div');
+                    const statusColor = n.seen == 1 ? 'text-green-700' : 'text-red-600';
+                    li.className = 'p-3 rounded-xl border border-gray-200 flex flex-col gap-1 shadow-sm hover:bg-gray-100 transition';
+                    li.innerHTML = `
+                        <span class="${statusColor} text-xs font-semibold">${n.status.toUpperCase()}</span>
+                        <p class="text-sm text-gray-800 font-medium">${n.description}</p>
+                        <p class="text-xs text-gray-500">${n.completed_at}</p>
+                    `;
+                    notifList.appendChild(li);
+                });
             }
 
-            data.forEach(n => {
-                const li = document.createElement('div');
-                li.className = 'p-3 bg-gray-50 rounded-xl border border-gray-200 flex flex-col gap-1 shadow-sm hover:bg-gray-100 transition';
-                li.innerHTML = `
-                    <span class="text-green-700 text-xs font-semibold">${n.status.toUpperCase()}</span>
-                    <p class="text-sm text-gray-800 font-medium">${n.description}</p>
-                    <p class="text-xs text-gray-500">${n.completed_at}</p>
-                `;
-                notifList.appendChild(li);
-            });
+            // Update count only (unseen)
+            if (data.unseen_count > 0) {
+                notifCount.textContent = data.unseen_count;
+                notifCount.classList.remove('hidden');
+            } else {
+                notifCount.textContent = '0';
+                notifCount.classList.add('hidden');
+            }
+
         } catch(e) {
             console.error("Fetch failed: ", e);
         }
     }
+
+    markDoneBtn.addEventListener('click', async () => {
+        try {
+            const res = await fetch('/LuneraHotel/App/Admin/Controllers/markDoneController.php');
+            const data = await res.json();
+            if (data.success) {
+                notifCount.textContent = '0';
+                notifCount.classList.add('hidden');
+                // Update colors in UI to green
+                document.querySelectorAll('#notifList span').forEach(span => {
+                    span.classList.remove('text-red-600');
+                    span.classList.add('text-green-700');
+                });
+            }
+        } catch(e) {
+            console.error("Mark as done failed: ", e);
+        }
+    });
 
     fetchNotifications();
     setInterval(fetchNotifications, 5000);

@@ -1,0 +1,120 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 0px;
+    width: 100%;
+    height: 60px;
+    background-color: maroon;
+    margin-bottom: 150px;
+}
+
+header a {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-left: 1rem;
+}
+
+header a h1 {
+    color: white;
+    font-size: 1.25rem;
+}
+
+/*Login Area*/
+.wrapper {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    gap: 30px;
+}
+
+.mission-vision {
+    display: flex;
+    flex-direction: column;
+    width: 99%;
+    max-width: 340px;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #E5E5E5;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.mission-vision h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.mission-vision p{
+    color: var(--light-text-color);
+    font-size: 0.89rem;
+    margin-bottom: 20px;
+}
+
+.login-area {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 99%;
+    max-width: 770px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.login-area form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 25px;
+    border: 1px solid #E5E5E5;
+    border-radius: 6px;
+}
+
+.login-area h1 {
+    margin-bottom: 20px;
+}
+
+.login-area form h2 {
+    margin-bottom: 5px;
+}
+
+.login-area form p {
+    margin-bottom: 30px;
+    color: var(--light-text-color);
+    font-size: 0.89rem;
+}
+
+.login-area form label {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.login-area form input {
+    margin-bottom: 20px;
+    height: 35px;
+    padding-left: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+.login-area form button {
+    height: 40px;
+    background-color: maroon;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 564px) {
+  .mission-vision {
+    display: none;
+  }
+}
