@@ -6,10 +6,6 @@ switch ($page) {
         include __DIR__ . '/../End-User/Controllers/roomsController.php';
         break;
 
-    case 'mybookings':
-        include __DIR__ . '/../End-User/Controllers/MyBookingsController.php';
-        break;
-
     case 'viewdetails':
         include __DIR__ . '/../End-User/Controllers/viewdetailsController.php';
         break;

@@ -9,12 +9,12 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
 }
 
 try {
-    // Fetch all notifications (history) and count unseen separately
-    $stmt = $pdo->prepare("SELECT * FROM notifications ORDER BY completed_at DESC LIMIT 50");
+    // Fetch all notifications (no filtering)
+    $stmt = $pdo->prepare("SELECT *, 'Room Update' AS status FROM notifications ORDER BY completed_at DESC LIMIT 50");
     $stmt->execute();
     $notifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Count unseen
+    // Count unseen (still use original seen column)
     $stmt2 = $pdo->prepare("SELECT COUNT(*) as unseen_count FROM notifications WHERE seen = 0");
     $stmt2->execute();
     $unseen_count = $stmt2->fetch(PDO::FETCH_ASSOC)['unseen_count'];

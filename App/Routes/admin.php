@@ -35,6 +35,13 @@ switch ($page) {
         include __DIR__ . '/../Admin/Controllers/notifController.php';
         break;
 
+    case 'annualreport':
+        include __DIR__ . '/../Admin/Controllers/AnnualReportController.php';
+        $controller = new AnnualReportController($pdo);
+        $controller->index();
+        break;
+
+
 
 
     default:

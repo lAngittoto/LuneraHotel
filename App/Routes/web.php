@@ -6,8 +6,8 @@ $page = $_GET['page'] ?? 'login';
 $authPages = ['login', 'authenticate', 'admin'];
 
 // Define which pages belong to End-User
-$endUserPages = ['rooms', 'mybookings', 'viewdetails', 'bookroom'];
-$adminPages = ['managerooms','allbookings','popularity','allrooms' ,'viewdetailsadmin','updaterooms','createrooms','notification']; //  added bookroom
+$endUserPages = ['rooms', 'viewdetails', 'bookroom'];
+$adminPages = ['managerooms','allbookings','popularity','allrooms' ,'viewdetailsadmin','updaterooms','createrooms','notification','annualreport']; //  added bookroom
 
 // Decide which route to include
 if (in_array($page, $authPages)) {
@@ -26,7 +26,7 @@ if (in_array($page, $authPages)) {
             break;
 
     }
-} elseif (in_array($page, $endUserPages,)) {
+} elseif (in_array($page, $endUserPages)) {
     // Include End-User router
     require_once __DIR__ . '/end-user.php';
 } elseif(in_array($page, $adminPages)){

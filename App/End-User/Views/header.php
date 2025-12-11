@@ -14,7 +14,6 @@ ob_start();
     <!-- Navigation Links -->
     <nav class="flex flex-col sm:flex-row gap-5 sm:gap-10 justify-center items-center text-white  font-light select-none">
         <a href="/LuneraHotel/App/Public/rooms"><span class=" text-[1.3rem] hover:text-gray-300 transition-colors duration-200">Rooms</span></a>
-        <a href="/LuneraHotel/App/Public/mybookings"><span class=" text-[1.3rem] hover:text-gray-300 transition-colors duration-200">My Bookings</span></a>
         <a href="/LuneraHotel/App/Auth/Controllers/logout.php"><p class=" transition-colors duration-200 text-[1rem] px-5 py-3 bg-[#ffffff] text-[#800000] rounded-2xl shadow-2xl">Log out</p></a>
     </nav>
 

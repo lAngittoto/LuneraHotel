@@ -62,6 +62,11 @@ require_once __DIR__ . '/header.php';
           <p class="description">View a detailed report of the most popular rooms based on booking frequency.</p> <br>
           <a href="/LuneraHotel/App/Public/popularity" class=" text-[#ffffff] bg-[#800000] py-3 px-5 rounded-xl sm:text-[0.8rem] text-[0.7rem]">View Full Report <i class="fa-solid fa-arrow-right"></i></a>
         </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-chart-simple text-[#800000]"></i>Annual Report</h3>
+          <p class="description"> Generate a comprehensive annual summary of hotel performance, including total bookings, revenue trends, room utilization, and maintenance activity.</p> <br>
+          <a href="/LuneraHotel/App/Public/annualreport" class=" text-[#ffffff] bg-[#800000] py-3 px-5 rounded-xl sm:text-[0.8rem] text-[0.7rem]">View Full Report <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
       </div>
     </section>
     </div>
