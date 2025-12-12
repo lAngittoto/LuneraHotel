@@ -1,13 +1,12 @@
 <?php
-
 function getRoomsSummary($pdo)
 {
     $query = "
         SELECT 
             r.id,
             r.room_number,
-            r.room_type,          -- may value pa rin kung gusto mo reference
-            rt.type_name,         -- actual display name
+            r.room_type,
+            rt.type_name,
             r.floor,
             r.people,
             r.status,
@@ -22,7 +21,7 @@ function getRoomsSummary($pdo)
             END AS has_cleaning_task
         FROM rooms r
         LEFT JOIN room_type rt 
-            ON rt.id = r.id      -- ✅ correct join
+            ON rt.id = r.room_type
         ORDER BY r.floor ASC, r.room_number ASC
     ";
 
@@ -31,3 +30,4 @@ function getRoomsSummary($pdo)
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+?>

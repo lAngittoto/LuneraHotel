@@ -17,81 +17,81 @@ $roomAmenities = getRoomAmenities($pdo, $roomId);
 $allAmenities = getAllAmenities($pdo);
 $roomTypes = getAllRoomTypes($pdo);
 
-
-// DEACTIVATE ROOM
-if (isset($_POST['deactivate_room'])) {
-    $stmt = $pdo->prepare("UPDATE rooms SET status = 'Deactivated' WHERE id = ?");
-    $stmt->execute([$roomId]);
-    
-    $_SESSION['success_message'] = "Room has been deactivated!";
-    header("Location: /LuneraHotel/App/Public/managerooms");
-    exit;
-}
-
-// REACTIVATE ROOM
-if (isset($_POST['reactivate_room'])) {
-    $stmt = $pdo->prepare("UPDATE rooms SET status = 'Available' WHERE id = ?");
-    $stmt->execute([$roomId]);
-    
-    $_SESSION['success_message'] = "Room has been reactivated!";
-    header("Location: /LuneraHotel/App/Public/managerooms");
-    exit;
-}
-
-
-
-
+$errorMessage = null;
 
 // UPDATE ROOM LOGIC
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_room'])) {
 
     $status = $_POST['status'] ?? 'Booked';
-    
-    // Debug: Log what status we received
-    error_log("Received status: " . $status);
-    error_log("All POST data: " . print_r($_POST, true));
 
-    // Image upload
-    $imgPath = null;
-    if (!empty($_FILES['img']['name'])) {
-        $targetDir = __DIR__ . '/../../Public/images/';
-        $imgPath = $targetDir . basename($_FILES['img']['name']);
-        move_uploaded_file($_FILES['img']['tmp_name'], $imgPath);
-        $imgPath = 'images/' . basename($_FILES['img']['name']);
+    $people = intval($_POST['people']);
+    $room_number = trim($_POST['room_number']);
+    $floor = intval($_POST['floor']);
+
+    // Validation: Room number must be numeric and non-negative
+    if (!is_numeric($room_number) || intval($room_number) < 0) {
+        $errorMessage = "Invalid room number!";
     }
 
-    // Update room
-    updateRoom($pdo, $roomId, [
-        'room_number' => $_POST['room_number'],
-        'room_type' => $_POST['room_type'],
-        'type_name'   => $_POST['type_name'],
-        'description' => $_POST['description'],
-        'status' => $status,
-        'floor' => $_POST['floor'],
-        'people' => $_POST['people'],
-        'img' => $imgPath
-    ]);
-
-    // Auto-complete bookings if room is now available
-    if ($status === 'Available') {
-        $stmt = $pdo->prepare("
-            UPDATE bookings
-            SET status = 'Completed'
-            WHERE room_id = ? AND status = 'Booked'
-        ");
-        $stmt->execute([$roomId]);
+    // Validation: Maximum 6 people
+    elseif ($people > 6) {
+        $errorMessage = "Maximum capacity is 6 people only!";
     }
 
-    // Update amenities
-    $selectedAmenities = $_POST['amenities'] ?? [];
-    updateAmenities($pdo, $roomId, $selectedAmenities);
+    // Validation: Maximum floor 4
+    elseif ($floor > 4) {
+        $errorMessage = "Maximum floor allowed is 4!";
+    }
 
+    // Validation: Prevent duplicate room numbers
+    else {
+        $stmt = $pdo->prepare("SELECT id FROM rooms WHERE room_number = ? AND id != ?");
+        $stmt->execute([$room_number, $roomId]);
+        if ($stmt->fetch()) {
+            $errorMessage = "Room number $room_number is already in use!";
+        }
+    }
 
-    $room = getRoomById($pdo, $roomId);
-    $roomAmenities = getRoomAmenities($pdo, $roomId);
-    $successMessage = "Room updated successfully!";
+    if (!$errorMessage) {
+        // Image upload
+        $imgPath = null;
+        if (!empty($_FILES['img']['name'])) {
+            $targetDir = __DIR__ . '/../../Public/images/';
+            $imgPath = $targetDir . basename($_FILES['img']['name']);
+            move_uploaded_file($_FILES['img']['tmp_name'], $imgPath);
+            $imgPath = 'images/' . basename($_FILES['img']['name']);
+        }
 
+        // Update room
+        updateRoom($pdo, $roomId, [
+            'room_number' => $room_number,
+            'room_type' => $_POST['room_type'],
+            'type_name'   => $_POST['type_name'],
+            'description' => $_POST['description'],
+            'status' => $status,
+            'floor' => $floor,
+            'people' => $people,
+            'img' => $imgPath
+        ]);
+
+        // Auto-complete bookings if room is now available
+        if ($status === 'Available') {
+            $stmt = $pdo->prepare("
+                UPDATE bookings
+                SET status = 'Completed'
+                WHERE room_id = ? AND status = 'Booked'
+            ");
+            $stmt->execute([$roomId]);
+        }
+
+        // Update amenities
+        $selectedAmenities = $_POST['amenities'] ?? [];
+        updateAmenities($pdo, $roomId, $selectedAmenities);
+
+        $room = getRoomById($pdo, $roomId);
+        $roomAmenities = getRoomAmenities($pdo, $roomId);
+        $successMessage = "Room updated successfully!";
+    }
 }
 
 function getRoomById($pdo, $roomId) {
@@ -105,8 +105,5 @@ function getRoomById($pdo, $roomId) {
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-
-
 include __DIR__ . '/../Views/updaterooms.php';
-
 ?>

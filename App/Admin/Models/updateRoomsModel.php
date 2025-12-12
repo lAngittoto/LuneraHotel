@@ -56,3 +56,4 @@ function updateAmenities($pdo, $roomId, $amenities) {
         }
     }
 }
+?>

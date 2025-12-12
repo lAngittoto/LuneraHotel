@@ -29,6 +29,17 @@
   </nav>
 </header>
 
+<!-- IMAGE ZOOM MODAL -->
+<div id="imgZoomModal" 
+     class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-[9999] p-4"
+     onclick="backgroundClose(event)">
+    <div class="relative">
+        <img id="zoomImage" 
+             src="" 
+             class="max-w-[90vw] max-h-[90vh] rounded-xl shadow-2xl border-4 border-white">
+    </div>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const notifIcon = document.getElementById('notifIcon');
@@ -37,8 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const notifCount = document.getElementById('notifCount');
     const notifEmpty = document.getElementById('notifEmpty');
     const markDoneBtn = document.getElementById('markDoneBtn');
-
-    let notifications = [];
 
     notifIcon.addEventListener('click', () => {
         notifDropdown.classList.toggle('hidden');
@@ -49,38 +58,59 @@ document.addEventListener('DOMContentLoaded', () => {
             const res = await fetch('/LuneraHotel/App/Admin/Controllers/notifController.php');
             const data = await res.json();
 
-            notifications = data.notifications;
-
-            // Render history
             notifList.innerHTML = '';
-            if (notifications.length === 0) {
+
+            if (data.notifications.length === 0) {
                 notifEmpty.classList.remove('hidden');
             } else {
                 notifEmpty.classList.add('hidden');
-                notifications.forEach(n => {
+
+                data.notifications.forEach(n => {
                     const li = document.createElement('div');
                     const statusColor = n.seen == 1 ? 'text-green-700' : 'text-red-600';
-                    li.className = 'p-3 rounded-xl border border-gray-200 flex flex-col gap-1 shadow-sm hover:bg-gray-100 transition';
+
+                    li.className = 'p-3 rounded-xl border border-gray-200 flex flex-col gap-2 shadow-sm bg-white';
+
+                    let imgs = [];
+                    try {
+                        imgs = n.images ? JSON.parse(n.images) : [];
+                    } catch {
+                        imgs = [];
+                    }
+
+                    let imagesHTML = '';
+                    if (imgs.length > 0) {
+                        imagesHTML = `
+                            <div class="flex gap-2 flex-wrap">
+                                ${imgs.map(img => `
+                                    <img src="${img}"
+                                        onclick="openImageModal('${img}')"
+                                        class="w-20 h-20 object-cover rounded-lg cursor-pointer hover:scale-105 transition">
+                                `).join('')}
+                            </div>
+                        `;
+                    }
+
                     li.innerHTML = `
-                        <span class="${statusColor} text-xs font-semibold">${n.status.toUpperCase()}</span>
-                        <p class="text-sm text-gray-800 font-medium">${n.description}</p>
-                        <p class="text-xs text-gray-500">${n.completed_at}</p>
+                        <span class="${statusColor} text-xs font-semibold">ROOM UPDATE</span>
+                        <p class="text-sm font-medium text-gray-800">${n.description}</p>
+                        ${imagesHTML}
+                        <p class="text-xs text-gray-500">${n.completed_at ?? ''}</p>
                     `;
+
                     notifList.appendChild(li);
                 });
             }
 
-            // Update count only (unseen)
             if (data.unseen_count > 0) {
                 notifCount.textContent = data.unseen_count;
                 notifCount.classList.remove('hidden');
             } else {
-                notifCount.textContent = '0';
                 notifCount.classList.add('hidden');
             }
 
-        } catch(e) {
-            console.error("Fetch failed: ", e);
+        } catch (e) {
+            console.error("Fetch failed:", e);
         }
     }
 
@@ -88,23 +118,39 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await fetch('/LuneraHotel/App/Admin/Controllers/markDoneController.php');
             const data = await res.json();
+
             if (data.success) {
-                notifCount.textContent = '0';
                 notifCount.classList.add('hidden');
-                // Update colors in UI to green
                 document.querySelectorAll('#notifList span').forEach(span => {
                     span.classList.remove('text-red-600');
                     span.classList.add('text-green-700');
                 });
             }
-        } catch(e) {
-            console.error("Mark as done failed: ", e);
+        } catch (e) {
+            console.error("Mark done error:", e);
         }
     });
 
     fetchNotifications();
     setInterval(fetchNotifications, 5000);
 });
+
+// 🔍 OPEN IMAGE MODAL
+function openImageModal(src) {
+    document.getElementById("zoomImage").src = src;
+    document.getElementById("imgZoomModal").classList.remove("hidden");
+}
+
+// ❌ CLOSE WHEN CLICK OUTSIDE IMAGE
+function backgroundClose(e) {
+    if (e.target.id === "imgZoomModal") {
+        closeImageModal();
+    }
+}
+
+function closeImageModal() {
+    document.getElementById("imgZoomModal").classList.add("hidden");
+}
 </script>
 
 <?php $content = ob_get_clean(); include __DIR__ . '/../../../App/layout.php'; ?>

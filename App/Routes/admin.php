@@ -41,6 +41,11 @@ switch ($page) {
         $controller->index();
         break;
 
+    case 'exportpdf':
+        include __DIR__ . '/../Admin/Controllers/AnnualReportController.php';
+        $controller = new AnnualReportController($pdo);
+        $controller->exportPDF();
+        break;
 
 
 

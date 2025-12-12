@@ -17,6 +17,7 @@ require_once __DIR__ . '/../../config/Helpers/amenityicon.php';
             <p>Room information is not available.</p>
         <?php else: ?>
             <?php if (isset($successMessage)) echo "<p class='text-green-600 text-2xl p-5'>$successMessage</p>"; ?>
+            <?php if (isset($errorMessage)) echo "<p class='text-red-600 text-2xl p-5'>$errorMessage</p>"; ?>
 
             <form method="POST" enctype="multipart/form-data" class="w-full md:w-[60vw] bg-white shadow-2xl border border-[#dddddd] p-6 md:p-10 rounded-2xl flex flex-col gap-6 ">
 
@@ -103,12 +104,12 @@ require_once __DIR__ . '/../../config/Helpers/amenityicon.php';
                 <div class="flex flex-col md:flex-row gap-4 w-full">
                     <div class="flex flex-col w-full">
                         <label class="font-semibold text-xl">Floor</label>
-                        <input type="number" name="floor" value="<?= htmlspecialchars($room['floor']) ?>" min="1" max="10" class="border border-[#dcdcdc] p-3 rounded-xl bg-[#ebebeb] outline-0">
+                        <input type="number" name="floor" value="<?= htmlspecialchars($room['floor']) ?>" min="1" max="4" class="border border-[#dcdcdc] p-3 rounded-xl bg-[#ebebeb] outline-0">
                     </div>
 
                     <div class="flex flex-col w-full">
                         <label class="font-semibold text-xl">Capacity</label>
-                        <input type="number" name="people" value="<?= htmlspecialchars($room['people']) ?>" class="border border-[#dcdcdc] p-3 rounded-xl bg-[#ebebeb] outline-0">
+                        <input type="number" name="people" value="<?= htmlspecialchars($room['people']) ?>" min="1" max="6" class="border border-[#dcdcdc] p-3 rounded-xl bg-[#ebebeb] outline-0">
                     </div>
                 </div>
 
