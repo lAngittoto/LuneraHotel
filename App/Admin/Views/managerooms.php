@@ -130,10 +130,40 @@ if (isset($_SESSION['success_message'])) {
     </div>
 </div>
 
-<!-- Cleaning Popup code remains unchanged -->
+<!-- Cleaning Popup -->
+<div id="cleaningPopup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg w-96 relative">
+        <h2 class="text-xl font-bold mb-4">Submit Cleaning Task</h2>
+        
+        <form id="cleaningTaskForm" onsubmit="submitCleaningTask(event)">
+            <input type="hidden" name="room_id" id="taskRoomId">
+            
+            <div class="mb-3">
+                <label for="popupRoomNumber" class="block font-semibold mb-1">Room Number</label>
+                <span id="popupRoomNumber"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="taskDescription" class="block font-semibold mb-1">Task Description</label>
+                <textarea name="description" id="taskDescription" class="w-full border rounded p-2" required></textarea>
+            </div>
+
+            <div id="taskMessage" class="hidden mb-3"></div>
+
+            <div class="flex justify-end gap-2">
+                <button type="button" onclick="closeCleaningPopup()" class="px-4 py-2 bg-gray-500 text-white rounded">Cancel</button>
+                <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script>
 function openCleaningPopup(roomId, roomNumber) {
-    document.getElementById('cleaningPopup').classList.remove('hidden');
+    const popup = document.getElementById('cleaningPopup');
+    if (!popup) return;
+
+    popup.classList.remove('hidden');
     document.getElementById('taskRoomId').value = roomId;
     document.getElementById('popupRoomNumber').textContent = roomNumber;
     document.getElementById('taskDescription').value = '';
@@ -141,7 +171,9 @@ function openCleaningPopup(roomId, roomNumber) {
 }
 
 function closeCleaningPopup() {
-    document.getElementById('cleaningPopup').classList.add('hidden');
+    const popup = document.getElementById('cleaningPopup');
+    if (!popup) return;
+    popup.classList.add('hidden');
 }
 
 function submitCleaningTask(event) {
@@ -175,10 +207,9 @@ function submitCleaningTask(event) {
     });
 }
 
+// Close popup by clicking outside
 document.getElementById('cleaningPopup')?.addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeCleaningPopup();
-    }
+    if (e.target === this) closeCleaningPopup();
 });
 </script>
 
