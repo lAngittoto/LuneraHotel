@@ -40,12 +40,12 @@ switch ($page) {
         $controller = new AnnualReportController($pdo);
         $controller->index();
         break;
-
-    case 'exportpdf':
-        include __DIR__ . '/../Admin/Controllers/AnnualReportController.php';
-        $controller = new AnnualReportController($pdo);
-        $controller->exportPDF();
+    case 'inventory':
+        include __DIR__ . '/../Admin/Controllers/inventoryController.php';
+        $controller = new InventoryController($pdo);
+        $controller->index();
         break;
+
 
 
 

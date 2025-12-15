@@ -22,7 +22,7 @@ function updateRoom($pdo, $roomId, $data) {
         $data['description'],
         $data['status'],
         intval($data['floor']),
-        $data['people'],
+        $data['people'], // Directly set people
         $data['img'] ?? null,
         $roomId
     ]);
@@ -51,9 +51,18 @@ function updateAmenities($pdo, $roomId, $amenities) {
 
     $stmt = $pdo->prepare("INSERT INTO amenities (room_id, amenity) VALUES (?, ?)");
     foreach ($amenities as $amenity) {
-        if (!empty($amenity)) {
-            $stmt->execute([$roomId, $amenity]);
-        }
+        if (!empty($amenity)) $stmt->execute([$roomId, $amenity]);
     }
+}
+
+function getRoomById($pdo, $roomId) {
+    $stmt = $pdo->prepare("
+        SELECT r.*, rt.type_name AS room_type_name
+        FROM rooms r
+        LEFT JOIN room_type rt ON r.room_type = rt.type_name
+        WHERE r.id = ?
+    ");
+    $stmt->execute([$roomId]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 ?>

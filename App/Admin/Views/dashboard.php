@@ -77,6 +77,11 @@ require_once __DIR__ . '/header.php';
           <p class="description text-gray-500 mb-4">Generate a comprehensive annual summary of hotel performance, including total bookings, revenue trends, room utilization, and maintenance activity.</p>
           <a href="/LuneraHotel/App/Public/annualreport" class="text-white bg-[#800000] py-3 px-5 rounded-xl inline-block text-sm hover:bg-[#a00000] transition">View Full Report <i class="fa-solid fa-arrow-right"></i></a>
         </div>
+            <div class="card p-5 bg-white shadow-lg rounded-xl">
+          <h3 class="text-xl font-semibold mb-2"><i class="fa-solid fa-chart-simple text-[#800000]"></i> Invenotry</h3>
+          <p class="description text-gray-500 mb-4">Inveniry</p>
+          <a href="/LuneraHotel/App/Public/inventory" class="text-white bg-[#800000] py-3 px-5 rounded-xl inline-block text-sm hover:bg-[#a00000] transition">View Full Report <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
       </div>
     </section>
   </main>

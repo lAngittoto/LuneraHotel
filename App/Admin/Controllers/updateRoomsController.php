@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../Models/updateRoomsModel.php';
+require_once __DIR__ . '/../Models/InventoryModel.php';
 require_once __DIR__ . '/../../config/Helpers/amenityicon.php';
 
 if (!isset($_SESSION['user'])) {
@@ -18,38 +19,26 @@ $allAmenities = getAllAmenities($pdo);
 $roomTypes = getAllRoomTypes($pdo);
 
 $errorMessage = null;
+$successMessage = null;
 
-// UPDATE ROOM LOGIC
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_room'])) {
 
     $status = $_POST['status'] ?? 'Booked';
-
-    $people = intval($_POST['people']);
+    $people = intval($_POST['people']); // Direct user input
     $room_number = trim($_POST['room_number']);
     $floor = intval($_POST['floor']);
 
-    // Validation: Room number must be numeric and non-negative
+    // Validations
     if (!is_numeric($room_number) || intval($room_number) < 0) {
         $errorMessage = "Invalid room number!";
-    }
-
-    // Validation: Maximum 6 people
-    elseif ($people > 6) {
+    } elseif ($people > 6) {
         $errorMessage = "Maximum capacity is 6 people only!";
-    }
-
-    // Validation: Maximum floor 4
-    elseif ($floor > 4) {
+    } elseif ($floor > 4) {
         $errorMessage = "Maximum floor allowed is 4!";
-    }
-
-    // Validation: Prevent duplicate room numbers
-    else {
+    } else {
         $stmt = $pdo->prepare("SELECT id FROM rooms WHERE room_number = ? AND id != ?");
         $stmt->execute([$room_number, $roomId]);
-        if ($stmt->fetch()) {
-            $errorMessage = "Room number $room_number is already in use!";
-        }
+        if ($stmt->fetch()) $errorMessage = "Room number $room_number is already in use!";
     }
 
     if (!$errorMessage) {
@@ -65,16 +54,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_room'])) {
         // Update room
         updateRoom($pdo, $roomId, [
             'room_number' => $room_number,
-            'room_type' => $_POST['room_type'],
-            'type_name'   => $_POST['type_name'],
+            'room_type'   => $_POST['room_type'],
             'description' => $_POST['description'],
-            'status' => $status,
-            'floor' => $floor,
-            'people' => $people,
-            'img' => $imgPath
+            'status'      => $status,
+            'floor'       => $floor,
+            'people'      => $people,
+            'img'         => $imgPath,
+            'type_name'   => $_POST['type_name']
         ]);
 
-        // Auto-complete bookings if room is now available
+        // Only increment inventory if booked
+        if ($status === 'Booked') {
+            $inventoryModel = new InventoryModel($pdo);
+            $inventoryModel->bookRoom($roomId, $people);
+        }
+
+        // Mark completed bookings if available
         if ($status === 'Available') {
             $stmt = $pdo->prepare("
                 UPDATE bookings
@@ -92,17 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_room'])) {
         $roomAmenities = getRoomAmenities($pdo, $roomId);
         $successMessage = "Room updated successfully!";
     }
-}
-
-function getRoomById($pdo, $roomId) {
-    $stmt = $pdo->prepare("
-        SELECT r.*, rt.type_name
-        FROM rooms r
-        LEFT JOIN room_type rt ON r.id = rt.id
-        WHERE r.id = ?
-    ");
-    $stmt->execute([$roomId]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 include __DIR__ . '/../Views/updaterooms.php';
