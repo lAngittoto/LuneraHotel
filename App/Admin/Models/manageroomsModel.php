@@ -1,33 +1,30 @@
 <?php
 function getRoomsSummary($pdo)
 {
-    $query = "
+    $sql = "
         SELECT 
             r.id,
             r.room_number,
             r.room_type,
-            rt.type_name,
             r.floor,
             r.people,
             r.status,
+            rt.type_name,
             CASE 
                 WHEN EXISTS (
                     SELECT 1 
-                    FROM tasks 
-                    WHERE RoomID = r.id
+                    FROM tasks t 
+                    WHERE t.RoomID = r.id
                 ) 
                 THEN 1 
                 ELSE 0 
             END AS has_cleaning_task
         FROM rooms r
-        LEFT JOIN room_type rt 
-            ON rt.id = r.room_type
-        ORDER BY r.floor ASC, r.room_number ASC
+        LEFT JOIN room_type rt ON rt.id = r.id
+        ORDER BY r.id ASC
     ";
 
-    $stmt = $pdo->prepare($query);
+    $stmt = $pdo->prepare($sql);
     $stmt->execute();
-
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-?>

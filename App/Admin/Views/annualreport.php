@@ -136,6 +136,35 @@ $popularRoomType = $popularRoomType ?? 'N/A';
             </table>
         </div>
 
+    <h2 class="text-xl font-semibold mb-3">Annual Item Usage Report</h2>
+    <table class="min-w-full text-sm border">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="px-4 py-2 text-left">Item Name</th>
+                <th class="px-4 py-2 text-left">Category</th>
+                <th class="px-4 py-2 text-left">Total Used</th>
+                <th class="px-4 py-2 text-left">Max Capacity</th>
+                <th class="px-4 py-2 text-left">Restock Alerts</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if(!empty($itemUsageReport)): ?>
+                <?php foreach ($itemUsageReport as $item): ?>
+                <tr class="hover:bg-gray-50">
+                    <td class="px-4 py-2"><?= htmlspecialchars($item['item_name']) ?></td>
+                    <td class="px-4 py-2"><?= $item['location'] ?></td>
+                    <td class="px-4 py-2 font-semibold"><?= $item['total_used'] ?></td>
+                    <td class="px-4 py-2"><?= $item['total_capacity'] ?></td>
+                    <td class="px-4 py-2 text-red-600 font-semibold"><?= $item['restock_count'] ?></td>
+                </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr><td colspan="5" class="px-4 py-2 text-center">No data available</td></tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>
+
     </div>
 </div>
 

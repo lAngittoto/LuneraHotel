@@ -1,4 +1,5 @@
 <?php
+// ======================= CONTROLLER =======================
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../Models/AnnualReportModel.php';
 
@@ -20,6 +21,7 @@ class AnnualReportController
         $monthlyReport = $data['monthlyReport'] ?? array_fill(1,12,0);
         $roomTypeBreakdown = $data['roomTypeBreakdown'] ?? [];
         $popularRoomType = $data['popularRoomType'] ?? 'N/A';
+        $itemUsageReport = $data['itemUsageReport'] ?? [];
 
         require __DIR__ . '/../Views/annualreport.php';
     }

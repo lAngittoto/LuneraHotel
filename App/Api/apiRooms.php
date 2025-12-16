@@ -35,21 +35,26 @@ try {
     $bookedRooms = $stmt3->fetchAll(PDO::FETCH_COLUMN);
 
     // --- 4. Merge rooms with prices & booking status ---
-    $roomsArray = [];
-    foreach ($rooms as $index => $room) {
-        $isBooked = in_array($room['id'], $bookedRooms);
-        $roomsArray[] = [
-            'id' => $room['id'],
-            'RoomNumber' => $room['room_number'] ?? 'N/A',
-            'RoomType' => $room['room_type'] ?? 'Room',
-            'floor' => $room['floor'] ?? 0,
-            'status' => $isBooked ? 'booked' : ($room['status'] ?? 'available'),
-            'img' => $room['img'] ?? 'Public/images/default.png',
-            'description' => $room['description'] ?? '',
-            'people' => $room['people'] ?? 2,
-            'price' => isset($pricesData[$index]) ? floatval($pricesData[$index]) : 0
-        ];
-    }
+$roomsArray = [];
+foreach ($rooms as $index => $room) {
+    // If booked OR the status is not 'available', set to 'unavailable'
+    $status = in_array($room['id'], $bookedRooms) || strtolower($room['status']) !== 'available' 
+        ? 'Unavailable' 
+        : 'available';
+
+    $roomsArray[] = [
+        'id' => $room['id'],
+        'RoomNumber' => $room['room_number'] ?? 'N/A',
+        'RoomType' => $room['room_type'] ?? 'Room',
+        'floor' => $room['floor'] ?? 0,
+        'status' => $status, // now dirty / booked / maintenance → 'unavailable'
+        'img' => $room['img'] ?? 'Public/images/default.png',
+        'description' => $room['description'] ?? '',
+        'people' => $room['people'] ?? 2,
+        'price' => isset($pricesData[$index]) ? floatval($pricesData[$index]) : 0
+    ];
+}
+
 
     // --- 5. Return JSON ---
     echo json_encode([
