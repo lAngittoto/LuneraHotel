@@ -25,6 +25,9 @@ if ($role !== 'admin' && strtolower($room['status']) === 'dirty') {
 
 // Status class for badge
 $statusClass = getStatusClass($displayStatus);
+
+// Determine if report form should be shown (only if Occupied)
+$canReport = strtolower($room['status']) === 'occupied';
 ?>
 
 <div class="p-6 md:p-10">
@@ -82,53 +85,59 @@ $statusClass = getStatusClass($displayStatus);
         <div class="w-full lg:w-3/5 bg-white border border-gray-200 rounded-xl shadow-lg p-6 md:p-10">
             <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center lg:text-left">Report an Issue for this Room</h2>
 
-            <?php if (isset($_SESSION['message'])): ?>
-                <p class="text-green-600 mb-6 font-medium">
-                    <?= htmlspecialchars($_SESSION['message']); unset($_SESSION['message']); ?>
+            <?php if (!$canReport): ?>
+                <p class="text-gray-600 font-medium text-center">
+                    You can only report an issue when the room is currently <span class="font-semibold text-red-600">Occupied</span>.
                 </p>
-            <?php endif; ?>
+            <?php else: ?>
+                <?php if (isset($_SESSION['message'])): ?>
+                    <p class="text-green-600 mb-6 font-medium">
+                        <?= htmlspecialchars($_SESSION['message']); unset($_SESSION['message']); ?>
+                    </p>
+                <?php endif; ?>
 
-            <?php if (isset($_SESSION['error'])): ?>
-                <p class="text-red-600 mb-6 font-medium">
-                    <?= htmlspecialchars($_SESSION['error']); unset($_SESSION['error']); ?>
-                </p>
-            <?php endif; ?>
+                <?php if (isset($_SESSION['error'])): ?>
+                    <p class="text-red-600 mb-6 font-medium">
+                        <?= htmlspecialchars($_SESSION['error']); unset($_SESSION['error']); ?>
+                    </p>
+                <?php endif; ?>
 
-            <form method="POST" action="/LuneraHotel/App/Public/index.php?page=viewdetails&id=<?= htmlspecialchars($room['id']) ?>" class="space-y-5" enctype="multipart/form-data">
-                <input type="hidden" name="room_id" value="<?= htmlspecialchars($room['id']) ?>">
+                <form method="POST" action="/LuneraHotel/App/Public/index.php?page=viewdetails&id=<?= htmlspecialchars($room['id']) ?>" class="space-y-5" enctype="multipart/form-data">
+                    <input type="hidden" name="room_id" value="<?= htmlspecialchars($room['id']) ?>">
 
-                <div>
-                    <label for="description" class="block mb-2 font-medium text-gray-700">Issue Description:</label>
-                    <textarea 
-                        name="description" 
-                        id="description" 
-                        rows="5" 
-                        class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
-                        placeholder="Describe the issue..."
-                        required
-                    ></textarea>
-                </div>
+                    <div>
+                        <label for="description" class="block mb-2 font-medium text-gray-700">Issue Description:</label>
+                        <textarea 
+                            name="description" 
+                            id="description" 
+                            rows="5" 
+                            class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
+                            placeholder="Describe the issue..."
+                            required
+                        ></textarea>
+                    </div>
 
-                <div>
-                    <label for="images" class="block mb-2 font-medium text-gray-700">Attach Images (optional):</label>
-                    <input 
-                        type="file" 
-                        name="images[]" 
-                        id="images" 
-                        accept="image/*" 
-                        multiple
-                        class="w-full"
+                    <div>
+                        <label for="images" class="block mb-2 font-medium text-gray-700">Attach Images (optional):</label>
+                        <input 
+                            type="file" 
+                            name="images[]" 
+                            id="images" 
+                            accept="image/*" 
+                            multiple
+                            class="w-full"
+                        >
+                        <p class="text-xs text-gray-500 mt-2">You can upload multiple images (jpg, png, gif). Max 5 files, 5MB each.</p>
+                    </div>
+
+                    <button 
+                        type="submit" 
+                        class="w-full md:w-auto px-6 py-3 bg-red-600 text-white font-semibold rounded-xl shadow-md hover:bg-red-700 hover:shadow-lg transition-all duration-300"
                     >
-                    <p class="text-xs text-gray-500 mt-2">You can upload multiple images (jpg, png, gif). Max 5 files, 5MB each.</p>
-                </div>
-
-                <button 
-                    type="submit" 
-                    class="w-full md:w-auto px-6 py-3 bg-red-600 text-white font-semibold rounded-xl shadow-md hover:bg-red-700 hover:shadow-lg transition-all duration-300"
-                >
-                    Submit Issue
-                </button>
-            </form>
+                        Submit Issue
+                    </button>
+                </form>
+            <?php endif; ?>
         </div>
 
     </section>
